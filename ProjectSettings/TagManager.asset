@@ -44,6 +44,9 @@ TagManager:
   - name: BackGround
     uniqueID: 54825243
     locked: 0
+  - name: Weapon
+    uniqueID: 858306617
+    locked: 0
   - name: Player
     uniqueID: 1376879819
     locked: 0
