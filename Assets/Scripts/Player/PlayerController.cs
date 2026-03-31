@@ -2,33 +2,40 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 5f; // 이동 속도
+    public float moveSpeed = 5f;
     private Rigidbody2D rb;
     private Vector2 moveInput;
+    private Animator anim;
 
     void Start()
     {
-        // 오브젝트에 부착된 Rigidbody2D를 가져옵니다.
         rb = GetComponent<Rigidbody2D>();
-
-        // 중력의 영향을 받지 않게 하려면 탑다운(Top-down) 뷰 기준 0으로 설정하세요.
         rb.gravityScale = 0f;
+        anim = GetComponent<Animator>();
     }
 
     void Update()
     {
-        // 1. 입력 받기 (W, A, S, D 또는 화살표 키)
-        // GetAxisRaw는 즉각적인 반응(0 아니면 1)을 줄 때 좋습니다.
+        // 1. 입력 받기
         moveInput.x = Input.GetAxisRaw("Horizontal");
         moveInput.y = Input.GetAxisRaw("Vertical");
 
-        // 대각선 이동 시 속도가 빨라지는 것을 방지하기 위해 정규화(Normalize)합니다.
-        moveInput = moveInput.normalized;
+        // 2. 입력이 있는지 체크 (이 부분이 핵심입니다!)
+        // sqrMagnitude는 magnitude보다 연산이 빨라 최적화에 좋습니다.
+        if (moveInput.sqrMagnitude > 0.01f)
+        {
+            anim.SetBool("isMoving", true);
+        }
+        else
+        {
+            anim.SetBool("isMoving", false);
+        }
     }
 
     void FixedUpdate()
     {
-        // 2. 물리 연산은 FixedUpdate에서 처리합니다.
-        rb.MovePosition(rb.position + moveInput * moveSpeed * Time.fixedDeltaTime);
+        // 입력값 정규화 (대각선 속도 방지)
+        Vector2 normalizedInput = moveInput.normalized;
+        rb.MovePosition(rb.position + normalizedInput * moveSpeed * Time.fixedDeltaTime);
     }
 }
