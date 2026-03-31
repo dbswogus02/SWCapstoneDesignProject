@@ -59,5 +59,14 @@ TagManager:
   - name: Wall
     uniqueID: 3818642305
     locked: 0
+  - name: LeftArm
+    uniqueID: 2519184561
+    locked: 0
+  - name: body
+    uniqueID: 1042298135
+    locked: 0
+  - name: RightArm
+    uniqueID: 2844777635
+    locked: 0
   m_RenderingLayers:
   - Default

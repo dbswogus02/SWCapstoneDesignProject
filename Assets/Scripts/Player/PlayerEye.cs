@@ -9,22 +9,28 @@ public class PlayerEye : MonoBehaviour
 
     void RotateTowardsMouse()
     {
-        // 1. 마우스의 화면 좌표를 월드 좌표로 변환합니다.
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        // 1. 카메라에서 마우스 위치를 향하는 광선(Ray)을 생성합니다.
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        // 2. 마우스 위치에서 현재 오브젝트 위치를 빼서 방향 벡터를 구합니다.
-        // 2D이므로 z값은 0으로 고정해주는 것이 정확합니다.
-        Vector2 direction = new Vector2(
-            mousePosition.x - transform.position.x,
-            mousePosition.y - transform.position.y
-        );
+        // 2. 캐릭터가 서 있는 평면(Z=0)을 정의합니다.
+        Plane groundPlane = new Plane(Vector3.forward, Vector3.zero);
+        float rayDistance;
 
-        // 3. Atan2 함수를 사용해 방향 벡터의 각도(라디안)를 구하고 도(Degree) 단위로 변환합니다.
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        // 3. 광선이 평면과 만나는지 확인합니다.
+        if (groundPlane.Raycast(ray, out rayDistance))
+        {
+            // 4. 만나는 지점(월드 좌표)을 구합니다.
+            Vector3 mouseWorldPosition = ray.GetPoint(rayDistance);
 
-        // 4. 오브젝트의 회전값을 적용합니다. 
-        // 만약 스프라이트의 앞부분이 오른쪽(X축 화살표 방향)을 향하고 있다면 그대로 사용하면 됩니다.
-        transform.rotation = Quaternion.Euler(0, 0, angle);
+            // 5. 캐릭터 위치에서 마우스 위치까지의 방향 벡터를 구합니다.
+            Vector2 direction = new Vector2(
+                mouseWorldPosition.x - transform.position.x,
+                mouseWorldPosition.y - transform.position.y
+            );
+
+            // 6. 각도를 계산하여 회전값을 적용합니다.
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0, 0, angle);
+        }
     }
 }
-
