@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class WeaponAttack : MonoBehaviour
+public class DaggerAttack : MonoBehaviour
 {
     private bool isNormalAttacking = false;
     private bool isSpecialAttacking = false;

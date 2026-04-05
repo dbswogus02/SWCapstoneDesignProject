@@ -15,9 +15,20 @@ public class WeaponPickup : MonoBehaviour
 
     void PickupWeapon()
     {
+        // 1. 기존 무기 체크 및 분리
+        foreach (Transform child in playerTransform)
+        {
+            if (child.CompareTag("Weapon"))
+            {
+                // 부모 해제 (바닥에 떨어뜨리기)
+                child.SetParent(null);
+                break; // 하나만 처리하면 끝
+            }
+        }
+
+        // 2. 새 무기 장착
         transform.SetParent(playerTransform);
 
-        // 위치/회전 초기화 (필요하면 조정)
         transform.localPosition = new Vector3(0.3f, -0.6f, 0f);
         transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
 
