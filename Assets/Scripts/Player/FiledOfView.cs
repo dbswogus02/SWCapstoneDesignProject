@@ -9,7 +9,7 @@ public class FieldOfView : MonoBehaviour
         mainCamera = Camera.main;
     }
 
-    void Update()
+    void LateUpdate()
     {
         RotateTowardsMouse();
     }
