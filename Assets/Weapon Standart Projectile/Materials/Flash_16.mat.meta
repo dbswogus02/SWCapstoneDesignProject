@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: cefa633b34ea9fe4893f148b69f1dc18
+timeCreated: 1555359409
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 301520
+  packageName: Weapon Standart Projectile
+  packageVersion: 1.2
+  assetPath: Assets/Weapon Standart Projectile/Materials/Flash_16.mat
+  uploadId: 727971

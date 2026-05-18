@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 4b9cb3248af14bc4fa03beaaede19356
+timeCreated: 1561976278
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 301520
+  packageName: Weapon Standart Projectile
+  packageVersion: 1.2
+  assetPath: Assets/Weapon Standart Projectile/Prefabs/Weapon/FX/AK47/AK47_Bullet.prefab
+  uploadId: 727971

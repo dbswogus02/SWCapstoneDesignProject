@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d918e4471beaa3f458f73d357243b7b1
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 301520
+  packageName: Weapon Standart Projectile
+  packageVersion: 1.2
+  assetPath: Assets/Weapon Standart Projectile/Materials/Laser/Trail.mat
+  uploadId: 727971

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: cc226300f16297248ae103fdef288941
+timeCreated: 1488084295
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 301520
+  packageName: Weapon Standart Projectile
+  packageVersion: 1.2
+  assetPath: Assets/Weapon Standart Projectile/Materials/Projector/ProjectorEnemy.mat
+  uploadId: 727971

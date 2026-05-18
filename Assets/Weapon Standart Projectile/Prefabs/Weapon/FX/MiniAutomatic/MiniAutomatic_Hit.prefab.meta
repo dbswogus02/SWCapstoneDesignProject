@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c465db385c214bc419f676c07535e61c
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 301520
+  packageName: Weapon Standart Projectile
+  packageVersion: 1.2
+  assetPath: Assets/Weapon Standart Projectile/Prefabs/Weapon/FX/MiniAutomatic/MiniAutomatic_Hit.prefab
+  uploadId: 727971

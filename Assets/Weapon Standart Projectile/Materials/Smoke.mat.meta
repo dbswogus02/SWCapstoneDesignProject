@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ec6f092c6cda7844897317e79f8f63d6
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 301520
+  packageName: Weapon Standart Projectile
+  packageVersion: 1.2
+  assetPath: Assets/Weapon Standart Projectile/Materials/Smoke.mat
+  uploadId: 727971

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 20e39a173c2a49945a4d5c64b32fbca7
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 301520
+  packageName: Weapon Standart Projectile
+  packageVersion: 1.2
+  assetPath: Assets/Weapon Standart Projectile/Materials/Projector/ProjectorGrenade.mat
+  uploadId: 727971

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: edb46ad28e3aa514faccc0d22a0ac7a4
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 301520
+  packageName: Weapon Standart Projectile
+  packageVersion: 1.2
+  assetPath: Assets/Weapon Standart Projectile/Prefabs/Weapon/FX/AK47/AK47_Hit.prefab
+  uploadId: 727971

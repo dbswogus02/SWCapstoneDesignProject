@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: e170247253527e942ba24b6ca69380ef
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 301520
+  packageName: Weapon Standart Projectile
+  packageVersion: 1.2
+  assetPath: Assets/Weapon Standart Projectile/Prefabs/Weapon/FX/Shotgun/Shotgun_Hit.prefab
+  uploadId: 727971

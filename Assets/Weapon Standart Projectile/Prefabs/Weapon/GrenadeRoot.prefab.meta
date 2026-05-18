@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ca4486d7b0204d6468082fe1bb74134b
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 301520
+  packageName: Weapon Standart Projectile
+  packageVersion: 1.2
+  assetPath: Assets/Weapon Standart Projectile/Prefabs/Weapon/GrenadeRoot.prefab
+  uploadId: 727971

@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: eb9fc33fc5605d8449f0f8bbad3c2968
+timeCreated: 1533229534
+licenseType: Store
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 301520
+  packageName: Weapon Standart Projectile
+  packageVersion: 1.2
+  assetPath: Assets/Weapon Standart Projectile/Script/RotateToMouse.cs
+  uploadId: 727971

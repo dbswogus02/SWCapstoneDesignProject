@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 1bca4fa08684dd9408450ac5b1fbcfe2
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 301520
+  packageName: Weapon Standart Projectile
+  packageVersion: 1.2
+  assetPath: Assets/Weapon Standart Projectile/Prefabs/Weapon/FX/Crossbow/arrow.prefab
+  uploadId: 727971

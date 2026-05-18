@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: dcec7cd99c006b946aa7ac83b6b472d5
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 301520
+  packageName: Weapon Standart Projectile
+  packageVersion: 1.2
+  assetPath: Assets/Weapon Standart Projectile/Script/Weapon/Bullet.cs
+  uploadId: 727971

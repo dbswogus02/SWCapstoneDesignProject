@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 51c451fd0fe05114db2479fdf4a5ee4a
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 301520
+  packageName: Weapon Standart Projectile
+  packageVersion: 1.2
+  assetPath: Assets/Weapon Standart Projectile/Prefabs/Weapon/FX/Laser2/Laser2_Hit.prefab
+  uploadId: 727971

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c6d0604d3d372894fa2896e1b6e127d4
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 301520
+  packageName: Weapon Standart Projectile
+  packageVersion: 1.2
+  assetPath: Assets/Weapon Standart Projectile/Materials/Muzzle/Beam_5.mat
+  uploadId: 727971
