@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 54a55506cd0de494e99f1dbe27d1ccbd
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 375318
+  packageName: Damage & Blood Screen
+  packageVersion: 1.0
+  assetPath: Assets/Lovatto/DamageScreen/Content/Scripts/Runtime/Core/bl_NearDeathEffect.cs
+  uploadId: 903832

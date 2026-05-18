@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 90c5922d03243014abdcb0ae2f5c0e36
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 375318
+  packageName: Damage & Blood Screen
+  packageVersion: 1.0
+  assetPath: Assets/Lovatto/DamageScreen/Content/Prefab/Main/Damage Screen (Simple).prefab
+  uploadId: 903832

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 0e28a8651dd3dfd4c9b8ba507098c429
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 375318
+  packageName: Damage & Blood Screen
+  packageVersion: 1.0
+  assetPath: Assets/Lovatto/DamageScreen/Demo/Art/Models/monster.controller
+  uploadId: 903832

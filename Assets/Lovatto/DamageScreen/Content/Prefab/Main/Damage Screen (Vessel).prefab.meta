@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: f246612aef34d1941806c8f3ac69a0d6
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 375318
+  packageName: Damage & Blood Screen
+  packageVersion: 1.0
+  assetPath: Assets/Lovatto/DamageScreen/Content/Prefab/Main/Damage Screen (Vessel).prefab
+  uploadId: 903832
