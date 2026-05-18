@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lovatto Studio | LovattoDoc</title>
+  <link rel="stylesheet" href="https://www.lovattostudio.com/files/css/lovatto-doc.css" />
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-atom-dark.min.css" rel="stylesheet" />
+</head>
+<body>
+<header class="header">
+<button id="menu-toggle" class="menu-toggle">☰</button>
+<button id="mobile-menu-toggle" class="mobile-menu-toggle">⋯</button>
+  <div class="header-left">
+    <span class="brand">Lovatto Studio</span>
+  </div>
+ <nav class="header-nav" id="header-nav">
+    
+  </nav>
+  <div class="header-search">
+    <div class="search-box">
+      <svg class="svg-icon" style="mask-image:url(https://ka-p.fontawesome.com/releases/v6.6.0/svgs/regular/magnifying-glass.svg?v=2&amp;token=a463935e93);"></svg>
+      <input id="search-box" type="text" placeholder="Search...">
+    </div>
+<div id="search-results"></div>
+  </div>
+</header>
+  <div class="doc-root">
+<aside class="toc"></aside>
+    <aside class="sidebar">
+      <nav class="sidebar-nav">
+        <ul><li><a href="#id-basic-integration">Basic Integration</a></li><li><a href="#id-using-included-player-health">Using Included Player Health</a></li><li><a href="#id-damage-screen-settings">Damage Screen Settings</a></li><li><a href="#id-ui-customization">UI Customization</a></li><li><a href="#id-mobile-projects">Mobile Projects</a></li><li><a href="#id-respawn-and-reset">Respawn and Reset</a></li><li><a href="#id-troubleshooting">Troubleshooting</a></li></ul>
+      </nav>
+      <div class="sidebar-footer">Powered by LovattoDoc</div>
+    </aside>
+
+    <main class="main-content">
+      <article class="doc-body">
+        <section id="id-basic-integration" data-title="Basic Integration" class="content-section">
+<h4>Basic Integration</h4>
+<p>Damage Screen is designed for very fast integration in any project. Add the prefab to your scene and push health values with one line of code whenever local player health changes.</p>
+<p>___________________________________________<br><br><h1><strong>1. Add the prefab</strong></h1><br><br>Drag and drop the main prefab into your scene:<br><em>Assets/Lovatto/DamageScreen/Content/Prefab/Main/Damage Screen (Blood).prefab</em><br><span class="tooltip-trigger link-text" data-popup="Assets/Lovatto/DamageScreen/Content/Prefab/Main/Damage Screen (Blood).prefab" onclick="pingAsset('Assets/Lovatto/DamageScreen/Content/Prefab/Main/Damage Screen (Blood).prefab')">(Click here to ping)</span> or any of the variations.</p>
+<hr class="separator">
+<p><h1><strong>2. Send health updates (one line)</strong></h1><br><br>In your player health script, after any damage or heal operation, call:</p>
+<pre><code class="language-csharp"><color=#9CDCFE>bl_DamageScreen</color>.<color=#4EC9B0>UpdateHealth</color>(<color=#9CDCFE>currentHealth</color>, <color=#9CDCFE>maxHealth</color>);</code></pre>
+<p>For beginner integration: <strong>currentHealth</strong> and <strong>maxHealth</strong> are not fixed words or placeholders. They should be the real health variables/parameters from your own player health script at the moment damage is applied.</p>
+<p>Minimal damage example:</p>
+<pre><code class="language-csharp"><color=#569CD6>public</color> <color=#569CD6>void</color> <color=#4EC9B0>ReceiveDamage</color>(<color=#4EC9B0>int</color> <color=#9CDCFE>damageAmount</color>)
+{
+    <color=#9CDCFE>currentHealth</color> = <color=#4EC9B0>Mathf</color>.<color=#4EC9B0>Clamp</color>(<color=#9CDCFE>currentHealth</color> - <color=#9CDCFE>damageAmount</color>, <color=#B5CEA8>0</color>, <color=#9CDCFE>maxHealth</color>);
+    <color=#9CDCFE>bl_DamageScreen</color>.<color=#4EC9B0>UpdateHealth</color>(<color=#9CDCFE>currentHealth</color>, <color=#9CDCFE>maxHealth</color>);
+}</code></pre>
+<div class="info-notice">
+  <svg class="info-icon"></svg>
+  <span class="info-text">
+    Important:
+UpdateHealth must be called with the local player values and a valid maxHealth greater than 0.
+  </span>
+</div>
+</section>
+<section id="id-using-included-player-health" data-title="Using Included Player Health" class="content-section">
+<h4>Using Included Player Health</h4>
+<p>If you prefer a ready-to-use health controller, the asset includes a basic player health component with damage, heal, death event, and optional regeneration.</p>
+<p>Included script:<br><em>Assets/Lovatto/DamageScreen/Content/Scripts/Runtime/Systems/bl_PlayerHealth.cs</em><br><span class="tooltip-trigger link-text" data-popup="Assets/Lovatto/DamageScreen/Content/Scripts/Runtime/Systems/bl_PlayerHealth.cs" onclick="pingAsset('Assets/Lovatto/DamageScreen/Content/Scripts/Runtime/Systems/bl_PlayerHealth.cs')">(Click here to ping)</span></p>
+<p>How to use it:<br>1. Add <strong>bl_PlayerHealth</strong> to your player object.<br>2. Configure max health, start health, and regeneration in the Inspector.<br>3. Call TakeDamage or Heal from your gameplay logic.</p>
+<pre><code class="language-csharp"><color=#9CDCFE>playerHealth</color>.<color=#4EC9B0>TakeDamage</color>(<color=#9CDCFE>damageAmount</color>);
+<color=#9CDCFE>playerHealth</color>.<color=#4EC9B0>Heal</color>(<color=#9CDCFE>healAmount</color>);</code></pre>
+<p>The component already sends updates to Damage Screen internally, so you do not need to call UpdateHealth manually when using this script.</p>
+</section>
+<section id="id-damage-screen-settings" data-title="Damage Screen Settings" class="content-section">
+<h4>Damage Screen Settings</h4>
+<p>All gameplay behavior is controlled from a single ScriptableObject settings asset loaded at runtime from Resources.</p>
+<p>Default settings asset:<br><em>Assets/Lovatto/DamageScreen/Resources/DamageScreenSettings.asset</em><br><span class="tooltip-trigger link-text" data-popup="Assets/Lovatto/DamageScreen/Resources/DamageScreenSettings.asset" onclick="pingAsset('Assets/Lovatto/DamageScreen/Resources/DamageScreenSettings.asset')">(Click here to ping)</span></p>
+<p><h1><strong>Blood Screen Settings</strong></h1><br>- <strong>bloodHealthThreshold</strong>: health percentage where blood starts appearing.<br>- <strong>DamageScreenFadeMode</strong>: keep blood synced to health or fade after delay.<br>- <strong>bloodFadeOutDelay / bloodFadeOutDuration</strong>: timing for auto fade mode.</p>
+<p><h1><strong>Screen Alpha Display</strong></h1><br>- <strong>GradualByHealth</strong>: all overlays blend by current health.<br>- <strong>OnePerHit</strong>: one overlay pulse per hit (fade in -> hold -> fade out).<br>- Per-hit timing and intensity controls are exposed in the same section.</p>
+<p><h1><strong>Near Death and Audio</strong></h1><br>- Configure heartbeat start/critical thresholds.<br>- Tune pulse speed and volume limits.<br>- Adjust max chromatic aberration for post-processing mode.</p>
+<hr class="separator">
+<p><h1><strong>Modify Near Death Screen Effect</strong></h1><br><br>To customize the near-death look, edit this Volume Profile:<br><em>Assets/Lovatto/DamageScreen/Content/Prefab/Presets/NearDeathEffectVolume.asset</em><br><span class="tooltip-trigger link-text" data-popup="Assets/Lovatto/DamageScreen/Content/Prefab/Presets/NearDeathEffectVolume.asset" onclick="pingAsset('Assets/Lovatto/DamageScreen/Content/Prefab/Presets/NearDeathEffectVolume.asset')">(Click here to ping)</span></p>
+<p>Inside the profile you can tune values like color grading, vignette, chromatic aberration, and other post-processing parameters to match your game's style.</p>
+<div class="info-notice">
+  <svg class="info-icon"></svg>
+  <span class="info-text">
+    If <b>useFastScreenEffect</b> is enabled in settings, this Volume Profile is bypassed and the fast canvas overlay mode is used instead.
+  </span>
+</div>
+</section>
+<section id="id-ui-customization" data-title="UI Customization" class="content-section">
+<h4>UI Customization</h4>
+<p>You can fully customize the visual style by editing the prefab UI references and replacing the included textures/animations.</p>
+<p>Main prefab for UI editing:<br><em>Assets/Lovatto/DamageScreen/Content/Prefab/Main/Damage Screen.prefab</em><br><span class="tooltip-trigger link-text" data-popup="Assets/Lovatto/DamageScreen/Content/Prefab/Main/Damage Screen.prefab" onclick="pingAsset('Assets/Lovatto/DamageScreen/Content/Prefab/Main/Damage Screen.prefab')">(Click here to ping)</span></p>
+<p>Recommended workflow:<br>1. Duplicate the prefab before editing for safe iteration.<br>2. In <strong>bl_BloodDamageScreen</strong>, replace or reorder the <strong>screenAlphas</strong> overlays.<br>3. Adjust <strong>redOverlayAlpha</strong> for global tint intensity behavior.<br>4. Optional: assign or replace <strong>flashScreenAnimator</strong> for custom hit flash animation.<br>5. In <strong>bl_NearDeathEffect</strong>, tune heartbeat clip/source and near-death visuals.</p>
+<div class="info-notice">
+  <svg class="info-icon"></svg>
+  <span class="info-text">
+    Tip:
+Using multiple overlay images with varied shapes gives a more natural result than reusing one repeated texture.
+  </span>
+</div>
+</section>
+<section id="id-mobile-projects" data-title="Mobile Projects" class="content-section">
+<h4>Mobile Projects</h4>
+<p>For mobile projects, use the fast near-death mode. By default near death uses post-processing Volume effects, which are heavier for mobile GPUs.</p>
+<p>In <strong>DamageScreenSettings</strong> > enable:<br><strong>useFastScreenEffect = true</strong></p>
+<p>When enabled:<br>- Post-processing near-death volume is disabled.<br>- A lightweight canvas alpha overlay is used instead.<br>- You keep the same health integration API.</p>
+<p>Mobile optimization checklist:<br>1. Keep overlay textures compressed and sized for target devices.<br>2. Prefer OnePerHit mode if you want shorter blood spikes.<br>3. Reduce pulse speed and maximum volumes if needed for battery/performance budgets.</p>
+</section>
+<section id="id-respawn-and-reset" data-title="Respawn and Reset" class="content-section">
+<h4>Respawn and Reset</h4>
+<p>When players respawn or restart rounds, clear visual/audio state to avoid carrying old damage feedback into a fresh life.</p>
+<p>Use these reset calls at respawn time:</p>
+<pre><code class="language-csharp"><color=#9CDCFE>bl_DamageScreen</color>.<color=#4EC9B0>Instance</color>.<color=#4EC9B0>ResetScreen</color>();</code></pre>
+<p>After reset, push the current health again so the system starts from the proper state:</p>
+<pre><code class="language-csharp"><color=#9CDCFE>bl_DamageScreen</color>.<color=#4EC9B0>UpdateHealth</color>(<color=#9CDCFE>currentHealth</color>, <color=#9CDCFE>maxHealth</color>);</code></pre>
+<div class="info-notice">
+  <svg class="info-icon"></svg>
+  <span class="info-text">
+    Common use cases:
+- Respawn systems
+- Round restart
+- Scene reload
+- Checkpoint restore
+  </span>
+</div>
+</section>
+<section id="id-troubleshooting" data-title="Troubleshooting" class="content-section">
+<h4>Troubleshooting</h4>
+<p>Quick checks for the most common setup issues.</p>
+<p><h1><strong>If you see no effect</strong></h1><br>- Confirm one active Damage Screen prefab exists in the scene.<br>- Confirm your health script calls UpdateHealth after every health change.<br>- Confirm maxHealth is greater than 0.<br>- Confirm DamageScreenSettings.asset exists in a Resources folder.</p>
+<p><h1><strong>If heartbeat does not play</strong></h1><br>- Ensure the near-death component has an AudioSource.<br>- Assign a heartbeat clip in the near-death component or AudioSource.<br>- Lower health below the configured threshold to trigger playback.</p>
+<p><h1><strong>Multiplayer note</strong></h1><br>Only call UpdateHealth for the local player UI. Remote players should not drive your local screen feedback.</p>
+</section>
+
+      </article>
+    </main>
+    <aside class="tocr"></aside>
+  </div>
+<div class="zoom-popup" id="zoom-popup"></div>
+<div id="tooltip-popup" class="tooltip-popup"></div>
+    <script src="https://www.lovattostudio.com/files/js/lovatto-doc.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.9.0/prism.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.9.0/components/prism-csharp.min.js"></script>
+</body>
+</html>

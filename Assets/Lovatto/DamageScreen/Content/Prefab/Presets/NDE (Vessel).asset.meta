@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 3f8ce30d5d190084a869b63ac1ba4f17
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 375318
+  packageName: Damage & Blood Screen
+  packageVersion: 1.0
+  assetPath: Assets/Lovatto/DamageScreen/Content/Prefab/Presets/NDE (Vessel).asset
+  uploadId: 903832

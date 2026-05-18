@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 22488596eba14b64899ab8393078d090
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 111300000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 375318
+  packageName: Damage & Blood Screen
+  packageVersion: 1.0
+  assetPath: Assets/Lovatto/DamageScreen/Demo/Scene/Default-Medium.giparams
+  uploadId: 903832

@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f00f5a1eab390f40a693d2bfb44853d, type: 3}
+  m_Name: DamageScreenSettings
+  m_EditorClassIdentifier: 
+  bloodHealthThreshold: 0.8
+  bloodScreenFadeMode: 0
+  bloodFadeOutDelay: 0.3
+  bloodFadeOutDuration: 1
+  screenAlphaDisplayMode: 0
+  perHitScreenAlpha: 1
+  perHitFadeInDuration: 0.06
+  perHitHoldDuration: 0.12
+  perHitFadeOutDuration: 0.35
+  flashOnDamage: 1
+  flashDuration: 0.5
+  flashIntensity: 0.15
+  enableNearDeathEffect: 1
+  healthThreshold: 30
+  criticalHealth: 10
+  useFastScreenEffect: 0
+  maxChromaticAberration: 0.7
+  pulseSpeed: 1
+  volumePulseAmount: 0.1
+  heartbeatMaxVolume: 1
+  heartbeatMinVolume: 0

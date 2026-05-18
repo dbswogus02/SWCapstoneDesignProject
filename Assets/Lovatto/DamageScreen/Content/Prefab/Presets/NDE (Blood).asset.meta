@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b0d887a73e75ceb489bd88a6e38fb5bd
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 375318
+  packageName: Damage & Blood Screen
+  packageVersion: 1.0
+  assetPath: Assets/Lovatto/DamageScreen/Content/Prefab/Presets/NDE (Blood).asset
+  uploadId: 903832

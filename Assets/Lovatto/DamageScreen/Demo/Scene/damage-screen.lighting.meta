@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b988a9978a812a249b365d3988aaa3f3
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 4890085278179872738
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 375318
+  packageName: Damage & Blood Screen
+  packageVersion: 1.0
+  assetPath: Assets/Lovatto/DamageScreen/Demo/Scene/damage-screen.lighting
+  uploadId: 903832

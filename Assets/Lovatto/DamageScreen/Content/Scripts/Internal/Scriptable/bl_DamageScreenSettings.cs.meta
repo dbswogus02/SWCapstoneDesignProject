@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 5f00f5a1eab390f40a693d2bfb44853d
+AssetOrigin:
+  serializedVersion: 1
+  productId: 375318
+  packageName: Damage & Blood Screen
+  packageVersion: 1.0
+  assetPath: Assets/Lovatto/DamageScreen/Content/Scripts/Internal/Scriptable/bl_DamageScreenSettings.cs
+  uploadId: 903832

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 8129c9c2363e5c64ebd7ba691d5babb9
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 375318
+  packageName: Damage & Blood Screen
+  packageVersion: 1.0
+  assetPath: Assets/Lovatto/DamageScreen/Demo/Art/Material/pattern.mat
+  uploadId: 903832
