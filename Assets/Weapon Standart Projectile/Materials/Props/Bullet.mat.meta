@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c2633c6ab86a060449b58edc9ab12f23
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 301520
+  packageName: Weapon Standart Projectile
+  packageVersion: 1.2
+  assetPath: Assets/Weapon Standart Projectile/Materials/Props/Bullet.mat
+  uploadId: 727971

@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 4ce94475dc2a06c488853315d5841cad
+timeCreated: 1562058095
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 301520
+  packageName: Weapon Standart Projectile
+  packageVersion: 1.2
+  assetPath: Assets/Weapon Standart Projectile/Prefabs/Weapon/FX/AK47/AK47_Muzzle.prefab
+  uploadId: 727971

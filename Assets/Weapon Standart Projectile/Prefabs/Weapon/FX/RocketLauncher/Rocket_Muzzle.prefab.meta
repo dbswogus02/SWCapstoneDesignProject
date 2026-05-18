@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 1c9533ffee0bb8d4f884cae4352d0879
+timeCreated: 1562058095
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 301520
+  packageName: Weapon Standart Projectile
+  packageVersion: 1.2
+  assetPath: Assets/Weapon Standart Projectile/Prefabs/Weapon/FX/RocketLauncher/Rocket_Muzzle.prefab
+  uploadId: 727971

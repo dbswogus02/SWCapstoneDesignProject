@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f92ed77f9d2e52f4dbd14cfc28b57113
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 301520
+  packageName: Weapon Standart Projectile
+  packageVersion: 1.2
+  assetPath: Assets/Weapon Standart Projectile/Materials/Props/BG3.mat
+  uploadId: 727971

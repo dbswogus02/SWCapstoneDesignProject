@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 6c351f3e0fcf088489335de45a42f8d1
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2655988077585873504
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 301520
+  packageName: Weapon Standart Projectile
+  packageVersion: 1.2
+  assetPath: Assets/Weapon Standart Projectile/Scenes/Demo_Profiles/TagManager.preset
+  uploadId: 727971

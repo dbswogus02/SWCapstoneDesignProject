@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: f4e4ef26d90f6c248bda46fbc94452e6
+timeCreated: 1488083733
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 301520
+  packageName: Weapon Standart Projectile
+  packageVersion: 1.2
+  assetPath: Assets/Weapon Standart Projectile/Script/BulletProjector.cs
+  uploadId: 727971

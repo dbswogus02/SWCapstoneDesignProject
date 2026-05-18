@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 91538fec571c38b42bf5d2c9e5134d7e
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 301520
+  packageName: Weapon Standart Projectile
+  packageVersion: 1.2
+  assetPath: Assets/Weapon Standart Projectile/Prefabs/Weapon/GrenadeLauncher.prefab
+  uploadId: 727971

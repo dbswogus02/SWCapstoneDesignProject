@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 7a257ecb665a22f4282772b5ba725022
+timeCreated: 1563107298
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 301520
+  packageName: Weapon Standart Projectile
+  packageVersion: 1.2
+  assetPath: Assets/Weapon Standart Projectile/Materials/Glow_Particle_2.mat
+  uploadId: 727971

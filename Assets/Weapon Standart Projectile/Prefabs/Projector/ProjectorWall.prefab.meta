@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 2cc5afc2e351caa4fab137d35a206ea4
+timeCreated: 1488084703
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 301520
+  packageName: Weapon Standart Projectile
+  packageVersion: 1.2
+  assetPath: Assets/Weapon Standart Projectile/Prefabs/Projector/ProjectorWall.prefab
+  uploadId: 727971

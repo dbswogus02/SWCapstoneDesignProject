@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 2f29088c00cd274488f31fc73b87f8b7
+timeCreated: 1562058095
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 301520
+  packageName: Weapon Standart Projectile
+  packageVersion: 1.2
+  assetPath: Assets/Weapon Standart Projectile/Prefabs/Weapon/FX/MiniAutomatic/MiniAutomatic_Muzzle.prefab
+  uploadId: 727971

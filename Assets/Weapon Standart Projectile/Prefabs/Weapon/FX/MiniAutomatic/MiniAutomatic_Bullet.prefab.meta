@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 81f9daf9977289c4ab5dd132cdd4082f
+timeCreated: 1561976278
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 301520
+  packageName: Weapon Standart Projectile
+  packageVersion: 1.2
+  assetPath: Assets/Weapon Standart Projectile/Prefabs/Weapon/FX/MiniAutomatic/MiniAutomatic_Bullet.prefab
+  uploadId: 727971
