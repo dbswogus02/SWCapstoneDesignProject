@@ -1,17 +1,26 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class SpawnManager : MonoBehaviour
 {
-    [Header("소환할 프리팹")]
-    public GameObject enemyPrefab;
-    public GameObject bossPrefab;
-    public Transform player; // 적들에게 할당할 타겟
+    // 스폰 포인트별 설정을 인스펙터에서 편하게 하기 위한 구조체
+    [System.Serializable]
+    public struct SpawnSetting
+    {
+        [Tooltip("적을 소환할 위치 (맵에 미리 배치한 GameObject/Transform)")]
+        public Transform spawnPoint;
 
-    [Header("소환 설정")]
-    public int enemyCount = 5;
-    public Vector2 spawnRangeMin; // 예: x: -10, y: -10
-    public Vector2 spawnRangeMax; // 예: x: 10, y: 10
+        [Tooltip("이 위치에 소환할 적 프리팹 (일반 몹, 보스 등 자유롭게 지정)")]
+        public GameObject enemyPrefab;
+    }
+
+    [Header("플레이어 설정")]
+    public Transform player; // 적들에게 할당할 타겟
     public LayerMask obstacleLayer; // 벽 레이어 (Wall)
+
+    [Header("스폰 목록 설정")]
+    [Tooltip("여기에 원하는 만큼 요소를 추가하고 위치와 프리팹을 매칭하세요.")]
+    public List<SpawnSetting> spawnList = new List<SpawnSetting>();
 
     void Start()
     {
@@ -20,65 +29,47 @@ public class SpawnManager : MonoBehaviour
 
     void SpawnEntities()
     {
-        // 일반 적 소환
-        for (int i = 0; i < enemyCount; i++)
+        // 설정한 스폰 목록을 순회하며 소환
+        foreach (var setting in spawnList)
         {
-            Vector2 spawnPos = GetRandomSafePosition();
-            GameObject enemy = Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
+            // 예외 처리: 스폰 포인트나 프리팹이 비어있다면 건너뜀
+            if (setting.spawnPoint == null || setting.enemyPrefab == null)
+            {
+                Debug.LogWarning("SpawnManager: 스폰 포인트 또는 프리팹이 비어있습니다!");
+                continue;
+            }
 
-            // 생성된 적에게 플레이어 타겟 설정
+            // 지정된 위치와 회전값으로 적 생성
+            Vector3 spawnPos = setting.spawnPoint.position;
+            GameObject enemy = Instantiate(setting.enemyPrefab, spawnPos, Quaternion.identity);
+
+            // 일반 적 컴포넌트 설정 (EnemyMove)
             if (enemy.TryGetComponent<EnemyMove>(out EnemyMove move))
             {
                 move.target = player;
                 move.obstacleLayer = obstacleLayer;
             }
-        }
 
-        // 보스 소환
-        Vector2 bossPos = GetRandomSafePosition();
-        GameObject boss = Instantiate(bossPrefab, bossPos, Quaternion.identity);
-        if (boss.TryGetComponent<BossMove>(out BossMove bossMove))
-        {
-            bossMove.target = player;
-            bossMove.obstacleLayer = obstacleLayer;
-        }
-    }
-
-    Vector2 GetRandomSafePosition()
-    {
-        Vector2 randomPos = Vector2.zero;
-        bool isSafe = false;
-        int attempts = 0;
-
-        // 벽과 겹치지 않는 위치를 찾을 때까지 반복 (최대 100번 시도)
-        while (!isSafe && attempts < 100)
-        {
-            float x = Random.Range(spawnRangeMin.x, spawnRangeMax.x);
-            float y = Random.Range(spawnRangeMin.y, spawnRangeMax.y);
-            randomPos = new Vector2(x, y);
-
-            // 해당 위치에 반지름 0.5 정도의 원 안에 장애물이 없는지 체크
-            Collider2D hit = Physics2D.OverlapCircle(randomPos, 0.5f, obstacleLayer);
-            if (hit == null)
+            // 보스 컴포넌트 설정 (BossMove)
+            if (enemy.TryGetComponent<BossMove>(out BossMove bossMove))
             {
-                isSafe = true;
+                bossMove.target = player;
+                bossMove.obstacleLayer = obstacleLayer;
             }
-            attempts++;
         }
-
-        return randomPos;
     }
 
+    // 개발 편의를 위해 에디터 뷰에서 스폰 위치들을 시각적으로 표시
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.white;
-        // 중심점 계산
-        Vector3 center = new Vector3((spawnRangeMin.x + spawnRangeMax.x) / 2, (spawnRangeMin.y + spawnRangeMax.y) / 2, 0);
-        // 크기 계산
-        Vector3 size = new Vector3(spawnRangeMax.x - spawnRangeMin.x, spawnRangeMax.y - spawnRangeMin.y, 1);
-
-        // 사각형 그리기
-        Gizmos.DrawWireCube(center, size);
+        Gizmos.color = Color.red;
+        foreach (var setting in spawnList)
+        {
+            if (setting.spawnPoint != null)
+            {
+                // 각 스폰 포인트 위치에 작은 구체와 와이어를 그려줍니다.
+                Gizmos.DrawSphere(setting.spawnPoint.position, 0.3f);
+            }
+        }
     }
-
 }
