@@ -2,7 +2,13 @@ using UnityEngine;
 
 public class PlayerEye : MonoBehaviour
 {
-    void Update()
+    private Camera mainCamera;
+
+    void Start()
+    {
+        mainCamera = Camera.main;
+    }
+    void LateUpdate()
     {
         RotateTowardsMouse();
     }
