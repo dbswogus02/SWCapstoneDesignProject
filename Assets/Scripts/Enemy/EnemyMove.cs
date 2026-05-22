@@ -1,20 +1,23 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class EnemyMove : MonoBehaviour
 {
     public Transform target;
     public float moveSpeed = 3f;
     public float detectionRange = 5f;
-
-    // ÀÌ º¯¼ö°¡ ÀÎ½ºÆåÅÍ¿¡ ³ªÅ¸³ª¸é 'Wall' ·¹ÀÌ¾î¸¦ ¼±ÅÃÇØÁÖ¼¼¿ä.
     public LayerMask obstacleLayer;
 
     private Rigidbody2D rb;
+    private Animator anim;
+
+    // â­ ì—ì…‹ì˜ íŒŒë¼ë¯¸í„° ì´ë¦„ì¸ 'Move~'ë¡œ ì™„ë²½ ë§¤ì¹­í–ˆìŠµë‹ˆë‹¤!
+    private string[] directionParams = { "MoveEast", "MoveNorthEast", "MoveNorth", "MoveNorthWest", "MoveWest", "MoveSouthWest", "MoveSouth", "MoveSouthEast" };
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.freezeRotation = true;
+        anim = GetComponent<Animator>();
     }
 
     void FixedUpdate()
@@ -23,27 +26,63 @@ public class EnemyMove : MonoBehaviour
         {
             float distanceToTarget = Vector2.Distance(transform.position, target.position);
 
-            // 1Â÷ Ã¼Å©: ½Ã¾ß ¹üÀ§ ¾È¿¡ ÀÖ´Â°¡?
             if (distanceToTarget <= detectionRange)
             {
-                // 2Â÷ Ã¼Å©: Àå¾Ö¹° Ã¼Å© ÇÔ¼ö È£Ãâ
                 if (IsPlayerVisible())
                 {
                     Vector2 direction = (target.position - transform.position).normalized;
                     rb.linearVelocity = direction * moveSpeed;
 
-                    float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-                    transform.rotation = Quaternion.Euler(0, 0, angle);
+                    if (anim != null)
+                    {
+                        anim.SetBool("isWalking", true);
+                        SetDirectionParameter(direction);
+                    }
                 }
                 else
                 {
-                    rb.linearVelocity = Vector2.zero;
+                    StopMoving();
                 }
             }
             else
             {
-                rb.linearVelocity = Vector2.zero;
+                StopMoving();
             }
+        }
+        else
+        {
+            StopMoving();
+        }
+    }
+
+    void StopMoving()
+    {
+        rb.linearVelocity = Vector2.zero;
+        if (anim != null)
+        {
+            anim.SetBool("isWalking", false);
+            ResetDirectionParameters();
+        }
+    }
+
+    void SetDirectionParameter(Vector2 dir)
+    {
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        if (angle < 0) angle += 360f;
+
+        int index = Mathf.RoundToInt(angle / 45f) % 8;
+
+        for (int i = 0; i < directionParams.Length; i++)
+        {
+            anim.SetBool(directionParams[i], i == index);
+        }
+    }
+
+    void ResetDirectionParameters()
+    {
+        for (int i = 0; i < directionParams.Length; i++)
+        {
+            anim.SetBool(directionParams[i], false);
         }
     }
 
@@ -51,10 +90,7 @@ public class EnemyMove : MonoBehaviour
     {
         Vector2 directionToPlayer = (target.position - transform.position).normalized;
         float distanceToPlayer = Vector2.Distance(transform.position, target.position);
-
-        // ·¹ÀÌ¾î¸¶½ºÅ©¸¦ »ç¿ëÇÏ¿© Àå¾Ö¹° °¨Áö
         RaycastHit2D hit = Physics2D.Raycast(transform.position, directionToPlayer, distanceToPlayer, obstacleLayer);
-
         return hit.collider == null;
     }
 
@@ -62,7 +98,6 @@ public class EnemyMove : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, detectionRange);
-
         if (target != null)
         {
             Gizmos.color = IsPlayerVisible() ? Color.green : Color.red;
