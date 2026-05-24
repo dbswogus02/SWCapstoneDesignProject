@@ -7,10 +7,14 @@ public class EnemyMove : MonoBehaviour
     public float detectionRange = 5f;
     public LayerMask obstacleLayer;
 
+    [Header("🔊 오디오 컴포넌트 연결")]
+    [Tooltip("에디터 인스펙터에서 해당 Audio Source 컴포넌트를 드래그해서 넣어주세요.")]
+    public AudioSource idleAudioSource; // 대기(Idle)용 오디오 소스
+    public AudioSource walkAudioSource; // 이동(Walk)용 오디오 소스
+
     private Rigidbody2D rb;
     private Animator anim;
 
-    // ⭐ 에셋의 파라미터 이름인 'Move~'로 완벽 매칭했습니다!
     private string[] directionParams = { "MoveEast", "MoveNorthEast", "MoveNorth", "MoveNorthWest", "MoveWest", "MoveSouthWest", "MoveSouth", "MoveSouthEast" };
 
     void Start()
@@ -18,6 +22,10 @@ public class EnemyMove : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         rb.freezeRotation = true;
         anim = GetComponent<Animator>();
+
+        // 게임 시작 시 기본적으로 대기 사운드 재생 시작
+        if (idleAudioSource != null && !idleAudioSource.isPlaying) idleAudioSource.Play();
+        if (walkAudioSource != null) walkAudioSource.Stop();
     }
 
     void FixedUpdate()
@@ -38,6 +46,9 @@ public class EnemyMove : MonoBehaviour
                         anim.SetBool("isWalking", true);
                         SetDirectionParameter(direction);
                     }
+
+                    // 🔥 이동 중이므로 이동 사운드 제어
+                    PlayMoveSound();
                 }
                 else
                 {
@@ -63,6 +74,25 @@ public class EnemyMove : MonoBehaviour
             anim.SetBool("isWalking", false);
             ResetDirectionParameters();
         }
+
+        // 🔥 멈췄으므로 대기 상태 사운드로 복귀
+        PlayIdleSound();
+    }
+
+    // 🔊 이동할 때 사운드 컴포넌트 제어 함수
+    void PlayMoveSound()
+    {
+        // 걷는 소리가 안 나고 있다면 재생하고, 숨소리는 정지
+        if (walkAudioSource != null && !walkAudioSource.isPlaying) walkAudioSource.Play();
+        if (idleAudioSource != null && idleAudioSource.isPlaying) idleAudioSource.Stop();
+    }
+
+    // 🔊 가만히 대기할 때 사운드 컴포넌트 제어 함수
+    void PlayIdleSound()
+    {
+        // 숨소리가 안 나고 있다면 재생하고, 걷는 소리는 정지
+        if (idleAudioSource != null && !idleAudioSource.isPlaying) idleAudioSource.Play();
+        if (walkAudioSource != null && walkAudioSource.isPlaying) walkAudioSource.Stop();
     }
 
     void SetDirectionParameter(Vector2 dir)
@@ -98,10 +128,5 @@ public class EnemyMove : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, detectionRange);
-        if (target != null)
-        {
-            Gizmos.color = IsPlayerVisible() ? Color.green : Color.red;
-            Gizmos.DrawLine(transform.position, target.position);
-        }
     }
 }
