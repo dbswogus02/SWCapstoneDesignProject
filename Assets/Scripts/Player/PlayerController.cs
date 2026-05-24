@@ -56,11 +56,13 @@ public class PlayerController : MonoBehaviour
 
     void UpdateLookDirection()
     {
-        Vector3 mouseScreenPosition = Input.mousePosition;
-        Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(mouseScreenPosition);
+        Vector3 mouseScreen = Input.mousePosition;
+        mouseScreen.z = Mathf.Abs(Camera.main.transform.position.z);
+        
+        Vector3 mouseWorld = mainCamera.ScreenToWorldPoint(mouseScreen);
 
         Vector2 playerPosition = rb.position;
-        lookDirection = ((Vector2)mouseWorldPosition - playerPosition).normalized;
+        lookDirection = ((Vector2)mouseWorld - playerPosition).normalized;
     }
 
     void UpdateAnimator()
