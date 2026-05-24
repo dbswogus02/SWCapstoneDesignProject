@@ -5,16 +5,17 @@ public class CameraTargetController : MonoBehaviour
     public Transform player;
     public float mouseInfluence = 0.5f;
     public float maxDistance = 5f;
+    public float smoothTime = 0.3f; 
+    
+    private Vector3 velocity = Vector3.zero;
 
     void Update()
     {
-        //마우스 → 월드 좌표
         Vector3 mouseScreen = Input.mousePosition;
         mouseScreen.z = Mathf.Abs(Camera.main.transform.position.z);
 
         Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(mouseScreen);
 
-        //거리 제한
         Vector3 dir = mouseWorld - player.position;
 
         if (dir.magnitude > maxDistance)
@@ -22,11 +23,9 @@ public class CameraTargetController : MonoBehaviour
 
         Vector3 limitedMousePos = player.position + dir;
 
-        //중간 위치 계산
-        Vector3 targetPos = Vector3.Lerp(player.position, limitedMousePos, mouseInfluence);
+        Vector3 targetPos = Vector3.SmoothDamp(transform.position, limitedMousePos, ref velocity, smoothTime);
 
         targetPos.z = transform.position.z;
-
         transform.position = targetPos;
     }
 }
