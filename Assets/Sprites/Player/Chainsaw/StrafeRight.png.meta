@@ -403,7 +403,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -441,7 +441,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -469,10 +469,10 @@ TextureImporter:
       name: StrafeRight_0
       rect:
         serializedVersion: 2
-        x: 54
-        y: 933
-        width: 51
-        height: 48
+        x: 0
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -491,10 +491,10 @@ TextureImporter:
       name: StrafeRight_1
       rect:
         serializedVersion: 2
-        x: 182
-        y: 933
-        width: 51
-        height: 48
+        x: 128
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -513,10 +513,10 @@ TextureImporter:
       name: StrafeRight_2
       rect:
         serializedVersion: 2
-        x: 310
-        y: 931
-        width: 51
-        height: 50
+        x: 256
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -535,10 +535,10 @@ TextureImporter:
       name: StrafeRight_3
       rect:
         serializedVersion: 2
-        x: 439
-        y: 928
-        width: 50
-        height: 53
+        x: 384
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -557,10 +557,10 @@ TextureImporter:
       name: StrafeRight_4
       rect:
         serializedVersion: 2
-        x: 567
-        y: 929
-        width: 50
-        height: 51
+        x: 512
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -579,10 +579,10 @@ TextureImporter:
       name: StrafeRight_5
       rect:
         serializedVersion: 2
-        x: 695
-        y: 932
-        width: 51
-        height: 48
+        x: 640
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -601,10 +601,10 @@ TextureImporter:
       name: StrafeRight_6
       rect:
         serializedVersion: 2
-        x: 824
-        y: 933
-        width: 50
-        height: 47
+        x: 768
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -623,10 +623,10 @@ TextureImporter:
       name: StrafeRight_7
       rect:
         serializedVersion: 2
-        x: 951
-        y: 932
-        width: 51
-        height: 48
+        x: 896
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -645,10 +645,10 @@ TextureImporter:
       name: StrafeRight_8
       rect:
         serializedVersion: 2
-        x: 1079
-        y: 932
-        width: 50
-        height: 47
+        x: 1024
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -667,10 +667,10 @@ TextureImporter:
       name: StrafeRight_9
       rect:
         serializedVersion: 2
-        x: 1207
-        y: 931
-        width: 50
-        height: 47
+        x: 1152
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -689,10 +689,10 @@ TextureImporter:
       name: StrafeRight_10
       rect:
         serializedVersion: 2
-        x: 1335
-        y: 930
-        width: 50
-        height: 48
+        x: 1280
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -711,10 +711,10 @@ TextureImporter:
       name: StrafeRight_11
       rect:
         serializedVersion: 2
-        x: 1462
-        y: 930
-        width: 50
-        height: 48
+        x: 1408
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -733,10 +733,10 @@ TextureImporter:
       name: StrafeRight_12
       rect:
         serializedVersion: 2
-        x: 1590
-        y: 932
-        width: 50
-        height: 46
+        x: 1536
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -755,10 +755,10 @@ TextureImporter:
       name: StrafeRight_13
       rect:
         serializedVersion: 2
-        x: 1718
-        y: 933
-        width: 50
-        height: 47
+        x: 1664
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -777,10 +777,10 @@ TextureImporter:
       name: StrafeRight_14
       rect:
         serializedVersion: 2
-        x: 1846
-        y: 933
-        width: 51
-        height: 48
+        x: 1792
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -799,10 +799,10 @@ TextureImporter:
       name: StrafeRight_15
       rect:
         serializedVersion: 2
-        x: 56
-        y: 803
-        width: 33
-        height: 49
+        x: 0
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -821,10 +821,10 @@ TextureImporter:
       name: StrafeRight_16
       rect:
         serializedVersion: 2
-        x: 182
-        y: 803
-        width: 34
-        height: 48
+        x: 128
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -843,10 +843,10 @@ TextureImporter:
       name: StrafeRight_17
       rect:
         serializedVersion: 2
-        x: 308
-        y: 803
-        width: 36
-        height: 48
+        x: 256
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -865,10 +865,10 @@ TextureImporter:
       name: StrafeRight_18
       rect:
         serializedVersion: 2
-        x: 434
-        y: 803
-        width: 38
-        height: 48
+        x: 384
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -887,10 +887,10 @@ TextureImporter:
       name: StrafeRight_19
       rect:
         serializedVersion: 2
-        x: 562
-        y: 802
-        width: 39
-        height: 49
+        x: 512
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -909,10 +909,10 @@ TextureImporter:
       name: StrafeRight_20
       rect:
         serializedVersion: 2
-        x: 693
-        y: 802
-        width: 36
-        height: 49
+        x: 640
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -931,10 +931,10 @@ TextureImporter:
       name: StrafeRight_21
       rect:
         serializedVersion: 2
-        x: 823
-        y: 802
-        width: 34
-        height: 49
+        x: 768
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -953,10 +953,10 @@ TextureImporter:
       name: StrafeRight_22
       rect:
         serializedVersion: 2
-        x: 953
-        y: 801
-        width: 31
-        height: 49
+        x: 896
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -975,10 +975,10 @@ TextureImporter:
       name: StrafeRight_23
       rect:
         serializedVersion: 2
-        x: 1080
-        y: 801
-        width: 32
-        height: 49
+        x: 1024
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -997,10 +997,10 @@ TextureImporter:
       name: StrafeRight_24
       rect:
         serializedVersion: 2
-        x: 1207
-        y: 801
-        width: 32
-        height: 48
+        x: 1152
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1019,10 +1019,10 @@ TextureImporter:
       name: StrafeRight_25
       rect:
         serializedVersion: 2
-        x: 1335
-        y: 800
-        width: 32
-        height: 49
+        x: 1280
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1041,10 +1041,10 @@ TextureImporter:
       name: StrafeRight_26
       rect:
         serializedVersion: 2
-        x: 1463
-        y: 800
-        width: 32
-        height: 49
+        x: 1408
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1063,10 +1063,10 @@ TextureImporter:
       name: StrafeRight_27
       rect:
         serializedVersion: 2
-        x: 1591
-        y: 802
-        width: 33
-        height: 48
+        x: 1536
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1085,10 +1085,10 @@ TextureImporter:
       name: StrafeRight_28
       rect:
         serializedVersion: 2
-        x: 1719
-        y: 803
-        width: 33
-        height: 48
+        x: 1664
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1107,10 +1107,10 @@ TextureImporter:
       name: StrafeRight_29
       rect:
         serializedVersion: 2
-        x: 1848
-        y: 803
-        width: 33
-        height: 48
+        x: 1792
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1129,10 +1129,10 @@ TextureImporter:
       name: StrafeRight_30
       rect:
         serializedVersion: 2
-        x: 53
-        y: 674
-        width: 21
-        height: 51
+        x: 0
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1151,10 +1151,10 @@ TextureImporter:
       name: StrafeRight_31
       rect:
         serializedVersion: 2
-        x: 181
-        y: 674
-        width: 23
-        height: 51
+        x: 128
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1173,10 +1173,10 @@ TextureImporter:
       name: StrafeRight_32
       rect:
         serializedVersion: 2
-        x: 306
-        y: 674
-        width: 29
-        height: 50
+        x: 256
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1195,10 +1195,10 @@ TextureImporter:
       name: StrafeRight_33
       rect:
         serializedVersion: 2
-        x: 431
-        y: 674
-        width: 31
-        height: 50
+        x: 384
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1217,10 +1217,10 @@ TextureImporter:
       name: StrafeRight_34
       rect:
         serializedVersion: 2
-        x: 560
-        y: 673
-        width: 27
-        height: 51
+        x: 512
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1239,10 +1239,10 @@ TextureImporter:
       name: StrafeRight_35
       rect:
         serializedVersion: 2
-        x: 692
-        y: 673
-        width: 22
-        height: 51
+        x: 640
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1261,10 +1261,10 @@ TextureImporter:
       name: StrafeRight_36
       rect:
         serializedVersion: 2
-        x: 821
-        y: 673
-        width: 21
-        height: 51
+        x: 768
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1283,10 +1283,10 @@ TextureImporter:
       name: StrafeRight_37
       rect:
         serializedVersion: 2
-        x: 948
-        y: 673
-        width: 21
-        height: 51
+        x: 896
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1305,10 +1305,10 @@ TextureImporter:
       name: StrafeRight_38
       rect:
         serializedVersion: 2
-        x: 1075
-        y: 674
-        width: 25
-        height: 50
+        x: 1024
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1327,10 +1327,10 @@ TextureImporter:
       name: StrafeRight_39
       rect:
         serializedVersion: 2
-        x: 1202
-        y: 674
-        width: 27
-        height: 50
+        x: 1152
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1349,10 +1349,10 @@ TextureImporter:
       name: StrafeRight_40
       rect:
         serializedVersion: 2
-        x: 1330
-        y: 674
-        width: 28
-        height: 50
+        x: 1280
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1371,10 +1371,10 @@ TextureImporter:
       name: StrafeRight_41
       rect:
         serializedVersion: 2
-        x: 1456
-        y: 674
-        width: 28
-        height: 50
+        x: 1408
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1393,10 +1393,10 @@ TextureImporter:
       name: StrafeRight_42
       rect:
         serializedVersion: 2
-        x: 1588
-        y: 674
-        width: 21
-        height: 50
+        x: 1536
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1415,10 +1415,10 @@ TextureImporter:
       name: StrafeRight_43
       rect:
         serializedVersion: 2
-        x: 1716
-        y: 675
-        width: 22
-        height: 50
+        x: 1664
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1437,10 +1437,10 @@ TextureImporter:
       name: StrafeRight_44
       rect:
         serializedVersion: 2
-        x: 1845
-        y: 674
-        width: 21
-        height: 51
+        x: 1792
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1459,10 +1459,10 @@ TextureImporter:
       name: StrafeRight_45
       rect:
         serializedVersion: 2
-        x: 32
-        y: 549
-        width: 43
-        height: 48
+        x: 0
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1481,10 +1481,10 @@ TextureImporter:
       name: StrafeRight_46
       rect:
         serializedVersion: 2
-        x: 160
-        y: 546
-        width: 42
-        height: 51
+        x: 128
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1503,10 +1503,10 @@ TextureImporter:
       name: StrafeRight_47
       rect:
         serializedVersion: 2
-        x: 288
-        y: 545
-        width: 42
-        height: 51
+        x: 256
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1525,10 +1525,10 @@ TextureImporter:
       name: StrafeRight_48
       rect:
         serializedVersion: 2
-        x: 415
-        y: 546
-        width: 43
-        height: 50
+        x: 384
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1547,10 +1547,10 @@ TextureImporter:
       name: StrafeRight_49
       rect:
         serializedVersion: 2
-        x: 543
-        y: 548
-        width: 43
-        height: 48
+        x: 512
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1569,10 +1569,10 @@ TextureImporter:
       name: StrafeRight_50
       rect:
         serializedVersion: 2
-        x: 671
-        y: 548
-        width: 43
-        height: 48
+        x: 640
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1591,10 +1591,10 @@ TextureImporter:
       name: StrafeRight_51
       rect:
         serializedVersion: 2
-        x: 799
-        y: 549
-        width: 42
-        height: 47
+        x: 768
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1613,10 +1613,10 @@ TextureImporter:
       name: StrafeRight_52
       rect:
         serializedVersion: 2
-        x: 926
-        y: 550
-        width: 43
-        height: 47
+        x: 896
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1635,10 +1635,10 @@ TextureImporter:
       name: StrafeRight_53
       rect:
         serializedVersion: 2
-        x: 1054
-        y: 550
-        width: 45
-        height: 47
+        x: 1024
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1657,10 +1657,10 @@ TextureImporter:
       name: StrafeRight_54
       rect:
         serializedVersion: 2
-        x: 1181
-        y: 551
-        width: 47
-        height: 46
+        x: 1152
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1679,10 +1679,10 @@ TextureImporter:
       name: StrafeRight_55
       rect:
         serializedVersion: 2
-        x: 1310
-        y: 551
-        width: 46
-        height: 46
+        x: 1280
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1701,10 +1701,10 @@ TextureImporter:
       name: StrafeRight_56
       rect:
         serializedVersion: 2
-        x: 1439
-        y: 551
-        width: 43
-        height: 46
+        x: 1408
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1723,10 +1723,10 @@ TextureImporter:
       name: StrafeRight_57
       rect:
         serializedVersion: 2
-        x: 1568
-        y: 550
-        width: 42
-        height: 47
+        x: 1536
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1745,10 +1745,10 @@ TextureImporter:
       name: StrafeRight_58
       rect:
         serializedVersion: 2
-        x: 1696
-        y: 550
-        width: 42
-        height: 47
+        x: 1664
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1767,10 +1767,10 @@ TextureImporter:
       name: StrafeRight_59
       rect:
         serializedVersion: 2
-        x: 1824
-        y: 550
-        width: 43
-        height: 47
+        x: 1792
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1789,10 +1789,10 @@ TextureImporter:
       name: StrafeRight_60
       rect:
         serializedVersion: 2
-        x: 26
-        y: 424
-        width: 50
-        height: 44
+        x: 0
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1811,10 +1811,10 @@ TextureImporter:
       name: StrafeRight_61
       rect:
         serializedVersion: 2
-        x: 154
-        y: 421
-        width: 50
-        height: 48
+        x: 128
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1833,10 +1833,10 @@ TextureImporter:
       name: StrafeRight_62
       rect:
         serializedVersion: 2
-        x: 282
-        y: 419
-        width: 50
-        height: 50
+        x: 256
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1855,10 +1855,10 @@ TextureImporter:
       name: StrafeRight_63
       rect:
         serializedVersion: 2
-        x: 410
-        y: 420
-        width: 50
-        height: 49
+        x: 384
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1877,10 +1877,10 @@ TextureImporter:
       name: StrafeRight_64
       rect:
         serializedVersion: 2
-        x: 537
-        y: 422
-        width: 50
-        height: 47
+        x: 512
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1899,10 +1899,10 @@ TextureImporter:
       name: StrafeRight_65
       rect:
         serializedVersion: 2
-        x: 665
-        y: 424
-        width: 50
-        height: 44
+        x: 640
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1921,10 +1921,10 @@ TextureImporter:
       name: StrafeRight_66
       rect:
         serializedVersion: 2
-        x: 793
-        y: 425
-        width: 50
-        height: 44
+        x: 768
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1943,10 +1943,10 @@ TextureImporter:
       name: StrafeRight_67
       rect:
         serializedVersion: 2
-        x: 921
-        y: 424
-        width: 50
-        height: 45
+        x: 896
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1965,10 +1965,10 @@ TextureImporter:
       name: StrafeRight_68
       rect:
         serializedVersion: 2
-        x: 1049
-        y: 421
-        width: 51
-        height: 48
+        x: 1024
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1987,10 +1987,10 @@ TextureImporter:
       name: StrafeRight_69
       rect:
         serializedVersion: 2
-        x: 1178
-        y: 420
-        width: 50
-        height: 50
+        x: 1152
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2009,10 +2009,10 @@ TextureImporter:
       name: StrafeRight_70
       rect:
         serializedVersion: 2
-        x: 1306
-        y: 420
-        width: 50
-        height: 49
+        x: 1280
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2031,10 +2031,10 @@ TextureImporter:
       name: StrafeRight_71
       rect:
         serializedVersion: 2
-        x: 1434
-        y: 422
-        width: 50
-        height: 47
+        x: 1408
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2053,10 +2053,10 @@ TextureImporter:
       name: StrafeRight_72
       rect:
         serializedVersion: 2
-        x: 1562
-        y: 424
-        width: 51
-        height: 44
+        x: 1536
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2075,10 +2075,10 @@ TextureImporter:
       name: StrafeRight_73
       rect:
         serializedVersion: 2
-        x: 1690
-        y: 426
-        width: 51
-        height: 42
+        x: 1664
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2097,10 +2097,10 @@ TextureImporter:
       name: StrafeRight_74
       rect:
         serializedVersion: 2
-        x: 1818
-        y: 425
-        width: 51
-        height: 44
+        x: 1792
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2119,10 +2119,10 @@ TextureImporter:
       name: StrafeRight_75
       rect:
         serializedVersion: 2
-        x: 42
-        y: 298
-        width: 32
-        height: 60
+        x: 0
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2141,10 +2141,10 @@ TextureImporter:
       name: StrafeRight_76
       rect:
         serializedVersion: 2
-        x: 171
-        y: 297
-        width: 33
-        height: 61
+        x: 128
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2163,10 +2163,10 @@ TextureImporter:
       name: StrafeRight_77
       rect:
         serializedVersion: 2
-        x: 298
-        y: 297
-        width: 36
-        height: 62
+        x: 256
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2185,10 +2185,10 @@ TextureImporter:
       name: StrafeRight_78
       rect:
         serializedVersion: 2
-        x: 426
-        y: 349
-        width: 10
-        height: 10
+        x: 384
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2207,10 +2207,10 @@ TextureImporter:
       name: StrafeRight_79
       rect:
         serializedVersion: 2
-        x: 557
-        y: 299
-        width: 35
-        height: 56
+        x: 512
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2229,10 +2229,10 @@ TextureImporter:
       name: StrafeRight_80
       rect:
         serializedVersion: 2
-        x: 684
-        y: 299
-        width: 33
-        height: 57
+        x: 640
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2251,10 +2251,10 @@ TextureImporter:
       name: StrafeRight_81
       rect:
         serializedVersion: 2
-        x: 810
-        y: 298
-        width: 32
-        height: 60
+        x: 768
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2273,10 +2273,10 @@ TextureImporter:
       name: StrafeRight_82
       rect:
         serializedVersion: 2
-        x: 938
-        y: 296
-        width: 32
-        height: 63
+        x: 896
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2295,10 +2295,10 @@ TextureImporter:
       name: StrafeRight_83
       rect:
         serializedVersion: 2
-        x: 1067
-        y: 294
-        width: 31
-        height: 65
+        x: 1024
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2317,10 +2317,10 @@ TextureImporter:
       name: StrafeRight_84
       rect:
         serializedVersion: 2
-        x: 1324
-        y: 347
-        width: 11
-        height: 11
+        x: 1152
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2339,10 +2339,10 @@ TextureImporter:
       name: StrafeRight_85
       rect:
         serializedVersion: 2
-        x: 1452
-        y: 351
-        width: 6
-        height: 6
+        x: 1280
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2361,10 +2361,10 @@ TextureImporter:
       name: StrafeRight_86
       rect:
         serializedVersion: 2
-        x: 1579
-        y: 296
-        width: 32
-        height: 61
+        x: 1408
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2383,10 +2383,10 @@ TextureImporter:
       name: StrafeRight_87
       rect:
         serializedVersion: 2
-        x: 1706
-        y: 297
-        width: 33
-        height: 61
+        x: 1536
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2405,10 +2405,10 @@ TextureImporter:
       name: StrafeRight_88
       rect:
         serializedVersion: 2
-        x: 1834
-        y: 298
-        width: 32
-        height: 60
+        x: 1664
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2427,10 +2427,10 @@ TextureImporter:
       name: StrafeRight_89
       rect:
         serializedVersion: 2
-        x: 434
-        y: 297
-        width: 30
-        height: 50
+        x: 1792
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2449,10 +2449,10 @@ TextureImporter:
       name: StrafeRight_90
       rect:
         serializedVersion: 2
-        x: 1205
-        y: 293
-        width: 22
-        height: 54
+        x: 0
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2471,10 +2471,10 @@ TextureImporter:
       name: StrafeRight_91
       rect:
         serializedVersion: 2
-        x: 1333
-        y: 293
-        width: 22
-        height: 54
+        x: 128
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2493,10 +2493,10 @@ TextureImporter:
       name: StrafeRight_92
       rect:
         serializedVersion: 2
-        x: 1460
-        y: 295
-        width: 23
-        height: 55
+        x: 256
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2515,10 +2515,10 @@ TextureImporter:
       name: StrafeRight_93
       rect:
         serializedVersion: 2
-        x: 56
-        y: 169
-        width: 20
-        height: 66
+        x: 384
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2537,10 +2537,10 @@ TextureImporter:
       name: StrafeRight_94
       rect:
         serializedVersion: 2
-        x: 182
-        y: 169
-        width: 23
-        height: 66
+        x: 512
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2559,10 +2559,10 @@ TextureImporter:
       name: StrafeRight_95
       rect:
         serializedVersion: 2
-        x: 307
-        y: 169
-        width: 29
-        height: 66
+        x: 640
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2581,10 +2581,10 @@ TextureImporter:
       name: StrafeRight_96
       rect:
         serializedVersion: 2
-        x: 436
-        y: 169
-        width: 31
-        height: 66
+        x: 768
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2603,10 +2603,10 @@ TextureImporter:
       name: StrafeRight_97
       rect:
         serializedVersion: 2
-        x: 568
-        y: 169
-        width: 26
-        height: 66
+        x: 896
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2625,10 +2625,10 @@ TextureImporter:
       name: StrafeRight_98
       rect:
         serializedVersion: 2
-        x: 696
-        y: 169
-        width: 22
-        height: 66
+        x: 1024
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2647,10 +2647,10 @@ TextureImporter:
       name: StrafeRight_99
       rect:
         serializedVersion: 2
-        x: 825
-        y: 169
-        width: 20
-        height: 66
+        x: 1152
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2669,10 +2669,10 @@ TextureImporter:
       name: StrafeRight_100
       rect:
         serializedVersion: 2
-        x: 953
-        y: 170
-        width: 21
-        height: 65
+        x: 1280
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2691,10 +2691,10 @@ TextureImporter:
       name: StrafeRight_101
       rect:
         serializedVersion: 2
-        x: 1078
-        y: 169
-        width: 24
-        height: 65
+        x: 1408
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2713,10 +2713,10 @@ TextureImporter:
       name: StrafeRight_102
       rect:
         serializedVersion: 2
-        x: 1205
-        y: 169
-        width: 26
-        height: 64
+        x: 1536
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2735,10 +2735,10 @@ TextureImporter:
       name: StrafeRight_103
       rect:
         serializedVersion: 2
-        x: 1332
-        y: 169
-        width: 28
-        height: 64
+        x: 1664
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2757,10 +2757,10 @@ TextureImporter:
       name: StrafeRight_104
       rect:
         serializedVersion: 2
-        x: 1463
-        y: 169
-        width: 27
-        height: 64
+        x: 1792
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2779,10 +2779,10 @@ TextureImporter:
       name: StrafeRight_105
       rect:
         serializedVersion: 2
-        x: 1593
-        y: 169
-        width: 21
-        height: 64
+        x: 0
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2801,10 +2801,10 @@ TextureImporter:
       name: StrafeRight_106
       rect:
         serializedVersion: 2
-        x: 1721
-        y: 169
-        width: 20
-        height: 65
+        x: 128
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2823,10 +2823,10 @@ TextureImporter:
       name: StrafeRight_107
       rect:
         serializedVersion: 2
-        x: 1848
-        y: 169
-        width: 20
-        height: 65
+        x: 256
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2845,10 +2845,10 @@ TextureImporter:
       name: StrafeRight_108
       rect:
         serializedVersion: 2
-        x: 56
-        y: 39
-        width: 43
-        height: 57
+        x: 384
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2867,10 +2867,10 @@ TextureImporter:
       name: StrafeRight_109
       rect:
         serializedVersion: 2
-        x: 184
-        y: 37
-        width: 43
-        height: 58
+        x: 512
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2889,10 +2889,10 @@ TextureImporter:
       name: StrafeRight_110
       rect:
         serializedVersion: 2
-        x: 312
-        y: 36
-        width: 43
-        height: 59
+        x: 640
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2911,10 +2911,10 @@ TextureImporter:
       name: StrafeRight_111
       rect:
         serializedVersion: 2
-        x: 441
-        y: 34
-        width: 43
-        height: 61
+        x: 768
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2933,10 +2933,10 @@ TextureImporter:
       name: StrafeRight_112
       rect:
         serializedVersion: 2
-        x: 569
-        y: 34
-        width: 43
-        height: 61
+        x: 896
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2955,10 +2955,10 @@ TextureImporter:
       name: StrafeRight_113
       rect:
         serializedVersion: 2
-        x: 697
-        y: 37
-        width: 42
-        height: 59
+        x: 1024
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2977,10 +2977,10 @@ TextureImporter:
       name: StrafeRight_114
       rect:
         serializedVersion: 2
-        x: 825
-        y: 39
-        width: 43
-        height: 57
+        x: 1152
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2999,10 +2999,10 @@ TextureImporter:
       name: StrafeRight_115
       rect:
         serializedVersion: 2
-        x: 954
-        y: 39
-        width: 42
-        height: 56
+        x: 1280
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3021,10 +3021,10 @@ TextureImporter:
       name: StrafeRight_116
       rect:
         serializedVersion: 2
-        x: 1079
-        y: 39
-        width: 46
-        height: 55
+        x: 1408
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3043,10 +3043,10 @@ TextureImporter:
       name: StrafeRight_117
       rect:
         serializedVersion: 2
-        x: 1206
-        y: 39
-        width: 47
-        height: 54
+        x: 1536
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3065,10 +3065,10 @@ TextureImporter:
       name: StrafeRight_118
       rect:
         serializedVersion: 2
-        x: 1334
-        y: 39
-        width: 47
-        height: 53
+        x: 1664
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3087,10 +3087,10 @@ TextureImporter:
       name: StrafeRight_119
       rect:
         serializedVersion: 2
-        x: 1464
-        y: 39
-        width: 44
-        height: 54
+        x: 1792
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3105,77 +3105,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: StrafeRight_120
-      rect:
-        serializedVersion: 2
-        x: 1593
-        y: 39
-        width: 42
-        height: 55
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 95d3a48f1c351c8e0800000000000000
-      internalID: -1674965493845705383
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: StrafeRight_121
-      rect:
-        serializedVersion: 2
-        x: 1720
-        y: 39
-        width: 42
-        height: 56
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2e40d5dff605ece30800000000000000
-      internalID: 4525643117476250850
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: StrafeRight_122
-      rect:
-        serializedVersion: 2
-        x: 1848
-        y: 39
-        width: 42
-        height: 56
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 639d188448e3a6620800000000000000
-      internalID: 2768093658845665590
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 2124a8001bb09b74590880a26d0a67cc
     internalID: 0
     vertices: []
     indices: 
@@ -3210,9 +3144,6 @@ TextureImporter:
       StrafeRight_118: -5362441140380365439
       StrafeRight_119: 7416669566856127357
       StrafeRight_12: -5563228533044491049
-      StrafeRight_120: -1674965493845705383
-      StrafeRight_121: 4525643117476250850
-      StrafeRight_122: 2768093658845665590
       StrafeRight_13: 7056145657397020991
       StrafeRight_14: -8529653347289252494
       StrafeRight_15: 8778378495274795806
