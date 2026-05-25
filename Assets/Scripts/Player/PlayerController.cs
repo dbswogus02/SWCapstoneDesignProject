@@ -4,7 +4,7 @@ using UnityEngine.U2D.Animation;
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 5f;
+    public float moveSpeed = 4f;
 
     [Header("Weapon Sprite Library Assets")]
     public SpriteLibraryAsset batSpriteLibraryAsset;
@@ -12,8 +12,15 @@ public class PlayerController : MonoBehaviour
     public SpriteLibraryAsset chainsawSpriteLibraryAsset;
 
     [Header("Chainsaw Settings")]
+
+    public float chainsawCooldown = 2.0f;
     public float chainsawDuration = 1.0f;
-    public float chainsawSpeed = 9f;
+    public float chainsawSpeed = 8f;
+
+    [Header("Shotgun Settings")]
+    public float shotgunCooldown = 1.0f;
+    public float shotgunDuration = 0.3f;
+    public float shotgunRecoil = 2f;
 
     private Rigidbody2D rb;
     private Animator anim;
@@ -38,7 +45,11 @@ public class PlayerController : MonoBehaviour
     private string currentState;
     private bool isAttacking;
     private bool isChainsawDashing;
+    private bool isFiringShotgun;
     private Vector2 chainsawDirection;
+    private Vector2 shotgunRecoilDirection;
+    public float lastShotgunTime = -999f;
+    public float lastChainsawTime = -999f;
 
     private const string DIR_EAST = "East";
     private const string DIR_NORTH_EAST = "NorthEast";
@@ -74,7 +85,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         UpdateLookDirection();
-        
+
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             spriteLibrary.spriteLibraryAsset = batSpriteLibraryAsset;
@@ -93,7 +104,7 @@ public class PlayerController : MonoBehaviour
             TryUseWeapon();
         }
 
-        if (isAttacking || isChainsawDashing)
+        if (isAttacking || isChainsawDashing || isFiringShotgun)
         {
             moveInput = Vector2.zero;
             return;
@@ -105,6 +116,11 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (isFiringShotgun)
+        {
+            return;
+        }
+
         if (isChainsawDashing)
         {
             MoveChainsawDash();
@@ -168,12 +184,12 @@ public class PlayerController : MonoBehaviour
         debugMoveType = moveName;
         debugIsMoving = isMoving;
         debugState = stateName;
-        debugIsAttacking = isAttacking || isChainsawDashing;
+        debugIsAttacking = isAttacking || isChainsawDashing || isFiringShotgun;
     }
 
     void TryUseWeapon()
     {
-        if (isAttacking || isChainsawDashing) return;
+        if (isAttacking || isChainsawDashing || isFiringShotgun) return;
         if (spriteLibrary == null) return;
         if (spriteLibrary.spriteLibraryAsset == null) return;
 
@@ -187,12 +203,14 @@ public class PlayerController : MonoBehaviour
 
         if (currentAsset == shotgunSpriteLibraryAsset)
         {
-            FireShotgun();
+            if (Time.time < lastShotgunTime + shotgunCooldown) return;
+            StartCoroutine(FireShotgun());
             return;
         }
 
         if (currentAsset == chainsawSpriteLibraryAsset)
         {
+            if (Time.time < lastChainsawTime + chainsawCooldown) return;
             StartCoroutine(ChainsawDash());
             return;
         }
@@ -234,17 +252,57 @@ public class PlayerController : MonoBehaviour
         UpdateAnimationState();
     }
 
-    void FireShotgun()
+    IEnumerator FireShotgun()
     {
-        debugLookDir = GetLookDirectionName();
-        debugMoveType = "Shotgun";
-        debugIsMoving = false;
-        debugState = "ShotgunFire";
-        debugIsAttacking = false;
+        isFiringShotgun = true;
+        moveInput = Vector2.zero;
 
-        // 나중에 여기서 총알 발사 구현
-        // 예:
-        // Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        shotgunRecoilDirection = facingDirection switch
+        {
+            Direction8.Right => Vector2.right,
+            Direction8.UpRight => new Vector2(1, 1).normalized,
+            Direction8.Up => Vector2.up,
+            Direction8.UpLeft => new Vector2(-1, 1).normalized,
+            Direction8.Left => Vector2.left,
+            Direction8.DownLeft => new Vector2(-1, -1).normalized,
+            Direction8.Down => Vector2.down,
+            Direction8.DownRight => new Vector2(1, -1).normalized,
+            _ => Vector2.down
+        };
+
+        string lookDirName = GetLookDirectionName();
+        string stateName = GetAnimationStateName(lookDirName, MOVE_IDLE);
+
+        ChangeAnimationState(stateName);
+
+        debugLookDir = lookDirName;
+        debugMoveType = "FireShotgun";
+        debugIsMoving = false;
+        debugState = stateName;
+        debugIsAttacking = true;
+
+        float elapsed = 0f;
+
+        while (elapsed < shotgunDuration)
+        {
+            float t = elapsed / shotgunDuration;
+            float power = Mathf.Lerp(3f, 0.2f, t);
+
+            rb.MovePosition(rb.position - shotgunRecoilDirection * shotgunRecoil * power * Time.fixedDeltaTime);
+
+            elapsed += Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+        lastShotgunTime = Time.time;
+
+        isFiringShotgun = false;
+        debugIsAttacking = false;
+        UpdateAnimationState();
+    }
+
+    void MoveShotgunRecoil()
+    {
+        rb.MovePosition(rb.position - shotgunRecoilDirection * shotgunRecoil * Time.fixedDeltaTime);
     }
 
     IEnumerator ChainsawDash()
@@ -276,7 +334,10 @@ public class PlayerController : MonoBehaviour
         debugState = stateName;
         debugIsAttacking = true;
 
+        anim.speed = 2f;
         yield return new WaitForSeconds(chainsawDuration);
+        anim.speed = 1f;
+        lastChainsawTime = Time.time;
 
         isChainsawDashing = false;
         debugIsAttacking = false;
@@ -377,13 +438,31 @@ public class PlayerController : MonoBehaviour
         rb.MovePosition(rb.position + moveInput * moveSpeed * Time.fixedDeltaTime);
     }
 
+    float GetShotgunCooldownRemaining()
+    {
+        return Mathf.Max(0f, (lastShotgunTime + shotgunCooldown) - Time.time);
+    }
+
+    float GetChainsawCooldownRemaining()
+    {
+        return Mathf.Max(0f, (lastChainsawTime + chainsawCooldown) - Time.time);
+    }
+
     void OnGUI()
     {
         GUI.Label(
-            new Rect(20, 20, 500, 180),
-            $"LookDir: {debugLookDir}\nMoveType: {debugMoveType}\nisMoving: {debugIsMoving}\nisAttacking: {debugIsAttacking}\nState: {debugState}\nWeapon: {GetCurrentWeaponDebugName()}"
+            new Rect(20, 20, 500, 220),
+            $"LookDir: {debugLookDir}\n" +
+            $"MoveType: {debugMoveType}\n" +
+            $"isMoving: {debugIsMoving}\n" +
+            $"isAttacking: {debugIsAttacking}\n" +
+            $"State: {debugState}\n" +
+            $"Weapon: {GetCurrentWeaponDebugName()}\n" +
+            $"Shotgun CD: {GetShotgunCooldownRemaining():F2}\n" +
+            $"Chainsaw CD: {GetChainsawCooldownRemaining():F2}"
         );
     }
+
 
     string GetCurrentWeaponDebugName()
     {
