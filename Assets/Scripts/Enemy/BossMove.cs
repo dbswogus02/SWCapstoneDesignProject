@@ -29,6 +29,13 @@ public class BossMove : MonoBehaviour
 
     void Start()
     {
+        // 게임 시작 시 타겟이 비어있다면 "Player" 태그를 가진 오브젝트를 자동으로 찾아 할당
+        if (target == null)
+        {
+            GameObject player = GameObject.FindWithTag("Player");
+            if (player != null) target = player.transform;
+        }
+
         rb = GetComponent<Rigidbody2D>();
         rb.freezeRotation = true;
         anim = GetComponent<Animator>();
