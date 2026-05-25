@@ -1,36 +1,48 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.Collections;
 
 public class BossMove : MonoBehaviour
 {
-    [Header("±âº» ÀÌµ¿ ¼³Á¤")]
+    [Header("ê¸°ë³¸ ì´ë™ ì„¤ì •")]
     public Transform target;
     public float moveSpeed = 3f;
-    public float detectionRange = 10f; // º¸½º´Â ½Ã¾ß°¡ ´õ ³ĞÀ» ¼ö ÀÖ½À´Ï´Ù.
+    public float detectionRange = 10f;
     public LayerMask obstacleLayer;
 
-    [Header("´ë½¬ ¼³Á¤")]
-    public float dashSpeed = 12f;      // ´ë½¬ ¼Óµµ
-    public float dashDuration = 0.2f;   // ´ë½¬ Áö¼Ó ½Ã°£
-    public float minDashInterval = 2f;  // ´ë½¬ ÃÖ¼Ò °£°İ (ÃÊ)
-    public float maxDashInterval = 5f;  // ´ë½¬ ÃÖ´ë °£°İ (ÃÊ)
+    [Header("ëŒ€ì‰¬ ì„¤ì •")]
+    public float dashSpeed = 12f;
+    public float dashDuration = 0.2f;
+    public float minDashInterval = 2f;
+    public float maxDashInterval = 5f;
+
+    [Header("ğŸ”Š ì˜¤ë””ì˜¤ ì»´í¬ë„ŒíŠ¸ ì—°ê²°")]
+    public AudioSource idleAudioSource; // ëŒ€ê¸°(Idle) ì‚¬ìš´ë“œ ì†ŒìŠ¤
+    public AudioSource walkAudioSource; // ì¶”ì  ì´ë™(Walk) ì‚¬ìš´ë“œ ì†ŒìŠ¤
+    public AudioSource dashAudioSource; // ëŒ€ì‰¬(Dash) ì¦‰ë°œì„± ì‚¬ìš´ë“œ ì†ŒìŠ¤ (ì¸ìŠ¤í™í„° Loop OFF ê¶Œì¥)
 
     private Rigidbody2D rb;
-    private bool isDashing = false;     // ÇöÀç ´ë½¬ ÁßÀÎÁö È®ÀÎ
-    private float nextDashTime;         // ´ÙÀ½ ´ë½¬±îÁö ³²Àº ½Ã°£
+    private Animator anim;
+    private bool isDashing = false;
+    private float nextDashTime;
+
+    private string[] directionParams = { "MoveEast", "MoveNorthEast", "MoveNorth", "MoveNorthWest", "MoveWest", "MoveSouthWest", "MoveSouth", "MoveSouthEast" };
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.freezeRotation = true;
-
-        // Ã¹ ¹øÂ° ´ë½¬ ½Ã°£ ¼³Á¤
+        anim = GetComponent<Animator>();
         SetNextDashTime();
+
+        // ì‹œì‘ ì‹œ ê¸°ë³¸ ëŒ€ê¸° ì‚¬ìš´ë“œ ì˜¨
+        if (idleAudioSource != null && !idleAudioSource.isPlaying) idleAudioSource.Play();
+        if (walkAudioSource != null) walkAudioSource.Stop();
+        if (dashAudioSource != null) dashAudioSource.Stop();
     }
 
     void FixedUpdate()
     {
-        // ´ë½¬ ÁßÀÏ ¶§´Â ÀÏ¹İ ÀÌµ¿ ·ÎÁ÷À» ¹«½ÃÇÔ
+        // ëŒ€ì‰¬ ì¤‘ì¼ ë•ŒëŠ” ëŒ€ì‰¬ ì‚¬ìš´ë“œê°€ ë‚˜ì˜¤ê³  ìˆìœ¼ë¯€ë¡œ ì¼ë°˜ ì´ë™ ì—°ì‚°ì„ íƒ€ì§€ ì•ŠìŠµë‹ˆë‹¤.
         if (isDashing) return;
 
         if (target != null)
@@ -41,30 +53,51 @@ public class BossMove : MonoBehaviour
             {
                 if (IsPlayerVisible())
                 {
-                    // ÀÏ¹İ ÃßÀû ÀÌµ¿
                     Vector2 direction = (target.position - transform.position).normalized;
                     rb.linearVelocity = direction * moveSpeed;
 
-                    // È¸Àü (ÇÃ·¹ÀÌ¾î ÀÀ½Ã)
-                    float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-                    transform.rotation = Quaternion.Euler(0, 0, angle);
+                    if (anim != null)
+                    {
+                        anim.SetBool("isWalking", true);
+                        anim.SetBool("isRunning", false);
+                        SetDirectionParameter(direction);
+                    }
 
-                    // ´ë½¬ Å¸ÀÌ¸Ó Ã¼Å©
+                    // ğŸ”¥ ì¼ë°˜ ì¶”ì  ê±·ê¸° ì‚¬ìš´ë“œ ì¬ìƒ
+                    PlayTrackSound();
+
                     CheckDashTimer();
                 }
                 else
                 {
-                    rb.linearVelocity = Vector2.zero;
+                    StopMoving();
                 }
             }
             else
             {
-                rb.linearVelocity = Vector2.zero;
+                StopMoving();
             }
+        }
+        else
+        {
+            StopMoving();
         }
     }
 
-    // ´ë½¬ Å¸ÀÌ¸Ó °ü¸®
+    void StopMoving()
+    {
+        rb.linearVelocity = Vector2.zero;
+        if (anim != null)
+        {
+            anim.SetBool("isWalking", false);
+            anim.SetBool("isRunning", false);
+            ResetDirectionParameters();
+        }
+
+        // ğŸ”¥ ì™„ì „íˆ ë©ˆì¶”ë©´ ëŒ€ê¸° ì‚¬ìš´ë“œë¡œ ë¦¬ì…‹
+        PlayIdleSound();
+    }
+
     void CheckDashTimer()
     {
         if (Time.time >= nextDashTime)
@@ -73,28 +106,78 @@ public class BossMove : MonoBehaviour
         }
     }
 
-    // ¹«ÀÛÀ§ ¹æÇâ ´ë½¬ ÄÚ·çÆ¾
     IEnumerator DashRoutine()
     {
         isDashing = true;
 
-        // »ó, ÇÏ, ÁÂ, ¿ì Áß ¹«ÀÛÀ§ ¹æÇâ ¼±ÅÃ
         Vector2[] directions = { Vector2.up, Vector2.down, Vector2.left, Vector2.right };
         Vector2 randomDashDir = directions[Random.Range(0, directions.Length)];
 
-        // ´ë½¬ ¼Óµµ Àû¿ë
+        if (anim != null)
+        {
+            anim.SetBool("isWalking", false);
+            anim.SetBool("isRunning", true);
+            SetDirectionParameter(randomDashDir);
+        }
+
+        // ğŸ”¥ ëŒ€ì‰¬ ëŒì… ìˆœê°„: ë‹¤ë¥¸ ì†Œë¦¬ ì¼ì ˆ ë„ê³  ëŒ€ì‰¬ ì „ìš© ì‚¬ìš´ë“œ ì»´í¬ë„ŒíŠ¸ ì‹¤í–‰!
+        PlayDashSound();
+
         rb.linearVelocity = randomDashDir * dashSpeed;
 
-        // ÁöÁ¤µÈ ½Ã°£(dashDuration)¸¸Å­ ´ë±â
         yield return new WaitForSeconds(dashDuration);
 
         isDashing = false;
-        SetNextDashTime(); // ´ÙÀ½ ´ë½¬ ½Ã°£ °»½Å
+        SetNextDashTime();
+    }
+
+    // ğŸ”Š ë³´ìŠ¤ ìƒíƒœë³„ ì»´í¬ë„ŒíŠ¸ ì‚¬ìš´ë“œ ì œì–´ ë©”ì„œë“œë“¤
+    void PlayTrackSound()
+    {
+        if (walkAudioSource != null && !walkAudioSource.isPlaying) walkAudioSource.Play();
+        if (idleAudioSource != null && idleAudioSource.isPlaying) idleAudioSource.Stop();
+        if (dashAudioSource != null && dashAudioSource.isPlaying) dashAudioSource.Stop();
+    }
+
+    void PlayIdleSound()
+    {
+        if (idleAudioSource != null && !idleAudioSource.isPlaying) idleAudioSource.Play();
+        if (walkAudioSource != null && walkAudioSource.isPlaying) walkAudioSource.Stop();
+        if (dashAudioSource != null && dashAudioSource.isPlaying) dashAudioSource.Stop();
+    }
+
+    void PlayDashSound()
+    {
+        if (idleAudioSource != null && idleAudioSource.isPlaying) idleAudioSource.Stop();
+        if (walkAudioSource != null && walkAudioSource.isPlaying) walkAudioSource.Stop();
+
+        // ëŒ€ì‰¬ëŠ” ë³´í†µ ì¼ì‹œì ì¸ íš¨ê³¼ìŒì´ë¯€ë¡œ í•œ ë²ˆ ì‹œì›í•˜ê²Œ ë¿œì–´ì£¼ë„ë¡ ì²˜ë¦¬í•©ë‹ˆë‹¤.
+        if (dashAudioSource != null) dashAudioSource.Play();
+    }
+
+    void SetDirectionParameter(Vector2 dir)
+    {
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        if (angle < 0) angle += 360f;
+
+        int index = Mathf.RoundToInt(angle / 45f) % 8;
+
+        for (int i = 0; i < directionParams.Length; i++)
+        {
+            anim.SetBool(directionParams[i], i == index);
+        }
+    }
+
+    void ResetDirectionParameters()
+    {
+        for (int i = 0; i < directionParams.Length; i++)
+        {
+            anim.SetBool(directionParams[i], false);
+        }
     }
 
     void SetNextDashTime()
     {
-        // ÃÖ¼Ò/ÃÖ´ë °£°İ »çÀÌÀÇ ¹«ÀÛÀ§ ÃÊ µÚ¿¡ ´ë½¬ ½ÇÇà
         nextDashTime = Time.time + Random.Range(minDashInterval, maxDashInterval);
     }
 
@@ -110,7 +193,6 @@ public class BossMove : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, detectionRange);
-
         if (target != null)
         {
             Gizmos.color = IsPlayerVisible() ? Color.green : Color.red;
