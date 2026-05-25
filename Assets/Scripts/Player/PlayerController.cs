@@ -21,7 +21,19 @@ public class PlayerController : MonoBehaviour
     private SpriteLibrary spriteLibrary;
 
     private Vector2 moveInput;
+    public enum Direction8
+    {
+        Right,
+        UpRight,
+        Up,
+        UpLeft,
+        Left,
+        DownLeft,
+        Down,
+        DownRight
+    }
     private Vector2 lookDirection;
+    private Direction8 facingDirection;
 
     private string currentState;
     private bool isAttacking;
@@ -62,6 +74,19 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         UpdateLookDirection();
+        
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            spriteLibrary.spriteLibraryAsset = batSpriteLibraryAsset;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            spriteLibrary.spriteLibraryAsset = shotgunSpriteLibraryAsset;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            spriteLibrary.spriteLibraryAsset = chainsawSpriteLibraryAsset;
+        }
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -106,18 +131,26 @@ public class PlayerController : MonoBehaviour
     {
         if (mainCamera == null || rb == null) return;
 
-        Vector3 mouseScreen = Input.mousePosition;
-        mouseScreen.z = Mathf.Abs(mainCamera.transform.position.z);
+        //Vector3 mouseScreen = Input.mousePosition;
+        //mouseScreen.z = Mathf.Abs(mainCamera.transform.position.z);
 
-        Vector3 mouseWorld = mainCamera.ScreenToWorldPoint(mouseScreen);
+        Vector3 mouseWorld = mainCamera.ScreenToWorldPoint(Input.mousePosition);
 
         Vector2 playerPosition = rb.position;
         lookDirection = ((Vector2)mouseWorld - playerPosition).normalized;
+
+        float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
+        if (angle < 0f)
+        {
+            angle += 360f;
+        }
+        int i = Mathf.RoundToInt(angle / 45f) % 8;
+        facingDirection = (Direction8)i;
     }
 
     void UpdateAnimationState()
     {
-        string lookDirName = GetLookDirectionName(lookDirection);
+        string lookDirName = GetLookDirectionName();
 
         bool isMoving = moveInput.sqrMagnitude > 0.01f;
         string moveName = MOVE_IDLE;
@@ -170,7 +203,7 @@ public class PlayerController : MonoBehaviour
         isAttacking = true;
         moveInput = Vector2.zero;
 
-        string lookDirName = GetLookDirectionName(lookDirection);
+        string lookDirName = GetLookDirectionName();
         string attackStateName = lookDirName + BAT_ATTACK;
         int attackStateHash = Animator.StringToHash(attackStateName);
 
@@ -203,7 +236,7 @@ public class PlayerController : MonoBehaviour
 
     void FireShotgun()
     {
-        debugLookDir = GetLookDirectionName(lookDirection);
+        debugLookDir = GetLookDirectionName();
         debugMoveType = "Shotgun";
         debugIsMoving = false;
         debugState = "ShotgunFire";
@@ -219,14 +252,20 @@ public class PlayerController : MonoBehaviour
         isChainsawDashing = true;
         moveInput = Vector2.zero;
 
-        chainsawDirection = lookDirection.normalized;
-
-        if (chainsawDirection.sqrMagnitude < 0.01f)
+        chainsawDirection = facingDirection switch
         {
-            chainsawDirection = Vector2.down;
-        }
+            Direction8.Right => Vector2.right,
+            Direction8.UpRight => new Vector2(1, 1).normalized,
+            Direction8.Up => Vector2.up,
+            Direction8.UpLeft => new Vector2(-1, 1).normalized,
+            Direction8.Left => Vector2.left,
+            Direction8.DownLeft => new Vector2(-1, -1).normalized,
+            Direction8.Down => Vector2.down,
+            Direction8.DownRight => new Vector2(1, -1).normalized,
+            _ => Vector2.down
+        };
 
-        string lookDirName = GetLookDirectionName(chainsawDirection);
+        string lookDirName = GetLookDirectionName();
         string stateName = GetAnimationStateName(lookDirName, MOVE_FORWARD);
 
         ChangeAnimationState(stateName);
@@ -263,43 +302,37 @@ public class PlayerController : MonoBehaviour
         return lookDirName + moveName;
     }
 
-    string GetLookDirectionName(Vector2 direction)
+    string GetLookDirectionName()
     {
-        if (direction.sqrMagnitude < 0.01f)
+        switch (facingDirection)
         {
-            return DIR_SOUTH;
-        }
-
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-        if (angle < 0f)
-        {
-            angle += 360f;
-        }
-
-        int index = Mathf.RoundToInt(angle / 45f) % 8;
-
-        switch (index)
-        {
-            case 0:
+            case Direction8.Right:
                 return DIR_EAST;
-            case 1:
+
+            case Direction8.UpRight:
                 return DIR_NORTH_EAST;
-            case 2:
+
+            case Direction8.Up:
                 return DIR_NORTH;
-            case 3:
+
+            case Direction8.UpLeft:
                 return DIR_NORTH_WEST;
-            case 4:
+
+            case Direction8.Left:
                 return DIR_WEST;
-            case 5:
+
+            case Direction8.DownLeft:
                 return DIR_SOUTH_WEST;
-            case 6:
+
+            case Direction8.Down:
                 return DIR_SOUTH;
-            case 7:
+
+            case Direction8.DownRight:
                 return DIR_SOUTH_EAST;
+
             default:
                 return DIR_SOUTH;
-        }
+            }
     }
 
     string GetMoveNameRelativeToLookDirection(Vector2 moveDir, Vector2 lookDir)
