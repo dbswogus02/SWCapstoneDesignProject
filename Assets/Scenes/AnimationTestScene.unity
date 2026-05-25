@@ -424,7 +424,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Library: []
-  m_SpriteLibraryAsset: {fileID: 7108339969198208228, guid: 66438b659bd4be84d8271a8b7390aba7, type: 3}
+  m_SpriteLibraryAsset: {fileID: 7108339969198208228, guid: ea644a09358e0084e91584226ab1b4dc, type: 3}
 --- !u!61 &141142184
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -536,8 +536,14 @@ MonoBehaviour:
   batSpriteLibraryAsset: {fileID: 7108339969198208228, guid: ea644a09358e0084e91584226ab1b4dc, type: 3}
   shotgunSpriteLibraryAsset: {fileID: 7108339969198208228, guid: 09779e167b2a32d4aab7965722fffa0e, type: 3}
   chainsawSpriteLibraryAsset: {fileID: 7108339969198208228, guid: 66438b659bd4be84d8271a8b7390aba7, type: 3}
+  chainsawCooldown: 2
   chainsawDuration: 1
-  chainsawSpeed: 9
+  chainsawSpeed: 8
+  shotgunCooldown: 1
+  shotgunDuration: 0.3
+  shotgunRecoil: 2
+  lastShotgunTime: -999
+  lastChainsawTime: -999
 --- !u!212 &141142188
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -582,7 +588,7 @@ SpriteRenderer:
   m_SortingLayerID: 1376879819
   m_SortingLayer: 10
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3803768109101744329, guid: 4b29f1edf62275145861d1574b049510, type: 3}
+  m_Sprite: {fileID: -3803768109101744329, guid: ba20f32e479920648a4b327e409d6455, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -937,7 +943,7 @@ MonoBehaviour:
     rid: 8647684953285591116
   m_ShadowCastingSource: 2
   m_ShadowMesh:
-    m_Mesh: {fileID: 1059654505}
+    m_Mesh: {fileID: 1424627955}
     m_LocalBounds:
       m_Center: {x: 0, y: 0, z: 0}
       m_Extent: {x: 0.5, y: 0.5, z: 0}
@@ -1307,7 +1313,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 839465249}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!43 &1059654505
+--- !u!43 &1424627955
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1891,7 +1897,7 @@ MonoBehaviour:
     rid: 8647684953285591116
   m_ShadowCastingSource: 2
   m_ShadowMesh:
-    m_Mesh: {fileID: 2020160911}
+    m_Mesh: {fileID: 1969453899}
     m_LocalBounds:
       m_Center: {x: 0, y: 0, z: 0}
       m_Extent: {x: 0.5, y: 0.5, z: 0}
@@ -1911,7 +1917,7 @@ MonoBehaviour:
     - rid: 8647684953285591116
       type: {class: ShadowShape2DProvider_Collider2D, ns: UnityEngine.Rendering.Universal, asm: Unity.RenderPipelines.Universal.2D.Runtime}
       data: 
---- !u!43 &2020160911
+--- !u!43 &1969453899
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
