@@ -1,19 +1,32 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.U2D.Animation;
 
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5f;
 
+    [Header("Weapon Sprite Library Assets")]
+    public SpriteLibraryAsset batSpriteLibraryAsset;
+    public SpriteLibraryAsset shotgunSpriteLibraryAsset;
+    public SpriteLibraryAsset chainsawSpriteLibraryAsset;
+
+    [Header("Chainsaw Settings")]
+    public float chainsawDuration = 1.0f;
+    public float chainsawSpeed = 9f;
+
     private Rigidbody2D rb;
     private Animator anim;
     private Camera mainCamera;
+    private SpriteLibrary spriteLibrary;
 
     private Vector2 moveInput;
     private Vector2 lookDirection;
 
     private string currentState;
     private bool isAttacking;
+    private bool isChainsawDashing;
+    private Vector2 chainsawDirection;
 
     private const string DIR_EAST = "East";
     private const string DIR_NORTH_EAST = "NorthEast";
@@ -30,7 +43,7 @@ public class PlayerController : MonoBehaviour
     private const string MOVE_LEFT = "RunLeft";
     private const string MOVE_RIGHT = "RunRight";
 
-    private const string ATTACK = "Attack";
+    private const string BAT_ATTACK = "Attack";
 
     private string debugLookDir;
     private string debugMoveType;
@@ -41,10 +54,9 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.gravityScale = 0f;
-
         anim = GetComponent<Animator>();
         mainCamera = Camera.main;
+        spriteLibrary = GetComponent<SpriteLibrary>();
     }
 
     void Update()
@@ -53,10 +65,10 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            TryAttack();
+            TryUseWeapon();
         }
 
-        if (isAttacking)
+        if (isAttacking || isChainsawDashing)
         {
             moveInput = Vector2.zero;
             return;
@@ -68,6 +80,12 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (isChainsawDashing)
+        {
+            MoveChainsawDash();
+            return;
+        }
+
         if (isAttacking) return;
 
         MovePlayer();
@@ -86,6 +104,8 @@ public class PlayerController : MonoBehaviour
 
     void UpdateLookDirection()
     {
+        if (mainCamera == null || rb == null) return;
+
         Vector3 mouseScreen = Input.mousePosition;
         mouseScreen.z = Mathf.Abs(mainCamera.transform.position.z);
 
@@ -115,29 +135,49 @@ public class PlayerController : MonoBehaviour
         debugMoveType = moveName;
         debugIsMoving = isMoving;
         debugState = stateName;
-        debugIsAttacking = isAttacking;
+        debugIsAttacking = isAttacking || isChainsawDashing;
     }
 
-    void TryAttack()
+    void TryUseWeapon()
     {
-        if (isAttacking) return;
+        if (isAttacking || isChainsawDashing) return;
+        if (spriteLibrary == null) return;
+        if (spriteLibrary.spriteLibraryAsset == null) return;
 
-        StartCoroutine(Attack());
+        SpriteLibraryAsset currentAsset = spriteLibrary.spriteLibraryAsset;
+
+        if (currentAsset == batSpriteLibraryAsset)
+        {
+            StartCoroutine(BatAttack());
+            return;
+        }
+
+        if (currentAsset == shotgunSpriteLibraryAsset)
+        {
+            FireShotgun();
+            return;
+        }
+
+        if (currentAsset == chainsawSpriteLibraryAsset)
+        {
+            StartCoroutine(ChainsawDash());
+            return;
+        }
     }
 
-    IEnumerator Attack()
+    IEnumerator BatAttack()
     {
         isAttacking = true;
         moveInput = Vector2.zero;
 
         string lookDirName = GetLookDirectionName(lookDirection);
-        string attackStateName = lookDirName + ATTACK;
+        string attackStateName = lookDirName + BAT_ATTACK;
         int attackStateHash = Animator.StringToHash(attackStateName);
 
         ChangeAnimationState(attackStateName);
 
         debugLookDir = lookDirName;
-        debugMoveType = ATTACK;
+        debugMoveType = BAT_ATTACK;
         debugIsMoving = false;
         debugState = attackStateName;
         debugIsAttacking = true;
@@ -158,24 +198,62 @@ public class PlayerController : MonoBehaviour
 
         isAttacking = false;
         debugIsAttacking = false;
-
         UpdateAnimationState();
     }
 
+    void FireShotgun()
+    {
+        debugLookDir = GetLookDirectionName(lookDirection);
+        debugMoveType = "Shotgun";
+        debugIsMoving = false;
+        debugState = "ShotgunFire";
+        debugIsAttacking = false;
+
+        // 나중에 여기서 총알 발사 구현
+        // 예:
+        // Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+    }
+
+    IEnumerator ChainsawDash()
+    {
+        isChainsawDashing = true;
+        moveInput = Vector2.zero;
+
+        chainsawDirection = lookDirection.normalized;
+
+        if (chainsawDirection.sqrMagnitude < 0.01f)
+        {
+            chainsawDirection = Vector2.down;
+        }
+
+        string lookDirName = GetLookDirectionName(chainsawDirection);
+        string stateName = GetAnimationStateName(lookDirName, MOVE_FORWARD);
+
+        ChangeAnimationState(stateName);
+
+        debugLookDir = lookDirName;
+        debugMoveType = "ChainsawDash";
+        debugIsMoving = true;
+        debugState = stateName;
+        debugIsAttacking = true;
+
+        yield return new WaitForSeconds(chainsawDuration);
+
+        isChainsawDashing = false;
+        debugIsAttacking = false;
+        UpdateAnimationState();
+    }
+
+    void MoveChainsawDash()
+    {
+        rb.MovePosition(rb.position + chainsawDirection * chainsawSpeed * Time.fixedDeltaTime);
+    }
 
     void ChangeAnimationState(string newState)
     {
         if (currentState == newState) return;
 
-        int stateHash = Animator.StringToHash(newState);
-
-        if (!anim.HasState(0, stateHash))
-        {
-            Debug.LogWarning("Animator에 State가 없습니다: " + newState);
-            return;
-        }
-
-        anim.Play(stateHash);
+        anim.Play(newState);
 
         currentState = newState;
     }
@@ -232,6 +310,12 @@ public class PlayerController : MonoBehaviour
         }
 
         Vector2 forward = lookDir.normalized;
+
+        if (forward.sqrMagnitude < 0.01f)
+        {
+            forward = Vector2.down;
+        }
+
         Vector2 right = new Vector2(-forward.y, forward.x);
 
         float forwardDot = Vector2.Dot(moveDir, forward);
@@ -263,8 +347,22 @@ public class PlayerController : MonoBehaviour
     void OnGUI()
     {
         GUI.Label(
-            new Rect(20, 20, 500, 160),
-            $"LookDir: {debugLookDir}\nMoveType: {debugMoveType}\nisMoving: {debugIsMoving}\nisAttacking: {debugIsAttacking}\nState: {debugState}"
+            new Rect(20, 20, 500, 180),
+            $"LookDir: {debugLookDir}\nMoveType: {debugMoveType}\nisMoving: {debugIsMoving}\nisAttacking: {debugIsAttacking}\nState: {debugState}\nWeapon: {GetCurrentWeaponDebugName()}"
         );
+    }
+
+    string GetCurrentWeaponDebugName()
+    {
+        if (spriteLibrary == null) return "No SpriteLibrary";
+        if (spriteLibrary.spriteLibraryAsset == null) return "No Asset";
+
+        SpriteLibraryAsset currentAsset = spriteLibrary.spriteLibraryAsset;
+
+        if (currentAsset == batSpriteLibraryAsset) return "Bat";
+        if (currentAsset == shotgunSpriteLibraryAsset) return "Shotgun";
+        if (currentAsset == chainsawSpriteLibraryAsset) return "Chainsaw";
+
+        return currentAsset.name;
     }
 }

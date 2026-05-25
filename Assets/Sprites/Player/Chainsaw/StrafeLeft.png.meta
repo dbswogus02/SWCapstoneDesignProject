@@ -418,7 +418,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -456,7 +456,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -484,10 +484,10 @@ TextureImporter:
       name: StrafeLeft_0
       rect:
         serializedVersion: 2
-        x: 54
-        y: 932
-        width: 51
-        height: 48
+        x: 0
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -506,10 +506,10 @@ TextureImporter:
       name: StrafeLeft_1
       rect:
         serializedVersion: 2
-        x: 182
-        y: 932
-        width: 51
-        height: 48
+        x: 128
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -528,10 +528,10 @@ TextureImporter:
       name: StrafeLeft_2
       rect:
         serializedVersion: 2
-        x: 310
-        y: 932
-        width: 51
-        height: 48
+        x: 256
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -550,10 +550,10 @@ TextureImporter:
       name: StrafeLeft_3
       rect:
         serializedVersion: 2
-        x: 439
-        y: 932
-        width: 50
-        height: 48
+        x: 384
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -572,10 +572,10 @@ TextureImporter:
       name: StrafeLeft_4
       rect:
         serializedVersion: 2
-        x: 567
-        y: 932
-        width: 50
-        height: 48
+        x: 512
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -594,10 +594,10 @@ TextureImporter:
       name: StrafeLeft_5
       rect:
         serializedVersion: 2
-        x: 696
-        y: 932
-        width: 50
-        height: 48
+        x: 640
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -616,10 +616,10 @@ TextureImporter:
       name: StrafeLeft_6
       rect:
         serializedVersion: 2
-        x: 824
-        y: 932
-        width: 50
-        height: 48
+        x: 768
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -638,10 +638,10 @@ TextureImporter:
       name: StrafeLeft_7
       rect:
         serializedVersion: 2
-        x: 953
-        y: 933
-        width: 49
-        height: 48
+        x: 896
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -660,10 +660,10 @@ TextureImporter:
       name: StrafeLeft_8
       rect:
         serializedVersion: 2
-        x: 1081
-        y: 933
-        width: 50
-        height: 48
+        x: 1024
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -682,10 +682,10 @@ TextureImporter:
       name: StrafeLeft_9
       rect:
         serializedVersion: 2
-        x: 1209
-        y: 930
-        width: 50
-        height: 52
+        x: 1152
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -704,10 +704,10 @@ TextureImporter:
       name: StrafeLeft_10
       rect:
         serializedVersion: 2
-        x: 1337
-        y: 929
-        width: 49
-        height: 52
+        x: 1280
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -726,10 +726,10 @@ TextureImporter:
       name: StrafeLeft_11
       rect:
         serializedVersion: 2
-        x: 1464
-        y: 930
-        width: 50
-        height: 51
+        x: 1408
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -748,10 +748,10 @@ TextureImporter:
       name: StrafeLeft_12
       rect:
         serializedVersion: 2
-        x: 1591
-        y: 931
-        width: 50
-        height: 49
+        x: 1536
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -770,10 +770,10 @@ TextureImporter:
       name: StrafeLeft_13
       rect:
         serializedVersion: 2
-        x: 1718
-        y: 931
-        width: 51
-        height: 49
+        x: 1664
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -792,10 +792,10 @@ TextureImporter:
       name: StrafeLeft_14
       rect:
         serializedVersion: 2
-        x: 1846
-        y: 931
-        width: 51
-        height: 49
+        x: 1792
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -814,10 +814,10 @@ TextureImporter:
       name: StrafeLeft_15
       rect:
         serializedVersion: 2
-        x: 55
-        y: 802
-        width: 33
-        height: 49
+        x: 0
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -836,10 +836,10 @@ TextureImporter:
       name: StrafeLeft_16
       rect:
         serializedVersion: 2
-        x: 183
-        y: 802
-        width: 33
-        height: 49
+        x: 128
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -858,10 +858,10 @@ TextureImporter:
       name: StrafeLeft_17
       rect:
         serializedVersion: 2
-        x: 312
-        y: 801
-        width: 32
-        height: 51
+        x: 256
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -880,10 +880,10 @@ TextureImporter:
       name: StrafeLeft_18
       rect:
         serializedVersion: 2
-        x: 440
-        y: 801
-        width: 32
-        height: 50
+        x: 384
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -902,10 +902,10 @@ TextureImporter:
       name: StrafeLeft_19
       rect:
         serializedVersion: 2
-        x: 569
-        y: 802
-        width: 31
-        height: 49
+        x: 512
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -924,10 +924,10 @@ TextureImporter:
       name: StrafeLeft_20
       rect:
         serializedVersion: 2
-        x: 697
-        y: 802
-        width: 31
-        height: 49
+        x: 640
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -946,10 +946,10 @@ TextureImporter:
       name: StrafeLeft_21
       rect:
         serializedVersion: 2
-        x: 823
-        y: 801
-        width: 33
-        height: 50
+        x: 768
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -968,10 +968,10 @@ TextureImporter:
       name: StrafeLeft_22
       rect:
         serializedVersion: 2
-        x: 951
-        y: 801
-        width: 34
-        height: 50
+        x: 896
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -990,10 +990,10 @@ TextureImporter:
       name: StrafeLeft_23
       rect:
         serializedVersion: 2
-        x: 1079
-        y: 801
-        width: 34
-        height: 50
+        x: 1024
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1012,10 +1012,10 @@ TextureImporter:
       name: StrafeLeft_24
       rect:
         serializedVersion: 2
-        x: 1203
-        y: 801
-        width: 38
-        height: 50
+        x: 1152
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1034,10 +1034,10 @@ TextureImporter:
       name: StrafeLeft_25
       rect:
         serializedVersion: 2
-        x: 1330
-        y: 801
-        width: 39
-        height: 51
+        x: 1280
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1056,10 +1056,10 @@ TextureImporter:
       name: StrafeLeft_26
       rect:
         serializedVersion: 2
-        x: 1459
-        y: 801
-        width: 37
-        height: 50
+        x: 1408
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1078,10 +1078,10 @@ TextureImporter:
       name: StrafeLeft_27
       rect:
         serializedVersion: 2
-        x: 1589
-        y: 801
-        width: 34
-        height: 50
+        x: 1536
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1100,10 +1100,10 @@ TextureImporter:
       name: StrafeLeft_28
       rect:
         serializedVersion: 2
-        x: 1718
-        y: 802
-        width: 34
-        height: 49
+        x: 1664
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1122,10 +1122,10 @@ TextureImporter:
       name: StrafeLeft_29
       rect:
         serializedVersion: 2
-        x: 1847
-        y: 802
-        width: 33
-        height: 49
+        x: 1792
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1144,10 +1144,10 @@ TextureImporter:
       name: StrafeLeft_30
       rect:
         serializedVersion: 2
-        x: 51
-        y: 674
-        width: 23
-        height: 51
+        x: 0
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1166,10 +1166,10 @@ TextureImporter:
       name: StrafeLeft_31
       rect:
         serializedVersion: 2
-        x: 180
-        y: 674
-        width: 22
-        height: 51
+        x: 128
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1188,10 +1188,10 @@ TextureImporter:
       name: StrafeLeft_32
       rect:
         serializedVersion: 2
-        x: 308
-        y: 674
-        width: 23
-        height: 50
+        x: 256
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1210,10 +1210,10 @@ TextureImporter:
       name: StrafeLeft_33
       rect:
         serializedVersion: 2
-        x: 436
-        y: 673
-        width: 23
-        height: 51
+        x: 384
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1232,10 +1232,10 @@ TextureImporter:
       name: StrafeLeft_34
       rect:
         serializedVersion: 2
-        x: 564
-        y: 673
-        width: 23
-        height: 51
+        x: 512
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1254,10 +1254,10 @@ TextureImporter:
       name: StrafeLeft_35
       rect:
         serializedVersion: 2
-        x: 692
-        y: 673
-        width: 23
-        height: 50
+        x: 640
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1276,10 +1276,10 @@ TextureImporter:
       name: StrafeLeft_36
       rect:
         serializedVersion: 2
-        x: 820
-        y: 672
-        width: 23
-        height: 51
+        x: 768
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1298,10 +1298,10 @@ TextureImporter:
       name: StrafeLeft_37
       rect:
         serializedVersion: 2
-        x: 949
-        y: 671
-        width: 22
-        height: 52
+        x: 896
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1320,10 +1320,10 @@ TextureImporter:
       name: StrafeLeft_38
       rect:
         serializedVersion: 2
-        x: 1077
-        y: 671
-        width: 23
-        height: 52
+        x: 1024
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1342,10 +1342,10 @@ TextureImporter:
       name: StrafeLeft_39
       rect:
         serializedVersion: 2
-        x: 1202
-        y: 671
-        width: 26
-        height: 52
+        x: 1152
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1364,10 +1364,10 @@ TextureImporter:
       name: StrafeLeft_40
       rect:
         serializedVersion: 2
-        x: 1329
-        y: 672
-        width: 27
-        height: 51
+        x: 1280
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1386,10 +1386,10 @@ TextureImporter:
       name: StrafeLeft_41
       rect:
         serializedVersion: 2
-        x: 1458
-        y: 673
-        width: 27
-        height: 51
+        x: 1408
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1408,10 +1408,10 @@ TextureImporter:
       name: StrafeLeft_42
       rect:
         serializedVersion: 2
-        x: 1587
-        y: 673
-        width: 28
-        height: 51
+        x: 1536
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1430,10 +1430,10 @@ TextureImporter:
       name: StrafeLeft_43
       rect:
         serializedVersion: 2
-        x: 1714
-        y: 674
-        width: 28
-        height: 50
+        x: 1664
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1452,10 +1452,10 @@ TextureImporter:
       name: StrafeLeft_44
       rect:
         serializedVersion: 2
-        x: 1843
-        y: 674
-        width: 24
-        height: 50
+        x: 1792
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1474,10 +1474,10 @@ TextureImporter:
       name: StrafeLeft_45
       rect:
         serializedVersion: 2
-        x: 31
-        y: 548
-        width: 43
-        height: 49
+        x: 0
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1496,10 +1496,10 @@ TextureImporter:
       name: StrafeLeft_46
       rect:
         serializedVersion: 2
-        x: 159
-        y: 547
-        width: 44
-        height: 50
+        x: 128
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1518,10 +1518,10 @@ TextureImporter:
       name: StrafeLeft_47
       rect:
         serializedVersion: 2
-        x: 287
-        y: 547
-        width: 44
-        height: 49
+        x: 256
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1540,10 +1540,10 @@ TextureImporter:
       name: StrafeLeft_48
       rect:
         serializedVersion: 2
-        x: 415
-        y: 547
-        width: 43
-        height: 49
+        x: 384
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1562,10 +1562,10 @@ TextureImporter:
       name: StrafeLeft_49
       rect:
         serializedVersion: 2
-        x: 542
-        y: 547
-        width: 44
-        height: 48
+        x: 512
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1584,10 +1584,10 @@ TextureImporter:
       name: StrafeLeft_50
       rect:
         serializedVersion: 2
-        x: 670
-        y: 546
-        width: 44
-        height: 49
+        x: 640
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1606,10 +1606,10 @@ TextureImporter:
       name: StrafeLeft_51
       rect:
         serializedVersion: 2
-        x: 799
-        y: 546
-        width: 43
-        height: 49
+        x: 768
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1628,10 +1628,10 @@ TextureImporter:
       name: StrafeLeft_52
       rect:
         serializedVersion: 2
-        x: 926
-        y: 546
-        width: 44
-        height: 49
+        x: 896
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1650,10 +1650,10 @@ TextureImporter:
       name: StrafeLeft_53
       rect:
         serializedVersion: 2
-        x: 1054
-        y: 546
-        width: 44
-        height: 49
+        x: 1024
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1672,10 +1672,10 @@ TextureImporter:
       name: StrafeLeft_54
       rect:
         serializedVersion: 2
-        x: 1181
-        y: 546
-        width: 45
-        height: 49
+        x: 1152
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1694,10 +1694,10 @@ TextureImporter:
       name: StrafeLeft_55
       rect:
         serializedVersion: 2
-        x: 1310
-        y: 546
-        width: 44
-        height: 49
+        x: 1280
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1716,10 +1716,10 @@ TextureImporter:
       name: StrafeLeft_56
       rect:
         serializedVersion: 2
-        x: 1438
-        y: 547
-        width: 44
-        height: 48
+        x: 1408
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1738,10 +1738,10 @@ TextureImporter:
       name: StrafeLeft_57
       rect:
         serializedVersion: 2
-        x: 1566
-        y: 547
-        width: 44
-        height: 49
+        x: 1536
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1760,10 +1760,10 @@ TextureImporter:
       name: StrafeLeft_58
       rect:
         serializedVersion: 2
-        x: 1694
-        y: 546
-        width: 44
-        height: 50
+        x: 1664
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1782,10 +1782,10 @@ TextureImporter:
       name: StrafeLeft_59
       rect:
         serializedVersion: 2
-        x: 1823
-        y: 548
-        width: 43
-        height: 49
+        x: 1792
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1804,10 +1804,10 @@ TextureImporter:
       name: StrafeLeft_60
       rect:
         serializedVersion: 2
-        x: 26
-        y: 424
-        width: 50
-        height: 44
+        x: 0
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1826,10 +1826,10 @@ TextureImporter:
       name: StrafeLeft_61
       rect:
         serializedVersion: 2
-        x: 154
-        y: 425
-        width: 50
-        height: 43
+        x: 128
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1848,10 +1848,10 @@ TextureImporter:
       name: StrafeLeft_62
       rect:
         serializedVersion: 2
-        x: 282
-        y: 425
-        width: 50
-        height: 43
+        x: 256
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1870,10 +1870,10 @@ TextureImporter:
       name: StrafeLeft_63
       rect:
         serializedVersion: 2
-        x: 410
-        y: 423
-        width: 50
-        height: 46
+        x: 384
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1892,10 +1892,10 @@ TextureImporter:
       name: StrafeLeft_64
       rect:
         serializedVersion: 2
-        x: 537
-        y: 422
-        width: 50
-        height: 47
+        x: 512
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1914,10 +1914,10 @@ TextureImporter:
       name: StrafeLeft_65
       rect:
         serializedVersion: 2
-        x: 665
-        y: 422
-        width: 49
-        height: 47
+        x: 640
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1936,10 +1936,10 @@ TextureImporter:
       name: StrafeLeft_66
       rect:
         serializedVersion: 2
-        x: 793
-        y: 423
-        width: 49
-        height: 46
+        x: 768
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1958,10 +1958,10 @@ TextureImporter:
       name: StrafeLeft_67
       rect:
         serializedVersion: 2
-        x: 920
-        y: 425
-        width: 50
-        height: 44
+        x: 896
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1980,10 +1980,10 @@ TextureImporter:
       name: StrafeLeft_68
       rect:
         serializedVersion: 2
-        x: 1048
-        y: 424
-        width: 50
-        height: 45
+        x: 1024
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2002,10 +2002,10 @@ TextureImporter:
       name: StrafeLeft_69
       rect:
         serializedVersion: 2
-        x: 1176
-        y: 424
-        width: 50
-        height: 45
+        x: 1152
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2024,10 +2024,10 @@ TextureImporter:
       name: StrafeLeft_70
       rect:
         serializedVersion: 2
-        x: 1304
-        y: 422
-        width: 50
-        height: 47
+        x: 1280
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2046,10 +2046,10 @@ TextureImporter:
       name: StrafeLeft_71
       rect:
         serializedVersion: 2
-        x: 1433
-        y: 420
-        width: 50
-        height: 49
+        x: 1408
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2068,10 +2068,10 @@ TextureImporter:
       name: StrafeLeft_72
       rect:
         serializedVersion: 2
-        x: 1562
-        y: 419
-        width: 49
-        height: 50
+        x: 1536
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2090,10 +2090,10 @@ TextureImporter:
       name: StrafeLeft_73
       rect:
         serializedVersion: 2
-        x: 1690
-        y: 420
-        width: 50
-        height: 48
+        x: 1664
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2112,10 +2112,10 @@ TextureImporter:
       name: StrafeLeft_74
       rect:
         serializedVersion: 2
-        x: 1818
-        y: 422
-        width: 50
-        height: 46
+        x: 1792
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2134,10 +2134,10 @@ TextureImporter:
       name: StrafeLeft_75
       rect:
         serializedVersion: 2
-        x: 43
-        y: 349
-        width: 8
-        height: 8
+        x: 0
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2156,10 +2156,10 @@ TextureImporter:
       name: StrafeLeft_76
       rect:
         serializedVersion: 2
-        x: 171
-        y: 351
-        width: 6
-        height: 6
+        x: 128
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2178,10 +2178,10 @@ TextureImporter:
       name: StrafeLeft_77
       rect:
         serializedVersion: 2
-        x: 427
-        y: 346
-        width: 12
-        height: 12
+        x: 256
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2200,10 +2200,10 @@ TextureImporter:
       name: StrafeLeft_78
       rect:
         serializedVersion: 2
-        x: 555
-        y: 294
-        width: 30
-        height: 65
+        x: 384
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2222,10 +2222,10 @@ TextureImporter:
       name: StrafeLeft_79
       rect:
         serializedVersion: 2
-        x: 682
-        y: 348
-        width: 11
-        height: 11
+        x: 512
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2244,10 +2244,10 @@ TextureImporter:
       name: StrafeLeft_80
       rect:
         serializedVersion: 2
-        x: 810
-        y: 347
-        width: 12
-        height: 12
+        x: 640
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2266,10 +2266,10 @@ TextureImporter:
       name: StrafeLeft_81
       rect:
         serializedVersion: 2
-        x: 938
-        y: 297
-        width: 33
-        height: 62
+        x: 768
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2288,10 +2288,10 @@ TextureImporter:
       name: StrafeLeft_82
       rect:
         serializedVersion: 2
-        x: 1071
-        y: 299
-        width: 28
-        height: 54
+        x: 896
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2310,10 +2310,10 @@ TextureImporter:
       name: StrafeLeft_83
       rect:
         serializedVersion: 2
-        x: 1194
-        y: 299
-        width: 37
-        height: 60
+        x: 1024
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2332,10 +2332,10 @@ TextureImporter:
       name: StrafeLeft_84
       rect:
         serializedVersion: 2
-        x: 1322
-        y: 348
-        width: 11
-        height: 11
+        x: 1152
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2354,10 +2354,10 @@ TextureImporter:
       name: StrafeLeft_85
       rect:
         serializedVersion: 2
-        x: 1451
-        y: 298
-        width: 36
-        height: 60
+        x: 1280
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2376,10 +2376,10 @@ TextureImporter:
       name: StrafeLeft_86
       rect:
         serializedVersion: 2
-        x: 1580
-        y: 297
-        width: 34
-        height: 61
+        x: 1408
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2398,10 +2398,10 @@ TextureImporter:
       name: StrafeLeft_87
       rect:
         serializedVersion: 2
-        x: 1710
-        y: 346
-        width: 9
-        height: 9
+        x: 1536
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2420,10 +2420,10 @@ TextureImporter:
       name: StrafeLeft_88
       rect:
         serializedVersion: 2
-        x: 1835
-        y: 350
-        width: 7
-        height: 7
+        x: 1664
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2442,10 +2442,10 @@ TextureImporter:
       name: StrafeLeft_89
       rect:
         serializedVersion: 2
-        x: 51
-        y: 298
-        width: 23
-        height: 50
+        x: 1792
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2464,10 +2464,10 @@ TextureImporter:
       name: StrafeLeft_90
       rect:
         serializedVersion: 2
-        x: 179
-        y: 298
-        width: 23
-        height: 51
+        x: 0
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2486,10 +2486,10 @@ TextureImporter:
       name: StrafeLeft_91
       rect:
         serializedVersion: 2
-        x: 306
-        y: 296
-        width: 24
-        height: 52
+        x: 128
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2508,10 +2508,10 @@ TextureImporter:
       name: StrafeLeft_92
       rect:
         serializedVersion: 2
-        x: 434
-        y: 295
-        width: 23
-        height: 51
+        x: 256
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2530,10 +2530,10 @@ TextureImporter:
       name: StrafeLeft_93
       rect:
         serializedVersion: 2
-        x: 689
-        y: 295
-        width: 24
-        height: 51
+        x: 384
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2552,10 +2552,10 @@ TextureImporter:
       name: StrafeLeft_94
       rect:
         serializedVersion: 2
-        x: 817
-        y: 295
-        width: 26
-        height: 52
+        x: 512
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2574,10 +2574,10 @@ TextureImporter:
       name: StrafeLeft_95
       rect:
         serializedVersion: 2
-        x: 1329
-        y: 299
-        width: 31
-        height: 48
+        x: 640
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2596,10 +2596,10 @@ TextureImporter:
       name: StrafeLeft_96
       rect:
         serializedVersion: 2
-        x: 1714
-        y: 297
-        width: 26
-        height: 50
+        x: 768
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2618,10 +2618,10 @@ TextureImporter:
       name: StrafeLeft_97
       rect:
         serializedVersion: 2
-        x: 1843
-        y: 299
-        width: 24
-        height: 50
+        x: 896
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2640,10 +2640,10 @@ TextureImporter:
       name: StrafeLeft_98
       rect:
         serializedVersion: 2
-        x: 57
-        y: 169
-        width: 21
-        height: 64
+        x: 1024
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2662,10 +2662,10 @@ TextureImporter:
       name: StrafeLeft_99
       rect:
         serializedVersion: 2
-        x: 184
-        y: 169
-        width: 22
-        height: 64
+        x: 1152
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2684,10 +2684,10 @@ TextureImporter:
       name: StrafeLeft_100
       rect:
         serializedVersion: 2
-        x: 312
-        y: 169
-        width: 22
-        height: 64
+        x: 1280
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2706,10 +2706,10 @@ TextureImporter:
       name: StrafeLeft_101
       rect:
         serializedVersion: 2
-        x: 440
-        y: 169
-        width: 22
-        height: 65
+        x: 1408
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2728,10 +2728,10 @@ TextureImporter:
       name: StrafeLeft_102
       rect:
         serializedVersion: 2
-        x: 567
-        y: 169
-        width: 23
-        height: 65
+        x: 1536
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2750,10 +2750,10 @@ TextureImporter:
       name: StrafeLeft_103
       rect:
         serializedVersion: 2
-        x: 695
-        y: 169
-        width: 23
-        height: 65
+        x: 1664
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2772,10 +2772,10 @@ TextureImporter:
       name: StrafeLeft_104
       rect:
         serializedVersion: 2
-        x: 824
-        y: 169
-        width: 21
-        height: 65
+        x: 1792
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2794,10 +2794,10 @@ TextureImporter:
       name: StrafeLeft_105
       rect:
         serializedVersion: 2
-        x: 951
-        y: 169
-        width: 22
-        height: 66
+        x: 0
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2816,10 +2816,10 @@ TextureImporter:
       name: StrafeLeft_106
       rect:
         serializedVersion: 2
-        x: 1079
-        y: 169
-        width: 21
-        height: 66
+        x: 128
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2838,10 +2838,10 @@ TextureImporter:
       name: StrafeLeft_107
       rect:
         serializedVersion: 2
-        x: 1207
-        y: 169
-        width: 25
-        height: 66
+        x: 256
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2860,10 +2860,10 @@ TextureImporter:
       name: StrafeLeft_108
       rect:
         serializedVersion: 2
-        x: 1335
-        y: 169
-        width: 26
-        height: 66
+        x: 384
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2882,10 +2882,10 @@ TextureImporter:
       name: StrafeLeft_109
       rect:
         serializedVersion: 2
-        x: 1461
-        y: 169
-        width: 27
-        height: 65
+        x: 512
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2904,10 +2904,10 @@ TextureImporter:
       name: StrafeLeft_110
       rect:
         serializedVersion: 2
-        x: 1588
-        y: 169
-        width: 27
-        height: 65
+        x: 640
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2926,10 +2926,10 @@ TextureImporter:
       name: StrafeLeft_111
       rect:
         serializedVersion: 2
-        x: 1716
-        y: 169
-        width: 27
-        height: 64
+        x: 768
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2948,10 +2948,10 @@ TextureImporter:
       name: StrafeLeft_112
       rect:
         serializedVersion: 2
-        x: 1847
-        y: 169
-        width: 24
-        height: 64
+        x: 896
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2970,10 +2970,10 @@ TextureImporter:
       name: StrafeLeft_113
       rect:
         serializedVersion: 2
-        x: 56
-        y: 39
-        width: 44
-        height: 54
+        x: 1024
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2992,10 +2992,10 @@ TextureImporter:
       name: StrafeLeft_114
       rect:
         serializedVersion: 2
-        x: 184
-        y: 39
-        width: 44
-        height: 55
+        x: 1152
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3014,10 +3014,10 @@ TextureImporter:
       name: StrafeLeft_115
       rect:
         serializedVersion: 2
-        x: 312
-        y: 39
-        width: 44
-        height: 55
+        x: 1280
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3036,10 +3036,10 @@ TextureImporter:
       name: StrafeLeft_116
       rect:
         serializedVersion: 2
-        x: 440
-        y: 40
-        width: 44
-        height: 54
+        x: 1408
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3058,10 +3058,10 @@ TextureImporter:
       name: StrafeLeft_117
       rect:
         serializedVersion: 2
-        x: 568
-        y: 40
-        width: 45
-        height: 54
+        x: 1536
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3080,10 +3080,10 @@ TextureImporter:
       name: StrafeLeft_118
       rect:
         serializedVersion: 2
-        x: 696
-        y: 40
-        width: 45
-        height: 54
+        x: 1664
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3102,10 +3102,10 @@ TextureImporter:
       name: StrafeLeft_119
       rect:
         serializedVersion: 2
-        x: 824
-        y: 38
-        width: 45
-        height: 56
+        x: 1792
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3120,187 +3120,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: StrafeLeft_120
-      rect:
-        serializedVersion: 2
-        x: 952
-        y: 38
-        width: 45
-        height: 57
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a6926819d49d8c230800000000000000
-      internalID: 3659413624415725930
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: StrafeLeft_121
-      rect:
-        serializedVersion: 2
-        x: 1080
-        y: 38
-        width: 45
-        height: 57
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 75c2e044d2aaeb190800000000000000
-      internalID: -7944725581242946473
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: StrafeLeft_122
-      rect:
-        serializedVersion: 2
-        x: 1208
-        y: 35
-        width: 45
-        height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a8cc67a1417c9c870800000000000000
-      internalID: 8703706644027460746
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: StrafeLeft_123
-      rect:
-        serializedVersion: 2
-        x: 1336
-        y: 34
-        width: 45
-        height: 61
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4934485277b51bfc0800000000000000
-      internalID: -3480900469692021868
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: StrafeLeft_124
-      rect:
-        serializedVersion: 2
-        x: 1465
-        y: 35
-        width: 44
-        height: 59
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8750140f8db961960800000000000000
-      internalID: 7572411179516102008
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: StrafeLeft_125
-      rect:
-        serializedVersion: 2
-        x: 1593
-        y: 36
-        width: 44
-        height: 57
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e126948ab52cb7ca0800000000000000
-      internalID: -6018002778129341922
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: StrafeLeft_126
-      rect:
-        serializedVersion: 2
-        x: 1721
-        y: 37
-        width: 43
-        height: 56
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6c55a3e480b6864e0800000000000000
-      internalID: -1988221552067717690
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: StrafeLeft_127
-      rect:
-        serializedVersion: 2
-        x: 1848
-        y: 38
-        width: 44
-        height: 55
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c338b2f5102ed3720800000000000000
-      internalID: 2827664636578071356
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 03e52c096fc856e4bb522e4ecb172b54
     internalID: 0
     vertices: []
     indices: 
@@ -3335,14 +3159,6 @@ TextureImporter:
       StrafeLeft_118: 7139654997604014287
       StrafeLeft_119: 1691968563734375799
       StrafeLeft_12: -106021026343089780
-      StrafeLeft_120: 3659413624415725930
-      StrafeLeft_121: -7944725581242946473
-      StrafeLeft_122: 8703706644027460746
-      StrafeLeft_123: -3480900469692021868
-      StrafeLeft_124: 7572411179516102008
-      StrafeLeft_125: -6018002778129341922
-      StrafeLeft_126: -1988221552067717690
-      StrafeLeft_127: 2827664636578071356
       StrafeLeft_13: -7898570633451244314
       StrafeLeft_14: -2783181590031008305
       StrafeLeft_15: -835565647186887721
