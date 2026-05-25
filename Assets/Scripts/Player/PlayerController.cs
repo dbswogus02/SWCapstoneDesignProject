@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -11,16 +12,31 @@ public class PlayerController : MonoBehaviour
     private Vector2 moveInput;
     private Vector2 lookDirection;
 
-    private const int MOVE_IDLE = 0;
-    private const int MOVE_FORWARD = 1;
-    private const int MOVE_BACKWARD = 2;
-    private const int MOVE_LEFT = 3;
-    private const int MOVE_RIGHT = 4;
+    private string currentState;
+    private bool isAttacking;
 
-    private int debugLookDir;
-    private int debugMoveType;
+    private const string DIR_EAST = "East";
+    private const string DIR_NORTH_EAST = "NorthEast";
+    private const string DIR_NORTH = "North";
+    private const string DIR_NORTH_WEST = "NorthWest";
+    private const string DIR_WEST = "West";
+    private const string DIR_SOUTH_WEST = "SouthWest";
+    private const string DIR_SOUTH = "South";
+    private const string DIR_SOUTH_EAST = "SouthEast";
+
+    private const string MOVE_IDLE = "Idle";
+    private const string MOVE_FORWARD = "RunForward";
+    private const string MOVE_BACKWARD = "RunBackward";
+    private const string MOVE_LEFT = "RunLeft";
+    private const string MOVE_RIGHT = "RunRight";
+
+    private const string ATTACK = "Attack";
+
+    private string debugLookDir;
+    private string debugMoveType;
     private bool debugIsMoving;
-
+    private string debugState;
+    private bool debugIsAttacking;
 
     void Start()
     {
@@ -33,13 +49,27 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        ReadMoveInput();
         UpdateLookDirection();
-        UpdateAnimator();
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            TryAttack();
+        }
+
+        if (isAttacking)
+        {
+            moveInput = Vector2.zero;
+            return;
+        }
+
+        ReadMoveInput();
+        UpdateAnimationState();
     }
 
     void FixedUpdate()
     {
+        if (isAttacking) return;
+
         MovePlayer();
     }
 
@@ -57,57 +87,109 @@ public class PlayerController : MonoBehaviour
     void UpdateLookDirection()
     {
         Vector3 mouseScreen = Input.mousePosition;
-        mouseScreen.z = Mathf.Abs(Camera.main.transform.position.z);
-        
+        mouseScreen.z = Mathf.Abs(mainCamera.transform.position.z);
+
         Vector3 mouseWorld = mainCamera.ScreenToWorldPoint(mouseScreen);
 
         Vector2 playerPosition = rb.position;
         lookDirection = ((Vector2)mouseWorld - playerPosition).normalized;
     }
 
-    void UpdateAnimator()
+    void UpdateAnimationState()
     {
-        int lookDir = GetEightDirectionIndex(lookDirection);
-        // 0 = East
-        // 1 = NorthEast
-        // 2 = North
-        // 3 = NorthWest
-        // 4 = West
-        // 5 = SouthWest
-        // 6 = South
-        // 7 = SouthEast
+        string lookDirName = GetLookDirectionName(lookDirection);
 
         bool isMoving = moveInput.sqrMagnitude > 0.01f;
-        int moveType = MOVE_IDLE;
+        string moveName = MOVE_IDLE;
 
         if (isMoving)
         {
-            moveType = GetMoveTypeRelativeToLookDirection(moveInput.normalized, lookDirection);
+            moveName = GetMoveNameRelativeToLookDirection(moveInput.normalized, lookDirection);
         }
-        // 0 = Idle
-        // 1 = RunForward
-        // 2 = RunBackward
-        // 3 = RunLeft
-        // 4 = RunRight
-        debugLookDir = lookDir;
-        debugMoveType = moveType;
+
+        string stateName = GetAnimationStateName(lookDirName, moveName);
+
+        ChangeAnimationState(stateName);
+
+        debugLookDir = lookDirName;
+        debugMoveType = moveName;
         debugIsMoving = isMoving;
-
-        anim.SetBool("isMoving", isMoving);
-        anim.SetFloat("LookDir", lookDir);
-        anim.SetInteger("MoveType", moveType);
+        debugState = stateName;
+        debugIsAttacking = isAttacking;
     }
 
-    void MovePlayer()
+    void TryAttack()
     {
-        rb.MovePosition(rb.position + moveInput * moveSpeed * Time.fixedDeltaTime);
+        if (isAttacking) return;
+
+        StartCoroutine(Attack());
     }
 
-    int GetEightDirectionIndex(Vector2 direction)
+    IEnumerator Attack()
+    {
+        isAttacking = true;
+        moveInput = Vector2.zero;
+
+        string lookDirName = GetLookDirectionName(lookDirection);
+        string attackStateName = lookDirName + ATTACK;
+        int attackStateHash = Animator.StringToHash(attackStateName);
+
+        ChangeAnimationState(attackStateName);
+
+        debugLookDir = lookDirName;
+        debugMoveType = ATTACK;
+        debugIsMoving = false;
+        debugState = attackStateName;
+        debugIsAttacking = true;
+
+        yield return null;
+
+        while (true)
+        {
+            AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
+
+            if (stateInfo.shortNameHash == attackStateHash && stateInfo.normalizedTime >= 1f)
+            {
+                break;
+            }
+
+            yield return null;
+        }
+
+        isAttacking = false;
+        debugIsAttacking = false;
+
+        UpdateAnimationState();
+    }
+
+
+    void ChangeAnimationState(string newState)
+    {
+        if (currentState == newState) return;
+
+        int stateHash = Animator.StringToHash(newState);
+
+        if (!anim.HasState(0, stateHash))
+        {
+            Debug.LogWarning("Animator에 State가 없습니다: " + newState);
+            return;
+        }
+
+        anim.Play(stateHash);
+
+        currentState = newState;
+    }
+
+    string GetAnimationStateName(string lookDirName, string moveName)
+    {
+        return lookDirName + moveName;
+    }
+
+    string GetLookDirectionName(Vector2 direction)
     {
         if (direction.sqrMagnitude < 0.01f)
         {
-            return 6;
+            return DIR_SOUTH;
         }
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
@@ -119,10 +201,30 @@ public class PlayerController : MonoBehaviour
 
         int index = Mathf.RoundToInt(angle / 45f) % 8;
 
-        return index;
+        switch (index)
+        {
+            case 0:
+                return DIR_EAST;
+            case 1:
+                return DIR_NORTH_EAST;
+            case 2:
+                return DIR_NORTH;
+            case 3:
+                return DIR_NORTH_WEST;
+            case 4:
+                return DIR_WEST;
+            case 5:
+                return DIR_SOUTH_WEST;
+            case 6:
+                return DIR_SOUTH;
+            case 7:
+                return DIR_SOUTH_EAST;
+            default:
+                return DIR_SOUTH;
+        }
     }
 
-    int GetMoveTypeRelativeToLookDirection(Vector2 moveDir, Vector2 lookDir)
+    string GetMoveNameRelativeToLookDirection(Vector2 moveDir, Vector2 lookDir)
     {
         if (moveDir.sqrMagnitude < 0.01f)
         {
@@ -130,7 +232,7 @@ public class PlayerController : MonoBehaviour
         }
 
         Vector2 forward = lookDir.normalized;
-        Vector2 right = new Vector2(forward.y, -forward.x);
+        Vector2 right = new Vector2(-forward.y, forward.x);
 
         float forwardDot = Vector2.Dot(moveDir, forward);
         float rightDot = Vector2.Dot(moveDir, right);
@@ -141,30 +243,28 @@ public class PlayerController : MonoBehaviour
             {
                 return MOVE_FORWARD;
             }
-            else
-            {
-                return MOVE_BACKWARD;
-            }
+
+            return MOVE_BACKWARD;
         }
-        else
+
+        if (rightDot >= 0f)
         {
-            if (rightDot >= 0f)
-            {
-                return MOVE_RIGHT;
-            }
-            else
-            {
-                return MOVE_LEFT;
-            }
+            return MOVE_RIGHT;
         }
+
+        return MOVE_LEFT;
+    }
+
+    void MovePlayer()
+    {
+        rb.MovePosition(rb.position + moveInput * moveSpeed * Time.fixedDeltaTime);
     }
 
     void OnGUI()
     {
         GUI.Label(
-            new Rect(20, 20, 300, 100),
-            $"LookDir: {debugLookDir}\nMoveType: {debugMoveType}\nisMoving: {debugIsMoving}"
+            new Rect(20, 20, 500, 160),
+            $"LookDir: {debugLookDir}\nMoveType: {debugMoveType}\nisMoving: {debugIsMoving}\nisAttacking: {debugIsAttacking}\nState: {debugState}"
         );
     }
-
 }
