@@ -6,23 +6,19 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-<<<<<<< HEAD
     path: Assets/Scenes/MyIntro.unity
     guid: ad9687ee8855b0b4d9bd290ab59cfebe
   - enabled: 1
     path: Assets/Scenes/MyLobby.unity
     guid: d3bed62bac16bd74584ab90bcf0381d1
   - enabled: 1
-    path: Assets/Scenes/GameScene.unity
-=======
-    path: Assets/Scenes/UIScreen/IntroScenes.unity
-    guid: ed07613ff7131f6429f42a8633ba4f53
+    path: Assets/Scenes/MissionUI.unity
+    guid: 179261a6549387c428d21ba6e0648d36
   - enabled: 1
-    path: Assets/Scenes/UIScreen/MainMenuScenes.unity
-    guid: d2e20d3671278314293434cdbb232450
-  - enabled: 0
+    path: Assets/Scenes/StoreUI.unity
+    guid: 30e8f3fcbc35d89438b554db4866f8fb
+  - enabled: 1
     path: Assets/Scenes/GameScenes.unity
->>>>>>> 47c7bbf665251c60bbd8a0f90711412b463b4907
     guid: 8c9cfa26abfee488c85f1582747f6a02
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
