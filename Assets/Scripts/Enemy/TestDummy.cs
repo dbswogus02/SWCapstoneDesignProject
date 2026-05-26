@@ -163,12 +163,12 @@ public class TestDummy : MonoBehaviour
         return IDLE;
     }
 
-    string GetAnimationStateName()//현재 행동 상태와 바라보는 방향을 조합하여 애니메이션 상태 이름 생성
+    string GetAnimationStateName()//현재 행동 상태와 바라보는 방향을 문자열을 조합하여 애니메이션 상태 이름 생성
     {
         return GetActionStateName() + GetFacingDirectionName();
     }
 
-    void ChangeAnimationState(string newState)// 애니메이션 상태 변경
+    void ChangeAnimationState(string newState)// 애니메이션 상태 이름으로 애니메이션 상태 변경
     {
         if (currentState == newState) return;
 
@@ -178,6 +178,7 @@ public class TestDummy : MonoBehaviour
 
     void MoveTowardsPlayer()
     {
+        if (!IsPlayerVisible()) return;
         Vector2 rawDirection = target.position - transform.position;
 
         UpdateFacingDirection(rawDirection);
