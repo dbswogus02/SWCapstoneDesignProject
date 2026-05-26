@@ -149,29 +149,37 @@ public class Enemy : MonoBehaviour
 
         isDead = true;
 
-        // 1. 모든 오디오 즉시 정지
+        // 1. 모든 이동/액션 관련 오디오 즉시 정지
         if (walkAudioSource != null) walkAudioSource.Stop();
         if (idleAudioSource != null) idleAudioSource.Stop();
         if (attackAudioSource != null) attackAudioSource.Stop();
         if (hurtAudioSource != null) hurtAudioSource.Stop();
 
-        // 2. 물리 엔진 무력화
+        // 2. 물리 및 콜라이더 무력화
         if (rb != null)
         {
             rb.linearVelocity = Vector2.zero;
             rb.angularVelocity = 0f;
             rb.bodyType = RigidbodyType2D.Static;
-            rb.simulated = false; // [핵심] 이것이 꺼지면 어떠한 물리 호출도 엔진이 무시합니다.
+            rb.simulated = false;
         }
 
-        // 3. 콜라이더 제거
         Collider2D col = GetComponent<Collider2D>();
         if (col != null) col.enabled = false;
 
-        // 4. 애니메이션 고정
+        // 3. 죽음 애니메이션 재생
         anim.Play(DIE + GetFacingDirectionName());
 
-        // 5. [중요] 이 스크립트 비활성화
+        // 4. [수정] 죽음 오디오 재생 (지연 없이 실행)
+        if (dieAudioSource != null)
+        {
+            dieAudioSource.Play();
+        }
+
+        // 5. [중요] 스크립트를 바로 끄지 않고, 
+        // 오디오가 재생될 시간을 확보하거나 비활성화 시점 조절이 필요할 수 있습니다.
+        // 바로 꺼야 한다면 아래처럼 간단히 처리하되, 
+        // 만약 소리가 끊긴다면 Invoke를 사용하여 아주 약간의 딜레이 후 비활성화하세요.
         this.enabled = false;
     }
 
