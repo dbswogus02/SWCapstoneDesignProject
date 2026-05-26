@@ -245,6 +245,8 @@ public class PlayerController : MonoBehaviour
         isAttacking = true;
         moveInput = Vector2.zero;
 
+        StartCoroutine(ActivateBatArea(17, 5));
+
         string lookDirName = GetLookDirectionName();
         string attackStateName = lookDirName + BAT_ATTACK;
         int attackStateHash = Animator.StringToHash(attackStateName);
@@ -270,16 +272,36 @@ public class PlayerController : MonoBehaviour
 
             yield return null;
         }
-
         isAttacking = false;
         debugIsAttacking = false;
         UpdateAnimationState();
+    }
+
+    IEnumerator ActivateBatArea(int delayFrame, int activeFrame)
+    {
+        if (batArea == null) yield break;
+
+        for (int i = 0; i < delayFrame; i++)
+        {
+            yield return new WaitForFixedUpdate();
+        }
+
+        batArea.SetActive(true);
+
+        for (int i = 0; i < activeFrame; i++)
+        {
+            yield return new WaitForFixedUpdate();
+        }
+
+        batArea.SetActive(false);
     }
 
     IEnumerator FireShotgun()
     {
         isFiringShotgun = true;
         moveInput = Vector2.zero;
+
+        StartCoroutine(ActivateShotgunArea(5));
 
         shotgunRecoilDirection = facingDirection switch
         {
@@ -324,9 +346,18 @@ public class PlayerController : MonoBehaviour
         UpdateAnimationState();
     }
 
-    void MoveShotgunRecoil()
+    IEnumerator ActivateShotgunArea(int frame)
     {
-        rb.MovePosition(rb.position - shotgunRecoilDirection * shotgunRecoil * Time.fixedDeltaTime);
+        if (shotgunArea == null) yield break;
+
+        shotgunArea.SetActive(true);
+
+        for (int i = 0; i < frame; i++)
+        {
+            yield return new WaitForFixedUpdate();
+        }
+
+        shotgunArea.SetActive(false);
     }
 
     IEnumerator ChainsawDash()
@@ -358,6 +389,7 @@ public class PlayerController : MonoBehaviour
         debugState = stateName;
         debugIsAttacking = true;
 
+        chainsawArea.SetActive(true);
         anim.speed = 2f;
         yield return new WaitForSeconds(chainsawDuration);
         anim.speed = 1f;
@@ -365,6 +397,7 @@ public class PlayerController : MonoBehaviour
 
         isChainsawDashing = false;
         debugIsAttacking = false;
+        chainsawArea.SetActive(false);
         UpdateAnimationState();
     }
 
