@@ -129,11 +129,15 @@ public class PlayerController : MonoBehaviour
 
         if (isChainsawDashing)
         {
+            StopPhysicsMotion();
             MoveChainsawDash();
             return;
         }
-
-        if (isAttacking) return;
+        if (isAttacking)
+        {
+            StopPhysicsMotion();
+            return;
+        }
 
         MovePlayer();
     }
@@ -244,6 +248,7 @@ public class PlayerController : MonoBehaviour
     {
         isAttacking = true;
         moveInput = Vector2.zero;
+        StopPhysicsMotion();
 
         StartCoroutine(ActivateBatArea(17, 5));
 
@@ -300,7 +305,7 @@ public class PlayerController : MonoBehaviour
     {
         isFiringShotgun = true;
         moveInput = Vector2.zero;
-
+        StopPhysicsMotion();
         StartCoroutine(ActivateShotgunArea(5));
 
         shotgunRecoilDirection = facingDirection switch
@@ -364,7 +369,7 @@ public class PlayerController : MonoBehaviour
     {
         isChainsawDashing = true;
         moveInput = Vector2.zero;
-
+        StopPhysicsMotion();
         chainsawDirection = facingDirection switch
         {
             Direction8.Right => Vector2.right,
@@ -493,6 +498,16 @@ public class PlayerController : MonoBehaviour
     void MovePlayer()
     {
         rb.MovePosition(rb.position + moveInput * moveSpeed * Time.fixedDeltaTime);
+    }
+
+    void StopPhysicsMotion()
+    {
+        #if UNITY_6000_0_OR_NEWER
+            rb.linearVelocity = Vector2.zero;
+        #else
+            rb.velocity = Vector2.zero;
+        #endif
+            rb.angularVelocity = 0f;    
     }
 
     float GetShotgunCooldownRemaining()

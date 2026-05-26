@@ -53,6 +53,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 0
   maxHealth: 100
+  BloodSplatterPrefabs:
+  - {fileID: 635300495064313689, guid: a2217aa4adcbf2844881217c11baf7b7, type: 3}
+  - {fileID: 2464295043360729089, guid: 59bde744e9da14446bd59fe184a4aa5c, type: 3}
+  - {fileID: 5585372469997648753, guid: 58b10732e6599cf45bbcbc5ff9f8805d, type: 3}
+  - {fileID: 4895219978360526032, guid: ad7c3f2dc4ac72c4090731664fd0cb55, type: 3}
+  deathEffectPrefabs:
+  - {fileID: 472859625916035776, guid: ffd119a342e28ad418f9505288bcb65c, type: 3}
 --- !u!212 &4619645767525550440
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -95,7 +102,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1058305421
-  m_SortingLayer: 11
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -368,7 +375,7 @@ MonoBehaviour:
   detectionRange: 5
   obstacleLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   idleAudioSource: {fileID: 6371096532836812460}
   walkAudioSource: {fileID: 1064663661000378025}
 --- !u!61 &8868319915571072828
