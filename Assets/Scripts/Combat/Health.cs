@@ -7,21 +7,25 @@ public class Health : MonoBehaviour
     public float maxHealth = 100;
     public GameObject[] BloodSplatterPrefabs;
     public GameObject[] deathEffectPrefabs;
+    [SerializeField] private TestDummy testDummy;
 
     private void Start()
     {
         currentHealth = maxHealth;
+        testDummy = GetComponent<TestDummy>();
     }
 
     public void TakeDamage(float damage)
     {
-        currentHealth -= damage;
-        int randomIndex = Random.Range(0, BloodSplatterPrefabs.Length);
-        Instantiate(BloodSplatterPrefabs[randomIndex], transform.position, Quaternion.identity);
         if (currentHealth <= 0)
         {
             Die();
+            return;
         }
+        currentHealth -= damage;
+        int randomIndex = Random.Range(0, BloodSplatterPrefabs.Length);
+        Instantiate(BloodSplatterPrefabs[randomIndex], transform.position, Quaternion.identity);
+        testDummy.DamageReaction();
     }
 
     private void Die()
@@ -31,6 +35,6 @@ public class Health : MonoBehaviour
             int randomIndex = Random.Range(0, deathEffectPrefabs.Length);
             Instantiate(deathEffectPrefabs[randomIndex], transform.position, Quaternion.identity);
         }
-        Destroy(gameObject);
+        testDummy.DieReaction();
     }
 }
