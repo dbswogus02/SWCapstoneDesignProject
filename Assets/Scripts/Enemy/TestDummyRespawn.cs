@@ -6,19 +6,15 @@ public class TestDummyRespawn : MonoBehaviour
 
     void Update()
     {
-        if (GameObject.FindWithTag("Enemy") == null)
+        if (Input.GetKeyDown(KeyCode.R))
         {
             SpawnTestDummy();
         }
     }
 
-    private void Start()
-    {
-        SpawnTestDummy();
-    }
-
     public void SpawnTestDummy()
     {
         Instantiate(testDummyPrefab, transform.position, Quaternion.identity);
+        testDummyPrefab.SetActive(true);
     }
 }

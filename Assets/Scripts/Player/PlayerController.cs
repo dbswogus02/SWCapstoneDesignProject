@@ -19,13 +19,18 @@ public class PlayerController : MonoBehaviour
 
     [Header("Chainsaw Settings")]
     public float chainsawCooldown = 2.0f;
-    public float chainsawDuration = 1.0f;
-    public float chainsawSpeed = 8f;
+    public float chainsawDuration = 2.0f;
+    public float chainsawSpeed = 1f;
 
     [Header("Shotgun Settings")]
     public float shotgunCooldown = 1.0f;
     public float shotgunDuration = 0.3f;
     public float shotgunRecoil = 2f;
+
+    [Header("Sound Effects")]
+    public AudioSource batSwingAudioSource;
+    public AudioSource shotgunFireAudioSource;
+    public AudioSource chainsawAudioSource;
 
     private Rigidbody2D rb;
     private Animator anim;
@@ -250,7 +255,7 @@ public class PlayerController : MonoBehaviour
         moveInput = Vector2.zero;
         StopPhysicsMotion();
 
-        StartCoroutine(ActivateBatArea(17, 5));
+        StartCoroutine(ActivateBatArea(15, 7));
 
         string lookDirName = GetLookDirectionName();
         string attackStateName = lookDirName + BAT_ATTACK;
@@ -290,7 +295,7 @@ public class PlayerController : MonoBehaviour
         {
             yield return new WaitForFixedUpdate();
         }
-
+        batSwingAudioSource.Play();
         batArea.SetActive(true);
 
         for (int i = 0; i < activeFrame; i++)
@@ -305,6 +310,7 @@ public class PlayerController : MonoBehaviour
     {
         isFiringShotgun = true;
         moveInput = Vector2.zero;
+        shotgunFireAudioSource.Play();
         StopPhysicsMotion();
         StartCoroutine(ActivateShotgunArea(5));
 
@@ -369,6 +375,7 @@ public class PlayerController : MonoBehaviour
     {
         isChainsawDashing = true;
         moveInput = Vector2.zero;
+        chainsawAudioSource.Play();
         StopPhysicsMotion();
         chainsawDirection = facingDirection switch
         {
@@ -395,7 +402,7 @@ public class PlayerController : MonoBehaviour
         debugIsAttacking = true;
 
         chainsawArea.SetActive(true);
-        anim.speed = 2f;
+        anim.speed = 0.5f;
         yield return new WaitForSeconds(chainsawDuration);
         anim.speed = 1f;
         lastChainsawTime = Time.time;
