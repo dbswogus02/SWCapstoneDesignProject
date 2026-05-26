@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Enemy : MonoBehaviour
+public class EnemyHit : MonoBehaviour
 {
     public int health = 100;
 
