@@ -83,7 +83,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1058305421
-  m_SortingLayer: 11
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.88235295, g: 0.88235295, b: 0.88235295, a: 0.88235295}
@@ -171,6 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fb25eede3be37349a29c108d173d4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageEffectPrefab: {fileID: 761505443441836314, guid: 970b07054abf04a45879ac5a2d2d22b7, type: 3}
   attackRange: 3
   attackCooldown: 1.5
   target: {fileID: 0}
@@ -178,12 +179,12 @@ MonoBehaviour:
   detectionRange: 10
   obstacleLayer:
     serializedVersion: 2
-    m_Bits: 0
-  idleAudioSource: {fileID: 0}
-  walkAudioSource: {fileID: 0}
-  attackAudioSource: {fileID: 0}
-  hurtAudioSource: {fileID: 0}
-  dieAudioSource: {fileID: 0}
+    m_Bits: 64
+  idleAudioSource: {fileID: 8464778443919845372}
+  walkAudioSource: {fileID: -3074345151401906833}
+  attackAudioSource: {fileID: -7768603629632413592}
+  hurtAudioSource: {fileID: 4878735106960165603}
+  dieAudioSource: {fileID: -6772676117603563765}
 --- !u!95 &4301527989225388323
 Animator:
   serializedVersion: 7
@@ -194,7 +195,7 @@ Animator:
   m_GameObject: {fileID: 3641157506465454649}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 922d9049e5712324eaf95b0a193c85a9, type: 2}
+  m_Controller: {fileID: 9100000, guid: 947671ba8c309a9488ca4e292a133b75, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -411,9 +412,9 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Resource: {fileID: 8300000, guid: 2ce910a915c909f4c8d4006ec4aa8334, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.05
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -422,9 +423,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 15
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -457,7 +458,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -508,9 +509,9 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Resource: {fileID: 8300000, guid: 560f7b39b960562418001dd354b54ac5, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -519,9 +520,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 15
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -554,7 +555,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -605,8 +606,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_Resource: {fileID: 8300000, guid: 78158fb50bf67b44c8c76e0c7f806ed6, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -616,9 +617,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 15
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -651,7 +652,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
