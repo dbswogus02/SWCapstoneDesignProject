@@ -11,8 +11,13 @@ public class PlayerController : MonoBehaviour
     public SpriteLibraryAsset shotgunSpriteLibraryAsset;
     public SpriteLibraryAsset chainsawSpriteLibraryAsset;
 
-    [Header("Chainsaw Settings")]
+    [Header("Weapon Areas")]
+    public Transform aim;
+    public GameObject batArea;
+    public GameObject shotgunArea;
+    public GameObject chainsawArea;
 
+    [Header("Chainsaw Settings")]
     public float chainsawCooldown = 2.0f;
     public float chainsawDuration = 1.0f;
     public float chainsawSpeed = 8f;
@@ -48,8 +53,8 @@ public class PlayerController : MonoBehaviour
     private bool isFiringShotgun;
     private Vector2 chainsawDirection;
     private Vector2 shotgunRecoilDirection;
-    public float lastShotgunTime = -999f;
-    public float lastChainsawTime = -999f;
+    private float lastShotgunTime = -999f;
+    private float lastChainsawTime = -999f;
 
     private const string DIR_EAST = "East";
     private const string DIR_NORTH_EAST = "NorthEast";
@@ -112,6 +117,7 @@ public class PlayerController : MonoBehaviour
 
         ReadMoveInput();
         UpdateAnimationState();
+        UpdateAim();
     }
 
     void FixedUpdate()
@@ -185,6 +191,24 @@ public class PlayerController : MonoBehaviour
         debugIsMoving = isMoving;
         debugState = stateName;
         debugIsAttacking = isAttacking || isChainsawDashing || isFiringShotgun;
+    }
+
+    void UpdateAim()
+    {
+        if (aim == null) return;
+        
+        aim.rotation = facingDirection switch
+        {
+            Direction8.Right => Quaternion.Euler(0, 0, 0),
+            Direction8.UpRight => Quaternion.Euler(0, 0, 45),
+            Direction8.Up => Quaternion.Euler(0, 0, 90),
+            Direction8.UpLeft => Quaternion.Euler(0, 0, 135),
+            Direction8.Left => Quaternion.Euler(0, 0, 180),
+            Direction8.DownLeft => Quaternion.Euler(0, 0, 225),
+            Direction8.Down => Quaternion.Euler(0, 0, 270),
+            Direction8.DownRight => Quaternion.Euler(0, 0, 315),
+            _ => Quaternion.identity
+        };
     }
 
     void TryUseWeapon()
