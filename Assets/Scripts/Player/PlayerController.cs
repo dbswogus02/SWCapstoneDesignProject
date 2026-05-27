@@ -584,20 +584,21 @@ public class PlayerController : MonoBehaviour
         return Mathf.Max(0f, (lastChainsawTime + chainsawCooldown) - Time.time);
     }
 
-    void OnGUI()
-    {
-        GUI.Label(
-            new Rect(20, 20, 500, 220),
-            $"LookDir: {debugLookDir}\n" +
-            $"MoveType: {debugMoveType}\n" +
-            $"isMoving: {debugIsMoving}\n" +
-            $"isAttacking: {debugIsAttacking}\n" +
-            $"State: {debugState}\n" +
-            $"Weapon: {GetCurrentWeaponDebugName()}\n" +
-            $"Shotgun CD: {GetShotgunCooldownRemaining():F2}\n" +
-            $"Chainsaw CD: {GetChainsawCooldownRemaining():F2}"
-        );
-    }
+
+//     void OnGUI()
+//     {
+//         GUI.Label(
+//             new Rect(20, 20, 500, 220),
+//             $"LookDir: {debugLookDir}\n" +
+//             $"MoveType: {debugMoveType}\n" +
+//             $"isMoving: {debugIsMoving}\n" +
+//             $"isAttacking: {debugIsAttacking}\n" +
+//             $"State: {debugState}\n" +
+//             $"Weapon: {GetCurrentWeaponDebugName()}\n" +
+//             $"Shotgun CD: {GetShotgunCooldownRemaining():F2}\n" +
+//             $"Chainsaw CD: {GetChainsawCooldownRemaining():F2}"
+//         );
+//
 
 
     string GetCurrentWeaponDebugName()
