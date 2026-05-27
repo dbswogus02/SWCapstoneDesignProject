@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7217308635545153554}
   - component: {fileID: 4682022532571713885}
   - component: {fileID: -5501642057853645240}
+  - component: {fileID: 870653799272279778}
   - component: {fileID: 6248805157792891293}
   - component: {fileID: -5085290476023968863}
   - component: {fileID: 1076365003474195007}
@@ -36,7 +37,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -10, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 0.5}
+  m_LocalScale: {x: 6, y: 6, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -185,6 +186,21 @@ MonoBehaviour:
   attackAudioSource: {fileID: -678572413299998673}
   hurtAudioSource: {fileID: -6968059229803120616}
   dieAudioSource: {fileID: -5823071411951600647}
+--- !u!114 &870653799272279778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8129144447110428884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 851e05695b8b50b4e9be91d511d734c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 0
+  maxHealth: 100
+  enemy: {fileID: 0}
 --- !u!95 &6248805157792891293
 Animator:
   serializedVersion: 7
