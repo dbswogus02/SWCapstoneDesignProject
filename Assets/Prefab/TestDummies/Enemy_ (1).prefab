@@ -185,7 +185,7 @@ SpriteRenderer:
   m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
-  m_Color: {r: 0.88235295, g: 0.88235295, b: 0.88235295, a: 0.88235295}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -317,7 +317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dashAudioSource: {fileID: 0}
-  AttackEffectPrefab: {fileID: 4129593935423626693, guid: bf5d0af735552bf4b9edf0b087f326e5, type: 3}
+  AttackEffectPrefab: {fileID: 635300495064313689, guid: a2217aa4adcbf2844881217c11baf7b7, type: 3}
   dashSpeed: 12
   dashDuration: 0.2
   minDashInterval: 2
@@ -648,13 +648,13 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: ba98fa833f6008d4d8e97915f00a13b1, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 0
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 0
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 15

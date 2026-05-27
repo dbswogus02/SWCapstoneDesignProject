@@ -15,6 +15,5 @@ public class TestDummyRespawn : MonoBehaviour
     public void Spawn()
     {
         Instantiate(Prefab, transform.position, Quaternion.identity);
-        Prefab.SetActive(true);
     }
 }

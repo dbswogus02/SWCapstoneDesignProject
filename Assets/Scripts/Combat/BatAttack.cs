@@ -4,6 +4,8 @@ public class BatAttack : MonoBehaviour
 {
     [SerializeField]
     private int damage = 30;
+    [SerializeField]
+    private AudioSource batHitSound;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -13,5 +15,6 @@ public class BatAttack : MonoBehaviour
         if (enemyHealth == null) return;
 
         enemyHealth.TakeDamage(damage);
+        batHitSound.Play();
     }
 }
