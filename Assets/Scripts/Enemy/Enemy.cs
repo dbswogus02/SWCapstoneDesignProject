@@ -167,6 +167,10 @@ public class Enemy : MonoBehaviour
         Collider2D col = GetComponent<Collider2D>();
         if (col != null) col.enabled = false;
 
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        if (sr != null)
+            sr.sortingLayerName = "Effects";
+
         // 3. 죽음 애니메이션 재생
         anim.Play(DIE + GetFacingDirectionName());
 

@@ -155,6 +155,10 @@ public class Boss : MonoBehaviour
         // [추가] 보스 사망 시 모든 재생 중인 오디오 정지
         StopAllAudio();
 
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        if (sr != null)
+            sr.sortingLayerName = "Effects";
+
         anim.Play("Die" + GetFacingDirectionName());
         if (dieAudioSource) dieAudioSource.Play();
         this.enabled = false;
