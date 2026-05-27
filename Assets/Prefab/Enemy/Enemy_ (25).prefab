@@ -177,7 +177,7 @@ MonoBehaviour:
   attackCooldown: 1.5
   target: {fileID: 0}
   moveSpeed: 5
-  detectionRange: 10
+  detectionRange: 20
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 64
