@@ -61,7 +61,7 @@ public class Enemy : MonoBehaviour
 
     void FixedUpdate()
     {
-        // [¿Ïº® Â÷´Ü] Á×À¸¸é ¿©±â¼­ ¹°¸®, ¾Ö´Ï¸ÞÀÌ¼Ç, ÀÌµ¿ ·ÎÁ÷ ÀüºÎ Á¾·á
+        // [ï¿½Ïºï¿½ ï¿½ï¿½ï¿½ï¿½] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½â¼­ ï¿½ï¿½ï¿½ï¿½, ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½, ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         if (isDead)
         {
             return;
@@ -101,7 +101,7 @@ public class Enemy : MonoBehaviour
 
     void ChangeAnimationState(string newState)
     {
-        // ÀÌ¹Ì Á×¾ú´Ù¸é ¾î¶² º¯°æµµ ¹«½ÃÇÕ´Ï´Ù
+        // ï¿½Ì¹ï¿½ ï¿½×¾ï¿½ï¿½Ù¸ï¿½ ï¿½î¶² ï¿½ï¿½ï¿½æµµ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½
         if (isDead) return;
 
         if (isActionLocked) return;
@@ -113,24 +113,24 @@ public class Enemy : MonoBehaviour
 
     public void PerformAttack()
     {
-        // Á×¾úÀ¸¸é °ø°Ý ºÒ°¡
+        // ï¿½×¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ò°ï¿½
         if (isDead || isActionLocked) return;
 
         isActionLocked = true;
         anim.speed = 2.5f;
         anim.Play(ATTACK + GetFacingDirectionName());
 
-        // »ç¸Á ¿Àµð¿À¿Í °ãÄ¡Áö ¾Êµµ·Ï È®ÀÎ
+        // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Êµï¿½ï¿½ï¿½ È®ï¿½ï¿½
         if (attackAudioSource != null) attackAudioSource.Play();
         Invoke("UnlockAction", 0.5f);
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage()
     {
-        // Á×Àº »óÅÂ¸é ÇÇ°Ý »ç¿îµå »ý·«
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½Ç°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         if (isDead) return;
 
-        // Ãß°¡: ÇÇ°Ý ÀÌÆåÆ® »ý¼º
+        // ï¿½ß°ï¿½: ï¿½Ç°ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
         if (damageEffectPrefab != null)
         {
             Instantiate(damageEffectPrefab, transform.position, Quaternion.identity);
@@ -149,13 +149,13 @@ public class Enemy : MonoBehaviour
 
         isDead = true;
 
-        // 1. ¸ðµç ÀÌµ¿/¾×¼Ç °ü·Ã ¿Àµð¿À Áï½Ã Á¤Áö
+        // 1. ï¿½ï¿½ï¿½ ï¿½Ìµï¿½/ï¿½×¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         if (walkAudioSource != null) walkAudioSource.Stop();
         if (idleAudioSource != null) idleAudioSource.Stop();
         if (attackAudioSource != null) attackAudioSource.Stop();
         if (hurtAudioSource != null) hurtAudioSource.Stop();
 
-        // 2. ¹°¸® ¹× ÄÝ¶óÀÌ´õ ¹«·ÂÈ­
+        // 2. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ý¶ï¿½ï¿½Ì´ï¿½ ï¿½ï¿½ï¿½ï¿½È­
         if (rb != null)
         {
             rb.linearVelocity = Vector2.zero;
@@ -171,31 +171,31 @@ public class Enemy : MonoBehaviour
         if (sr != null)
             sr.sortingLayerName = "Effects";
 
-        // 3. Á×À½ ¾Ö´Ï¸ÞÀÌ¼Ç Àç»ý
+        // 3. ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½
         anim.Play(DIE + GetFacingDirectionName());
 
-        // 4. [¼öÁ¤] Á×À½ ¿Àµð¿À Àç»ý (Áö¿¬ ¾øÀÌ ½ÇÇà)
+        // 4. [ï¿½ï¿½ï¿½ï¿½] ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
         if (dieAudioSource != null)
         {
             dieAudioSource.Play();
         }
 
-        // 5. [Áß¿ä] ½ºÅ©¸³Æ®¸¦ ¹Ù·Î ²ôÁö ¾Ê°í, 
-        // ¿Àµð¿À°¡ Àç»ýµÉ ½Ã°£À» È®º¸ÇÏ°Å³ª ºñÈ°¼ºÈ­ ½ÃÁ¡ Á¶ÀýÀÌ ÇÊ¿äÇÒ ¼ö ÀÖ½À´Ï´Ù.
-        // ¹Ù·Î ²¨¾ß ÇÑ´Ù¸é ¾Æ·¡Ã³·³ °£´ÜÈ÷ Ã³¸®ÇÏµÇ, 
-        // ¸¸¾à ¼Ò¸®°¡ ²÷±ä´Ù¸é Invoke¸¦ »ç¿ëÇÏ¿© ¾ÆÁÖ ¾à°£ÀÇ µô·¹ÀÌ ÈÄ ºñÈ°¼ºÈ­ÇÏ¼¼¿ä.
+        // 5. [ï¿½ß¿ï¿½] ï¿½ï¿½Å©ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ù·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê°ï¿½, 
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ï°Å³ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö½ï¿½ï¿½Ï´ï¿½.
+        // ï¿½Ù·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´Ù¸ï¿½ ï¿½Æ·ï¿½Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½Ïµï¿½, 
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½Ò¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ù¸ï¿½ Invokeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½à°£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­ï¿½Ï¼ï¿½ï¿½ï¿½.
         this.enabled = false;
     }
 
     void UnlockAction()
     {
         isActionLocked = false;
-        anim.speed = 1.0f; // ±âº» ¼Óµµ·Î º¹±Í
+        anim.speed = 1.0f; // ï¿½âº» ï¿½Óµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
 
     string GetAnimationStateName()
     {
-        // Á×Àº »óÅÂ¿¡¼­´Â ¾Ö´Ï¸ÞÀÌ¼ÇÀ» ¾Æ¿¹ °»½ÅÇÏÁö ¾Ê½À´Ï´Ù
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½Æ¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½
         if (isDead) return currentState;
 
         if (isActionLocked) return currentState;
@@ -204,7 +204,7 @@ public class Enemy : MonoBehaviour
         return action + GetFacingDirectionName();
     }
 
-    // ... (¹æÇâ °è»ê ¹× ÀÌµ¿ ·ÎÁ÷Àº µ¿ÀÏ)
+    // ... (ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
     void UpdateFacingDirection(Vector2 direction) { if (direction.sqrMagnitude < 0.001f) return; float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg; if (angle < 0f) angle += 360f; facingDirection = (Direction8)(Mathf.RoundToInt(angle / 45f) % 8); }
     string GetFacingDirectionName() { return facingDirection switch { Direction8.Right => EAST, Direction8.UpRight => NORTH_EAST, Direction8.Up => NORTH, Direction8.UpLeft => NORTH_WEST, Direction8.Left => WEST, Direction8.DownLeft => SOUTH_WEST, Direction8.Down => SOUTH, Direction8.DownRight => SOUTH_EAST, _ => SOUTH }; }
     void MoveTowardsPlayer() {
@@ -212,7 +212,7 @@ public class Enemy : MonoBehaviour
         Vector2 rawDirection = target.position - transform.position; UpdateFacingDirection(rawDirection); rb.linearVelocity = (facingDirection switch { Direction8.Right => Vector2.right, Direction8.UpRight => new Vector2(1, 1).normalized, Direction8.Up => Vector2.up, Direction8.UpLeft => new Vector2(-1, 1).normalized, Direction8.Left => Vector2.left, Direction8.DownLeft => new Vector2(-1, -1).normalized, Direction8.Down => Vector2.down, Direction8.DownRight => new Vector2(1, -1).normalized, _ => Vector2.zero }) * moveSpeed; PlayMoveSound(); }
     void StopMoving()
     {
-        // [Áß¿ä] Á×¾úÀ¸¸é ¹°¸® ¿¬»ê ÀÚÃ¼¸¦ ¼öÇàÇÏÁö ¾ÊÀ½
+        // [ï¿½ß¿ï¿½] ï¿½×¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         if (isDead) return;
 
         rb.linearVelocity = Vector2.zero;
@@ -220,7 +220,7 @@ public class Enemy : MonoBehaviour
     }
     void PlayMoveSound()
     {
-        // Á×¾úÀ¸¸é ¾Æ¹« ¼Ò¸®µµ ¾È ³²
+        // ï¿½×¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ¹ï¿½ ï¿½Ò¸ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½
         if (isDead) return;
 
         if (walkAudioSource != null && !walkAudioSource.isPlaying) walkAudioSource.Play();
@@ -229,7 +229,7 @@ public class Enemy : MonoBehaviour
 
     void PlayIdleSound()
     {
-        // Á×¾ú´Ù¸é Àç»ýÇÏÁö ¾Ê°í, Àç»ý ÁßÀÌ¶ó¸é Áï½Ã Á¤Áö
+        // ï¿½×¾ï¿½ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê°ï¿½, ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¶ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         if (isDead)
         {
             if (idleAudioSource != null) idleAudioSource.Stop();
@@ -242,12 +242,12 @@ public class Enemy : MonoBehaviour
 
     bool IsPlayerInDetectionRange()
     {
-        if (isDead) return false; // Á×¾úÀ¸¸é °¨Áö ºÒ°¡
+        if (isDead) return false; // ï¿½×¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ò°ï¿½
         return target != null && Vector2.Distance(transform.position, target.position) <= detectionRange;
     }
 
     bool IsPlayerVisible() {
-        if (isDead) return false; // Á×¾úÀ¸¸é ¹«Á¶°Ç ¾È º¸ÀÓ
+        if (isDead) return false; // ï¿½×¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         if (target == null) return false; 
         RaycastHit2D hit = Physics2D.Raycast(transform.position, (target.position - transform.position).normalized, Vector2.Distance(transform.position, target.position), obstacleLayer); 
         return hit.collider == null; 
