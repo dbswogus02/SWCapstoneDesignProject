@@ -507,6 +507,18 @@ public class PlayerController : MonoBehaviour
         rb.MovePosition(rb.position + moveInput * moveSpeed * Time.fixedDeltaTime);
     }
 
+    public void TakeDamage()
+    {
+       // You can add hit feedback effects here, such as flashing the sprite or playing a sound.
+       Debug.Log("Player took damage.");
+    }
+
+    public void Die()
+    {
+        // You can add death effects here, such as playing a death animation, sound, or triggering a game over screen.
+        Debug.Log("Player has died.");
+    }
+
     void StopPhysicsMotion()
     {
         #if UNITY_6000_0_OR_NEWER

@@ -23,6 +23,9 @@ public class Enemy : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
 
+    public GameObject attackArea;
+    public Transform aim;
+
     private string currentState;
     private bool isDead = false;
     private bool isActionLocked = false;
@@ -62,7 +65,6 @@ public class Enemy : MonoBehaviour
 
     void FixedUpdate()
     {
-        // [�Ϻ� ����] ������ ���⼭ ����, �ִϸ��̼�, �̵� ���� ���� ����
         if (isDead)
         {
             return;
@@ -70,22 +72,15 @@ public class Enemy : MonoBehaviour
 
         if (isActionLocked)
         {
-            rb.linearVelocity = Vector2.zero;
-            ChangeAnimationState(GetAnimationStateName());
             return;
         }
 
         float distanceToPlayer = Vector2.Distance(transform.position, target.position);
         if (distanceToPlayer <= attackRange)
         {
-            if (Time.time >= lastAttackTime + attackCooldown)
-            {
+            if (Time.time >= lastAttackTime + attackCooldown){
                 PerformAttack();
                 lastAttackTime = Time.time;
-            }
-            else
-            {
-                StopMoving();
             }
         }
         else if (IsPlayerInDetectionRange() && IsPlayerVisible())
@@ -96,7 +91,7 @@ public class Enemy : MonoBehaviour
         {
             StopMoving();
         }
-
+        RotateAim();
         ChangeAnimationState(GetAnimationStateName());
     }
 
@@ -111,19 +106,44 @@ public class Enemy : MonoBehaviour
         anim.Play(newState);
         currentState = newState;
     }
+    void RotateAim()
+    {
+        if (aim == null) return;
+        
+        aim.rotation = facingDirection switch
+        {
+            Direction8.Right => Quaternion.Euler(0, 0, 0),
+            Direction8.UpRight => Quaternion.Euler(0, 0, 45),
+            Direction8.Up => Quaternion.Euler(0, 0, 90),
+            Direction8.UpLeft => Quaternion.Euler(0, 0, 135),
+            Direction8.Left => Quaternion.Euler(0, 0, 180),
+            Direction8.DownLeft => Quaternion.Euler(0, 0, 225),
+            Direction8.Down => Quaternion.Euler(0, 0, 270),
+            Direction8.DownRight => Quaternion.Euler(0, 0, 315),
+            _ => Quaternion.identity
+        };
+    }
 
     public void PerformAttack()
     {
         // �׾����� ���� �Ұ�
         if (isDead || isActionLocked) return;
-
+        UpdateFacingDirection(target.position - transform.position);
         isActionLocked = true;
+        StopMoving();
         anim.speed = 2.5f;
         anim.Play(ATTACK + GetFacingDirectionName());
 
-        // ��� ������� ��ġ�� �ʵ��� Ȯ��
+        StartCoroutine(ActivateAttackArea(0.1f)); // activate attack area for 0.1 seconds
         if (attackAudioSource != null) attackAudioSource.Play();
         Invoke("UnlockAction", 0.5f);
+    }
+
+    IEnumerator ActivateAttackArea(float activateTime)
+    {
+        attackArea.SetActive(true);
+        yield return new WaitForSeconds(activateTime);
+        attackArea.SetActive(false);
     }
 
     public void TakeDamage()
@@ -132,7 +152,7 @@ public class Enemy : MonoBehaviour
         if (isDead) return;
 
         Instantiate(damageEffectPrefab, transform.position, Quaternion.identity);
-
+        StopMoving();
         isActionLocked = true;
         anim.speed = 2.5f;
         anim.Play(HURT + GetFacingDirectionName());
