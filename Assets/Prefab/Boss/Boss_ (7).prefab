@@ -297,7 +297,7 @@ MonoBehaviour:
   attackRange: 5
   attackCooldown: 2.5
   target: {fileID: 0}
-  moveSpeed: 3
+  moveSpeed: 3.5
   detectionRange: 20
   obstacleLayer:
     serializedVersion: 2
@@ -325,7 +325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 0
-  maxHealth: 100
+  maxHealth: 300
   enemy: {fileID: 0}
 --- !u!114 &9214538707212141713
 MonoBehaviour:
@@ -342,7 +342,7 @@ MonoBehaviour:
   dashAudioSource: {fileID: -7782660241615827760}
   AttackEffectPrefab: {fileID: 6586755339700455609, guid: 1c9e746b473188b44bbc20a4daed59f0, type: 3}
   dashSpeed: 12
-  dashDuration: 0.2
+  dashDuration: 0.5
   minDashInterval: 2
   maxDashInterval: 5
 --- !u!82 &6902168276550808314

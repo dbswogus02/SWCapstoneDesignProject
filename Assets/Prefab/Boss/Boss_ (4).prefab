@@ -325,7 +325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 0
-  maxHealth: 100
+  maxHealth: 300
   enemy: {fileID: 0}
 --- !u!114 &-7164668215525375016
 MonoBehaviour:
@@ -342,7 +342,7 @@ MonoBehaviour:
   dashAudioSource: {fileID: 5378811277986317214}
   AttackEffectPrefab: {fileID: 2767403966709889487, guid: 269b04588f51f17459f27cf6569c272b, type: 3}
   dashSpeed: 12
-  dashDuration: 0.2
+  dashDuration: 0.5
   minDashInterval: 2
   maxDashInterval: 5
 --- !u!82 &3298513707461458514
