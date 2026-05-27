@@ -548,6 +548,8 @@ public class PlayerController : MonoBehaviour
         isDead = true;
         Debug.Log("Player has died.");
         spriteRenderer.enabled = false;
+        BoxCollider2D collider = GetComponent<BoxCollider2D>();
+        collider.enabled = false;
         deathAudioSource.Play();
         SizeAndSpeedInstantiate(damageEffectPrefab, transform.position, 3f, 0.7f);
     }

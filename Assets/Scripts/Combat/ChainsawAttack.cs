@@ -5,6 +5,7 @@ public class ChainsawAttack : MonoBehaviour
 {
     [SerializeField] private int damage = 3;
     [SerializeField] private float damageInterval = 0.1f;
+    [SerializeField] private AudioSource chainsawHitSound;
 
     private Dictionary<EnemyHealth, float> nextDamageTimes = new Dictionary<EnemyHealth, float>();
 
@@ -25,6 +26,7 @@ public class ChainsawAttack : MonoBehaviour
         {
             enemyHealth.TakeDamage(damage);
             nextDamageTimes[enemyHealth] = Time.time + damageInterval;
+            chainsawHitSound.Play();
         }
     }
 
