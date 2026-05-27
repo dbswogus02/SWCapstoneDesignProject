@@ -1,5 +1,5 @@
 # SWCapstoneDesignProject
-This is SWCapstoneDesignProject
+This is HALLYM UNIVERSITY SWCapstoneDesignProject
 
 # Containment & Liquidation of Evolving Aberrant Necroforms (C.L.E.A.N)
 
