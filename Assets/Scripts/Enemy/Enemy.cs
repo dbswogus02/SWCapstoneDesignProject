@@ -22,13 +22,14 @@ public class Enemy : MonoBehaviour
 
     public GameObject attackArea;
     public Transform aim;
+    private Boss2 boss;
 
     private Rigidbody2D rb;
     private Animator anim;
 
     private string currentState;
-    private bool isDead = false;
-    private bool isActionLocked = false;
+    public bool isDead = false;
+    public bool isActionLocked = false;
     private Coroutine attackAreaCoroutine;
 
     private enum Direction8
@@ -66,6 +67,7 @@ public class Enemy : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        boss = GetComponent<Boss2>();
 
         if (rb != null)
         {
@@ -169,6 +171,10 @@ public class Enemy : MonoBehaviour
         }
 
         PlayAnimationState(ATTACK + GetFacingDirectionName());
+        if (boss != null)
+        {
+            boss.AttackEffect();
+        }
 
         if (attackAreaCoroutine != null)
         {

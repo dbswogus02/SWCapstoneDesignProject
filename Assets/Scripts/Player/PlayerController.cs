@@ -36,6 +36,8 @@ public class PlayerController : MonoBehaviour
     private Animator anim;
     private Camera mainCamera;
     private SpriteLibrary spriteLibrary;
+    private SpriteRenderer spriteRenderer;
+    [SerializeField] private GameObject damageEffectPrefab;
 
     private Vector2 moveInput;
     public enum Direction8
@@ -89,6 +91,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         mainCamera = Camera.main;
+        spriteRenderer = GetComponent<SpriteRenderer>();
         spriteLibrary = GetComponent<SpriteLibrary>();
     }
 
@@ -510,7 +513,21 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage()
     {
        // You can add hit feedback effects here, such as flashing the sprite or playing a sound.
+       if (spriteRenderer != null)
+       {
+           spriteRenderer.color = Color.red;
+           Invoke(nameof(ResetDamageColor), 0.3f);
+       }
+       Instantiate(damageEffectPrefab, transform.position, Quaternion.identity);
        Debug.Log("Player took damage.");
+    }
+
+    private void ResetDamageColor()
+    {
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.color = Color.white;
+        }
     }
 
     public void Die()
