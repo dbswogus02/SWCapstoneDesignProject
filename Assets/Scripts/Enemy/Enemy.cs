@@ -3,8 +3,8 @@ using System.Collections;
 
 public class Enemy : MonoBehaviour
 {
-
     public GameObject damageEffectPrefab;
+
     public float attackRange = 1.5f;
     public float attackCooldown = 2.0f;
     private float lastAttackTime = -99f;
@@ -20,18 +20,32 @@ public class Enemy : MonoBehaviour
     public AudioSource hurtAudioSource;
     public AudioSource dieAudioSource;
 
-    private Rigidbody2D rb;
-    private Animator anim;
-
     public GameObject attackArea;
     public Transform aim;
+
+    private Rigidbody2D rb;
+    private Animator anim;
 
     private string currentState;
     private bool isDead = false;
     private bool isActionLocked = false;
+    private Coroutine attackAreaCoroutine;
 
-    private enum Direction8 { Right, UpRight, Up, UpLeft, Left, DownLeft, Down, DownRight }
+    private enum Direction8
+    {
+        Right,
+        UpRight,
+        Up,
+        UpLeft,
+        Left,
+        DownLeft,
+        Down,
+        DownRight
+    }
+
     private Direction8 facingDirection = Direction8.Down;
+    [SerializeField] private float directionChangeThreshold = 28f;
+
 
     private const string EAST = "_E";
     private const string NORTH_EAST = "_NE";
@@ -50,37 +64,52 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+
+        if (rb != null)
+        {
+            rb.freezeRotation = true;
+        }
+
         if (target == null)
         {
             GameObject player = GameObject.FindWithTag("Player");
-            if (player != null) target = player.transform;
+
+            if (player != null)
+            {
+                target = player.transform;
+            }
         }
 
-        rb = GetComponent<Rigidbody2D>();
-        rb.freezeRotation = true;
-        anim = GetComponent<Animator>();
+        if (attackArea != null)
+        {
+            attackArea.SetActive(false);
+        }
 
         ChangeAnimationState(GetAnimationStateName());
     }
 
     void FixedUpdate()
     {
-        if (isDead)
-        {
-            return;
-        }
-
-        if (isActionLocked)
+        if (isDead || isActionLocked || target == null)
         {
             return;
         }
 
         float distanceToPlayer = Vector2.Distance(transform.position, target.position);
+
         if (distanceToPlayer <= attackRange)
         {
-            if (Time.time >= lastAttackTime + attackCooldown){
+            StopMoving();
+            UpdateFacingDirection(target.position - transform.position);
+            RotateAim();
+
+            if (Time.time >= lastAttackTime + attackCooldown)
+            {
                 PerformAttack();
                 lastAttackTime = Time.time;
+                return;
             }
         }
         else if (IsPlayerInDetectionRange() && IsPlayerVisible())
@@ -91,88 +120,145 @@ public class Enemy : MonoBehaviour
         {
             StopMoving();
         }
+
         RotateAim();
         ChangeAnimationState(GetAnimationStateName());
     }
 
     void ChangeAnimationState(string newState)
     {
-        // �̹� �׾��ٸ� � ���浵 �����մϴ�
-        if (isDead) return;
+        if (isDead || isActionLocked)
+        {
+            return;
+        }
 
-        if (isActionLocked) return;
-        if (currentState == newState) return;
+        PlayAnimationState(newState);
+    }
+
+    void PlayAnimationState(string newState)
+    {
+        if (string.IsNullOrEmpty(newState))
+        {
+            return;
+        }
+
+        if (currentState == newState)
+        {
+            return;
+        }
 
         anim.Play(newState);
         currentState = newState;
     }
-    void RotateAim()
-    {
-        if (aim == null) return;
-        
-        aim.rotation = facingDirection switch
-        {
-            Direction8.Right => Quaternion.Euler(0, 0, 0),
-            Direction8.UpRight => Quaternion.Euler(0, 0, 45),
-            Direction8.Up => Quaternion.Euler(0, 0, 90),
-            Direction8.UpLeft => Quaternion.Euler(0, 0, 135),
-            Direction8.Left => Quaternion.Euler(0, 0, 180),
-            Direction8.DownLeft => Quaternion.Euler(0, 0, 225),
-            Direction8.Down => Quaternion.Euler(0, 0, 270),
-            Direction8.DownRight => Quaternion.Euler(0, 0, 315),
-            _ => Quaternion.identity
-        };
-    }
 
     public void PerformAttack()
     {
-        // �׾����� ���� �Ұ�
-        if (isDead || isActionLocked) return;
+        if (isDead || isActionLocked || target == null)
+        {
+            return;
+        }
+
         UpdateFacingDirection(target.position - transform.position);
+
         isActionLocked = true;
         StopMoving();
-        anim.speed = 2.5f;
-        anim.Play(ATTACK + GetFacingDirectionName());
 
-        StartCoroutine(ActivateAttackArea(0.1f)); // activate attack area for 0.1 seconds
-        if (attackAudioSource != null) attackAudioSource.Play();
-        Invoke("UnlockAction", 0.5f);
+        if (anim != null)
+        {
+            anim.speed = 2.5f;
+        }
+
+        PlayAnimationState(ATTACK + GetFacingDirectionName());
+
+        if (attackAreaCoroutine != null)
+        {
+            StopCoroutine(attackAreaCoroutine);
+        }
+
+        attackAreaCoroutine = StartCoroutine(ActivateAttackArea(0.3f, 0.1f));
+
+        if (attackAudioSource != null)
+        {
+            attackAudioSource.Play();
+        }
+
+        Invoke(nameof(UnlockAction), 0.5f);
     }
 
-    IEnumerator ActivateAttackArea(float activateTime)
+    IEnumerator ActivateAttackArea(float delay, float activateTime)
     {
-        attackArea.SetActive(true);
+        yield return new WaitForSeconds(delay);
+
+        if (attackArea != null)
+        {
+            attackArea.SetActive(true);
+        }
+
         yield return new WaitForSeconds(activateTime);
-        attackArea.SetActive(false);
+
+        if (attackArea != null)
+        {
+            attackArea.SetActive(false);
+        }
+
+        attackAreaCoroutine = null;
     }
 
     public void TakeDamage()
     {
-        // ���� ���¸� �ǰ� ���� ����
-        if (isDead) return;
+        if (isDead)
+        {
+            return;
+        }
 
-        Instantiate(damageEffectPrefab, transform.position, Quaternion.identity);
-        StopMoving();
+        if (damageEffectPrefab != null)
+        {
+            Instantiate(damageEffectPrefab, transform.position, Quaternion.identity);
+        }
+
         isActionLocked = true;
-        anim.speed = 2.5f;
-        anim.Play(HURT + GetFacingDirectionName());
+        StopMoving();
 
-        if (hurtAudioSource != null) hurtAudioSource.Play();
-        Invoke("UnlockAction", 0.5f);
+        if (anim != null)
+        {
+            anim.speed = 2.5f;
+        }
+
+        PlayAnimationState(HURT + GetFacingDirectionName());
+
+        if (hurtAudioSource != null)
+        {
+            hurtAudioSource.Play();
+        }
+
+        Invoke(nameof(UnlockAction), 0.5f);
     }
+
     public void Die()
     {
-        if (isDead) return;
+        if (isDead)
+        {
+            return;
+        }
 
         isDead = true;
+        isActionLocked = true;
 
-        // 1. ��� �̵�/�׼� ���� ����� ��� ����
-        if (walkAudioSource != null) walkAudioSource.Stop();
-        if (idleAudioSource != null) idleAudioSource.Stop();
-        if (attackAudioSource != null) attackAudioSource.Stop();
-        if (hurtAudioSource != null) hurtAudioSource.Stop();
+        CancelInvoke();
 
-        // 2. ���� �� �ݶ��̴� ����ȭ
+        if (attackAreaCoroutine != null)
+        {
+            StopCoroutine(attackAreaCoroutine);
+            attackAreaCoroutine = null;
+        }
+
+        if (attackArea != null)
+        {
+            attackArea.SetActive(false);
+        }
+
+        StopAllSounds();
+
         if (rb != null)
         {
             rb.linearVelocity = Vector2.zero;
@@ -182,47 +268,83 @@ public class Enemy : MonoBehaviour
         }
 
         Collider2D col = GetComponent<Collider2D>();
-        if (col != null) col.enabled = false;
+
+        if (col != null)
+        {
+            col.enabled = false;
+        }
 
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        if (sr != null)
-            sr.sortingLayerName = "Effects";
 
-        anim.Play(DIE + GetFacingDirectionName());
+        if (sr != null)
+        {
+            sr.sortingLayerName = "Effects";
+        }
+
+        if (anim != null)
+        {
+            anim.speed = 1.0f;
+        }
+
+        PlayAnimationState(DIE + GetFacingDirectionName());
 
         if (dieAudioSource != null)
         {
             dieAudioSource.Play();
         }
-        this.enabled = false;
+
+        enabled = false;
     }
 
     void UnlockAction()
     {
+        if (isDead)
+        {
+            return;
+        }
+
         isActionLocked = false;
-        anim.speed = 1.0f;
+
+        if (anim != null)
+        {
+            anim.speed = 1.0f;
+        }
+
+        currentState = null;
     }
 
     string GetAnimationStateName()
     {
-        if (isActionLocked) return currentState;
-
-        string action = (rb.linearVelocity.magnitude > 0.1f) ? MOVE : IDLE;
+        string action = rb != null && rb.linearVelocity.magnitude > 0.1f ? MOVE : IDLE;
         return action + GetFacingDirectionName();
     }
 
     void UpdateFacingDirection(Vector2 direction)
     {
-        if (direction.sqrMagnitude < 0.001f) return;
+        if (direction.sqrMagnitude < 0.001f)
+        {
+            return;
+        }
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
         if (angle < 0f)
+        {
             angle += 360f;
+        }
+
+        float currentAngle = GetDirectionAngle(facingDirection);
+        float delta = Mathf.Abs(Mathf.DeltaAngle(currentAngle, angle));
+
+        if (delta < directionChangeThreshold)
+        {
+            return;
+        }
 
         int directionIndex = Mathf.RoundToInt(angle / 45f) % 8;
         facingDirection = (Direction8)directionIndex;
     }
+
 
     string GetFacingDirectionName()
     {
@@ -248,46 +370,213 @@ public class Enemy : MonoBehaviour
                 return SOUTH;
         }
     }
-    void MoveTowardsPlayer() {
-        if (isDead) return;
-        Vector2 rawDirection = target.position - transform.position; UpdateFacingDirection(rawDirection); rb.linearVelocity = (facingDirection switch { Direction8.Right => Vector2.right, Direction8.UpRight => new Vector2(1, 1).normalized, Direction8.Up => Vector2.up, Direction8.UpLeft => new Vector2(-1, 1).normalized, Direction8.Left => Vector2.left, Direction8.DownLeft => new Vector2(-1, -1).normalized, Direction8.Down => Vector2.down, Direction8.DownRight => new Vector2(1, -1).normalized, _ => Vector2.zero }) * moveSpeed; PlayMoveSound(); }
+    float GetDirectionAngle(Direction8 direction)
+    {
+        switch (direction)
+        {
+            case Direction8.Right:
+                return 0f;
+            case Direction8.UpRight:
+                return 45f;
+            case Direction8.Up:
+                return 90f;
+            case Direction8.UpLeft:
+                return 135f;
+            case Direction8.Left:
+                return 180f;
+            case Direction8.DownLeft:
+                return 225f;
+            case Direction8.Down:
+                return 270f;
+            case Direction8.DownRight:
+                return 315f;
+            default:
+                return 270f;
+        }
+    }
+    
+    void RotateAim()
+    {
+        if (aim == null)
+        {
+            return;
+        }
+
+        switch (facingDirection)
+        {
+            case Direction8.Right:
+                aim.rotation = Quaternion.Euler(0, 0, 0);
+                break;
+            case Direction8.UpRight:
+                aim.rotation = Quaternion.Euler(0, 0, 45);
+                break;
+            case Direction8.Up:
+                aim.rotation = Quaternion.Euler(0, 0, 90);
+                break;
+            case Direction8.UpLeft:
+                aim.rotation = Quaternion.Euler(0, 0, 135);
+                break;
+            case Direction8.Left:
+                aim.rotation = Quaternion.Euler(0, 0, 180);
+                break;
+            case Direction8.DownLeft:
+                aim.rotation = Quaternion.Euler(0, 0, 225);
+                break;
+            case Direction8.Down:
+                aim.rotation = Quaternion.Euler(0, 0, 270);
+                break;
+            case Direction8.DownRight:
+                aim.rotation = Quaternion.Euler(0, 0, 315);
+                break;
+        }
+    }
+
+    void MoveTowardsPlayer()
+    {
+        if (isDead || target == null || rb == null)
+        {
+            return;
+        }
+
+        Vector2 rawDirection = target.position - transform.position;
+        UpdateFacingDirection(rawDirection);
+
+        rb.linearVelocity = GetDirectionVector(facingDirection) * moveSpeed;
+
+        PlayMoveSound();
+    }
+
+    Vector2 GetDirectionVector(Direction8 direction)
+    {
+        switch (direction)
+        {
+            case Direction8.Right:
+                return Vector2.right;
+            case Direction8.UpRight:
+                return new Vector2(1, 1).normalized;
+            case Direction8.Up:
+                return Vector2.up;
+            case Direction8.UpLeft:
+                return new Vector2(-1, 1).normalized;
+            case Direction8.Left:
+                return Vector2.left;
+            case Direction8.DownLeft:
+                return new Vector2(-1, -1).normalized;
+            case Direction8.Down:
+                return Vector2.down;
+            case Direction8.DownRight:
+                return new Vector2(1, -1).normalized;
+            default:
+                return Vector2.zero;
+        }
+    }
+
     void StopMoving()
     {
-        if (isDead) return;
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector2.zero;
+        }
 
-        rb.linearVelocity = Vector2.zero;
         PlayIdleSound();
     }
+
     void PlayMoveSound()
     {
-        if (isDead) return;
+        if (isDead)
+        {
+            return;
+        }
 
-        if (walkAudioSource != null && !walkAudioSource.isPlaying) walkAudioSource.Play();
-        if (idleAudioSource != null && idleAudioSource.isPlaying) idleAudioSource.Stop();
+        if (walkAudioSource != null && !walkAudioSource.isPlaying)
+        {
+            walkAudioSource.Play();
+        }
+
+        if (idleAudioSource != null && idleAudioSource.isPlaying)
+        {
+            idleAudioSource.Stop();
+        }
     }
 
     void PlayIdleSound()
     {
         if (isDead)
         {
-            if (idleAudioSource != null) idleAudioSource.Stop();
+            if (idleAudioSource != null)
+            {
+                idleAudioSource.Stop();
+            }
+
             return;
         }
 
-        if (idleAudioSource != null && !idleAudioSource.isPlaying) idleAudioSource.Play();
-        if (walkAudioSource != null && walkAudioSource.isPlaying) walkAudioSource.Stop();
+        if (idleAudioSource != null && !idleAudioSource.isPlaying)
+        {
+            idleAudioSource.Play();
+        }
+
+        if (walkAudioSource != null && walkAudioSource.isPlaying)
+        {
+            walkAudioSource.Stop();
+        }
+    }
+
+    void StopAllSounds()
+    {
+        if (walkAudioSource != null)
+        {
+            walkAudioSource.Stop();
+        }
+
+        if (idleAudioSource != null)
+        {
+            idleAudioSource.Stop();
+        }
+
+        if (attackAudioSource != null)
+        {
+            attackAudioSource.Stop();
+        }
+
+        if (hurtAudioSource != null)
+        {
+            hurtAudioSource.Stop();
+        }
     }
 
     bool IsPlayerInDetectionRange()
     {
-        if (isDead) return false;
-        return target != null && Vector2.Distance(transform.position, target.position) <= detectionRange;
+        if (isDead || target == null)
+        {
+            return false;
+        }
+
+        return Vector2.Distance(transform.position, target.position) <= detectionRange;
     }
 
-    bool IsPlayerVisible() {
-        if (isDead) return false;
-        if (target == null) return false; 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, (target.position - transform.position).normalized, Vector2.Distance(transform.position, target.position), obstacleLayer); 
-        return hit.collider == null; 
+    bool IsPlayerVisible()
+    {
+        if (isDead || target == null)
+        {
+            return false;
+        }
+
+        Vector2 direction = target.position - transform.position;
+        float distance = direction.magnitude;
+
+        if (distance <= 0.001f)
+        {
+            return true;
+        }
+
+        RaycastHit2D hit = Physics2D.Raycast(
+            transform.position,
+            direction.normalized,
+            distance,
+            obstacleLayer
+        );
+
+        return hit.collider == null;
     }
 }
