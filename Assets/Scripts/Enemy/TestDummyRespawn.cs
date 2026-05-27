@@ -2,19 +2,19 @@ using UnityEngine;
 
 public class TestDummyRespawn : MonoBehaviour
 {
-    [SerializeField] private GameObject testDummyPrefab;
+    [SerializeField] private GameObject Prefab;
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            SpawnTestDummy();
+            Spawn();
         }
     }
 
-    public void SpawnTestDummy()
+    public void Spawn()
     {
-        Instantiate(testDummyPrefab, transform.position, Quaternion.identity);
-        testDummyPrefab.SetActive(true);
+        Instantiate(Prefab, transform.position, Quaternion.identity);
+        Prefab.SetActive(true);
     }
 }
