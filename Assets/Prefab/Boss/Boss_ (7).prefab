@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5112329001320871161
+--- !u!1 &1787012251095899517
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5808789871955446812}
-  - component: {fileID: 8055519279744043686}
-  - component: {fileID: 7594026521839386047}
+  - component: {fileID: 1053857364025850432}
+  - component: {fileID: 2301433847341063954}
+  - component: {fileID: 1013414601315157517}
   m_Layer: 0
   m_Name: AttackArea
   m_TagString: Untagged
@@ -18,28 +18,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!4 &5808789871955446812
+--- !u!4 &1053857364025850432
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5112329001320871161}
+  m_GameObject: {fileID: 1787012251095899517}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.518, y: -0.781, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3721802846190943211}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!60 &8055519279744043686
+--- !u!60 &2301433847341063954
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5112329001320871161}
+  m_GameObject: {fileID: 1787012251095899517}
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
@@ -83,13 +83,13 @@ PolygonCollider2D:
       - {x: 0, y: 0}
       - {x: 0.4, y: -0.3}
   m_UseDelaunayMesh: 0
---- !u!114 &7594026521839386047
+--- !u!114 &1013414601315157517
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5112329001320871161}
+  m_GameObject: {fileID: 1787012251095899517}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ded61d4ea4d41b49bd9a710ddb31af9, type: 3}
@@ -134,11 +134,11 @@ Transform:
   m_GameObject: {fileID: 5737639802834243449}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.18, y: 7.81, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5808789871955446812}
+  - {fileID: 1053857364025850432}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8492000804397831288
@@ -307,8 +307,8 @@ MonoBehaviour:
   attackAudioSource: {fileID: 3932332180524495716}
   hurtAudioSource: {fileID: 489566891175745533}
   dieAudioSource: {fileID: -1271485682123954474}
-  attackArea: {fileID: 5112329001320871161}
-  aim: {fileID: 5808789871955446812}
+  attackArea: {fileID: 1787012251095899517}
+  aim: {fileID: 1053857364025850432}
   isDead: 0
   isActionLocked: 0
   directionChangeThreshold: 28
