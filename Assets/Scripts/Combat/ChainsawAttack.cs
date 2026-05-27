@@ -3,38 +3,38 @@ using UnityEngine;
 
 public class ChainsawAttack : MonoBehaviour
 {
-    [SerializeField] private float damage = 3f;
+    [SerializeField] private int damage = 3;
     [SerializeField] private float damageInterval = 0.1f;
 
-    private Dictionary<Health, float> nextDamageTimes = new Dictionary<Health, float>();
+    private Dictionary<EnemyHealth, float> nextDamageTimes = new Dictionary<EnemyHealth, float>();
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (!collision.CompareTag("Enemy")) return;
 
-        Health health = collision.GetComponent<Health>();
+        EnemyHealth enemyHealth = collision.GetComponent<EnemyHealth>();
 
-        if (health == null) return;
+        if (enemyHealth == null) return;
 
-        if (!nextDamageTimes.ContainsKey(health))
+        if (!nextDamageTimes.ContainsKey(enemyHealth))
         {
-            nextDamageTimes[health] = 0f;
+            nextDamageTimes[enemyHealth] = 0f;
         }
 
-        if (Time.time >= nextDamageTimes[health])
+        if (Time.time >= nextDamageTimes[enemyHealth])
         {
-            health.TakeDamage(damage);
-            nextDamageTimes[health] = Time.time + damageInterval;
+            enemyHealth.TakeDamage(damage);
+            nextDamageTimes[enemyHealth] = Time.time + damageInterval;
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Health health = collision.GetComponent<Health>();
+        EnemyHealth enemyHealth = collision.GetComponent<EnemyHealth>();
 
-        if (health != null && nextDamageTimes.ContainsKey(health))
+        if (enemyHealth != null && nextDamageTimes.ContainsKey(enemyHealth))
         {
-            nextDamageTimes.Remove(health);
+            nextDamageTimes.Remove(enemyHealth);
         }
     }
 }

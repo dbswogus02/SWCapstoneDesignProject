@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class EnemyTester : MonoBehaviour
 {
-    public Enemy targetEnemy; // Å×½ºÆ®ÇÒ Àû ¿ÀºêÁ§Æ®¸¦ ¿©±â¿¡ µå·¡±×ÇÏ¼¼¿ä
+    public Enemy targetEnemy; // ï¿½×½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½â¿¡ ï¿½å·¡ï¿½ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½
 
     void OnGUI()
     {
-        // È­¸é¿¡ ¹öÆ°À» »ý¼ºÇÕ´Ï´Ù.
+        // È­ï¿½é¿¡ ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
         if (GUI.Button(new Rect(10, 10, 150, 50), "Test Attack"))
         {
             targetEnemy.PerformAttack();
@@ -14,7 +14,7 @@ public class EnemyTester : MonoBehaviour
 
         if (GUI.Button(new Rect(10, 70, 150, 50), "Test Damage"))
         {
-            targetEnemy.TakeDamage(10); // Á¤¼ö°ªÀ» ³Ö¾î È£Ãâ
+            targetEnemy.TakeDamage(); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ È£ï¿½ï¿½
         }
 
         if (GUI.Button(new Rect(10, 130, 150, 50), "Test Die"))
