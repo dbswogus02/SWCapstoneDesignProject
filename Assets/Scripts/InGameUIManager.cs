@@ -1,20 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.UI; // 🛑 일반 UI Text와 Image를 쓰기 위해 추가된 라이브러리입니다!
 using UnityEngine.SceneManagement;
-using TMPro;
+using TMPro; // 🛑 HUD UI (HP, 타이머, 킬수)의 TextMeshProUGUI를 유지하기 위한 라이브러리입니다!
 
 public class InGameUIManager : MonoBehaviour
 {
-    [Header("=== 1. HUD UI (평소 켜짐) ===")]
+    // 다른 팀원들의 스크립트(좀비, 플레이어 등)에서 우진님 매니저를 편하게 부를 수 있게 싱글톤 장착!
+    public static InGameUIManager instance;
+
+    [Header("=== 1. HUD UI (평소 켜짐 - 순정 텍스트메시프로 유지) ===")]
     [SerializeField] private Image hpCircleImage;       
-    [SerializeField] private TextMeshProUGUI hpText;    
-    [SerializeField] private TextMeshProUGUI timerText; 
-    [SerializeField] private TextMeshProUGUI killCountText; 
+    [SerializeField] private TextMeshProUGUI hpText;       // 🔒 순정 유지!
+    [SerializeField] private TextMeshProUGUI timerText;    // 🔒 순정 유지!
+    [SerializeField] private TextMeshProUGUI killCountText; // 🔒 순정 유지!
     [SerializeField] private Image expFillImage;        
 
-    [Header("=== 2. 보스 출현 및 클리어 UI ===")]
+    [Header("=== 2. 보스 출현 및 클리어 UI (순정 텍스트메시프로 유지) ===")]
     [SerializeField] private GameObject clearPanel; 
     [SerializeField] private TextMeshProUGUI warningText; 
     [SerializeField] private TextMeshProUGUI stageTimeText; 
@@ -33,6 +36,22 @@ public class InGameUIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI totalSurvivalTimeText; 
     [SerializeField] private TextMeshProUGUI totalKillText;         
 
+    [Header("=== 👑 5. [우진님 기획 5종 완벽 반영] 증강 UI ===")]
+    [SerializeField] private GameObject augmentPanel;       // 레벨업 시 켜질 증강 팝업 전체 Panel
+    [SerializeField] private Button augmentButton1;         // 1번 선택지 버튼
+    [SerializeField] private Button augmentButton2;         // 2번 선택지 버튼
+    [SerializeField] private Button augmentButton3;         // 3번 선택지 버튼
+    
+    // 🎯 [우진님 피드백 반영] 다른 곳은 건드리지 않고, 오직 여기 증강 글씨 3개만 일반 UI Text로 전격 교체!
+    [SerializeField] private Text augmentText1;  // 1번 버튼의 자식 글씨 (일반 UI Text 자석 연결 가능! 🧲)
+    [SerializeField] private Text augmentText2;  // 2번 버튼의 자식 글씨 (일반 UI Text 자석 연결 가능! 🧲)
+    [SerializeField] private Text augmentText3;  // 3번 버튼의 자식 글씨 (일반 UI Text 자석 연결 가능! 🧲)
+
+    // === 🛠️ [중요] 나중에 다른 팀원 코드(스탯, 좀비)와 연동할 실시간 증강 수치 스태틱 변수들 ===
+    public static float BonusEXPPerKill = 0f;        // [야간 수당] 누적 보너스 경험치 (기본 0, 선택 시 +0.5씩 무한 누적)
+    public static float SpeedModifier = 1.0f;        // [기능성 안전화] 이동 속도 계수 (기본 1.0, 선택 시 +1%인 +0.01f씩 무한 누적)
+    public static float AvoidChance = 0f;            // [방역 패드] 데미지 무효화 확률 (기본 0, 선택 시 +2%인 +0.02f씩 무한 누적)
+
     // === 인게임 데이터 ===
     private float currentHP = 100f;
     private float maxHP = 100f;
@@ -48,6 +67,20 @@ public class InGameUIManager : MonoBehaviour
     private bool isGameOver = false; 
     private bool isGameCleared = false;
 
+    // 현재 화면 3개의 버튼에 무작위로 등장한 증강 ID(1~5)를 기억할 장부 배열
+    private int[] activeAugmentIDs = new int[3];
+
+    private void Awake()
+    {
+        // 어디서나 소통 가능한 글로벌 하이패스 통로 개설
+        instance = this;
+
+        // 게임이 새로 켜질 때마다 지난 판에 누적되었던 증강 스펙 수치 깔끔하게 초기화
+        BonusEXPPerKill = 0f;
+        SpeedModifier = 1.0f;
+        AvoidChance = 0f;
+    }
+
     void Start()
     {
         if (pauseParentPanel != null) pauseParentPanel.SetActive(false);
@@ -56,6 +89,7 @@ public class InGameUIManager : MonoBehaviour
         if (infoWindow != null) infoWindow.SetActive(false);
         if (clearPanel != null) clearPanel.SetActive(false);
         if (warningText != null) warningText.gameObject.SetActive(false);
+        if (augmentPanel != null) augmentPanel.SetActive(false); // 증강창은 평소엔 숨겨두기
 
         UpdateHPUI();
         UpdateKillUI();
@@ -67,7 +101,7 @@ public class InGameUIManager : MonoBehaviour
 
     void Update()
     {
-        if (isGameOver || isGameCleared) return; 
+        if (isGameOver || isGameCleared || (augmentPanel != null && augmentPanel.activeSelf)) return; 
 
         if (!isGamePaused)
         {
@@ -84,7 +118,7 @@ public class InGameUIManager : MonoBehaviour
     }
 
     // ==========================================
-    // 🎨 UI 실시간 갱신 및 보스 연출
+    // 🎨 UI 실시간 갱신 및 연출 구역
     // ==========================================
     private void UpdateHPUI()
     {
@@ -126,6 +160,45 @@ public class InGameUIManager : MonoBehaviour
         if (expFillImage != null) expFillImage.fillAmount = currentEXP / maxEXP;
     }
 
+    public void AddExperience(float amount)
+    {
+        if (isGameOver || isGameCleared) return;
+
+        currentEXP += (amount + BonusEXPPerKill);
+        
+        if (currentEXP >= maxEXP)
+        {
+            currentEXP -= maxEXP; 
+            TriggerLevelUpAugment(); 
+        }
+
+        UpdateEXPUI();
+    }
+
+    public void TakeDamage(float damageAmount)
+    {
+        if (isGameOver || isGameCleared) return;
+
+        if (Random.value < AvoidChance)
+        {
+            Debug.Log($"🛡️ [방역 패드 작동 성공] {AvoidChance * 100}% 확률 적중! 데미지를 완전히 무효화했습니다.");
+            return;
+        }
+
+        currentHP -= damageAmount;
+        hitCount++;
+
+        if (currentHP <= 0)
+        {
+            currentHP = 0;
+            UpdateHPUI();
+            TriggerGameOver();
+            return;
+        }
+
+        UpdateHPUI();
+    }
+
     private IEnumerator AnimateWarningDiagonal()
     {
         warningText.gameObject.SetActive(true);
@@ -159,6 +232,87 @@ public class InGameUIManager : MonoBehaviour
     }
 
     // ==========================================
+    // 👑 🎲 [우진님 오리지널 정식 5종] 랜덤 증강 시스템 구역
+    // ==========================================
+    private void TriggerLevelUpAugment()
+    {
+        Time.timeScale = 0f; 
+        if (augmentPanel != null) augmentPanel.SetActive(true);
+
+        List<int> idList = new List<int> { 1, 2, 3, 4, 5 };
+        for (int i = 0; i < 3; i++)
+        {
+            int randomIndex = Random.Range(0, idList.Count);
+            activeAugmentIDs[i] = idList[randomIndex];
+            idList.RemoveAt(randomIndex); 
+        }
+
+        SetAugmentButtonUI(augmentText1, activeAugmentIDs[0]);
+        SetAugmentButtonUI(augmentText2, activeAugmentIDs[1]);
+        SetAugmentButtonUI(augmentText3, activeAugmentIDs[2]);
+
+        if (augmentButton1 != null) { augmentButton1.onClick.RemoveAllListeners(); augmentButton1.onClick.AddListener(() => OnSelectAugment(activeAugmentIDs[0])); }
+        if (augmentButton2 != null) { augmentButton2.onClick.RemoveAllListeners(); augmentButton2.onClick.AddListener(() => OnSelectAugment(activeAugmentIDs[2])); }
+        if (augmentButton3 != null) { augmentButton3.onClick.RemoveAllListeners(); augmentButton3.onClick.AddListener(() => OnSelectAugment(activeAugmentIDs[2])); }
+    }
+
+    // 🎯 우진님 피드백 완벽 반영: 받아오는 인자 타입을 TextMeshProUGUI 대신 일반 Text로 영리하게 교체!
+    private void SetAugmentButtonUI(Text targetText, int augmentID)
+    {
+        if (targetText == null) return;
+
+        // 일반 UI Text도 <b> 태그(Rich Text 기능)가 기본 지원되므로 우진님의 명품 디자인이 그대로 유지됩니다!
+        switch (augmentID)
+        {
+            case 1: targetText.text = "<b>[응급 처치]</b>\n즉시 HP 10을 회복합니다."; break;
+            case 2: targetText.text = "<b>[방호복 보강]</b>\n최대 HP 총량이 10 늘어납니다."; break;
+            case 3: targetText.text = "<b>[야간 수당]</b>\n몬스터 처치 시 경험치 획득량이 0.5 증가합니다."; break;
+            case 4: targetText.text = "<b>[기능성 안전화]</b>\n플레이어의 이동 속도가 1% 증가합니다."; break;
+            case 5: targetText.text = "<b>[방역 패드]</b>\n피격 시 2%의 확률로 데미지를 무효화합니다."; break;
+        }
+    }
+
+    private void OnSelectAugment(int augmentID)
+    {
+        switch (augmentID)
+        {
+            case 1: // 🩹 [응급 처치] -> 일회성 즉시 회복 (최대 체력 통 절대 초과 불가능!)
+                currentHP += 10f;
+                if (currentHP > maxHP) 
+                {
+                    currentHP = maxHP; 
+                }
+                UpdateHPUI();
+                Debug.Log($"🩹 [응급 처치 고름] 일회성 회복 완료. (현재 체력: {currentHP}/{maxHP})");
+                break;
+
+            case 2: // 🦺 [방호복 보강] -> 최대 HP '통만' 상승 (현재 체력 숫자는 그대로 보존!)
+                maxHP += 10f; 
+                UpdateHPUI();
+                Debug.Log($"🦺 [방호복 보강 고름] 최대 체력 통 10 증가! (현재 체력: {currentHP}/{maxHP})");
+                break;
+
+            case 3: // ⚡ [야간 수당] -> 고를 때마다 0.5씩 영구 무한 중첩 축적
+                BonusEXPPerKill += 0.5f; 
+                Debug.Log($"⚡ [야간 수당 고름] 추가 경험치 버프 중첩! (현재 총 킬당 보너스: +{BonusEXPPerKill})");
+                break;
+
+            case 4: // 👟 [기능성 안전화] -> 고를 때마다 1%씩 영구 무한 중첩 축적
+                SpeedModifier += 0.01f; 
+                Debug.Log($"👟 [기능성 안전화 고름] 이동 속도 버프 중첩! (현재 속도 버프 계수: {SpeedModifier * 100}%)");
+                break;
+
+            case 5: // 🛡️ [방역 패드] -> 고를 때마다 2%씩 영구 무한 중첩 축적
+                AvoidChance += 0.02f; 
+                Debug.Log($"🛡️ [방역 패드 고름] 데미지 무효화 확률 스택 누적! (현재 총 확률: {AvoidChance * 100}%)");
+                break;
+        }
+
+        if (augmentPanel != null) augmentPanel.SetActive(false);
+        Time.timeScale = 1f; 
+    }
+
+    // ==========================================
     // 🎲 ESC 일시정지 로직
     // ==========================================
     private void HandleEscInput()
@@ -169,7 +323,7 @@ public class InGameUIManager : MonoBehaviour
             return;
         }
 
-        if (isGameOver || isGameCleared) return;
+        if (isGameOver || isGameCleared || (augmentPanel != null && augmentPanel.activeSelf)) return;
 
         isGamePaused = !isGamePaused; 
 
@@ -233,10 +387,8 @@ public class InGameUIManager : MonoBehaviour
             if (stageTimeText != null) stageTimeText.text = $"Survival Time : ( {minutes:00} : {seconds:00} )";
             if (stageKillText != null) stageKillText.text = $"Kills : ( {currentKills:00} )";
 
-            // 어떤 스테이지를 통해 들어왔는지 번호를 낚아챕니다. (기본값 1번 회사)
             int currentStageIndex = PlayerPrefs.GetInt("CurrentPlayingStageIndex", 1);
             
-            // 깬 번호의 클리어 장부에 성공 도장(1)을 쿵 찍어줍니다!
             PlayerPrefs.SetInt($"Stage{currentStageIndex}_Cleared", 1);
             PlayerPrefs.Save();
             Debug.Log($"🎯 스테이지 {currentStageIndex}번 클리어 데이터가 안전하게 누적 저장되었습니다!");
@@ -327,7 +479,6 @@ public class InGameUIManager : MonoBehaviour
         SceneManager.LoadScene("LoadingUI"); 
     }
 
-    // 🎯 [우진님 기획 수정 완료] 클리어 후 복귀할 목적지 주소를 'MissionUI'로 다이렉트 변경!
     public void OnClickGoToCompany()
     {
         Time.timeScale = 1f; 
@@ -335,9 +486,6 @@ public class InGameUIManager : MonoBehaviour
         SceneManager.LoadScene("LoadingUI"); 
     }
 
-    // ==========================================
-    // 💀 3. 게임 오버 로직
-    // ==========================================
     public void TriggerGameOver()
     {
         if (isGameOver || isGameCleared) return;
@@ -385,7 +533,6 @@ public class InGameUIManager : MonoBehaviour
         PlayerPrefs.SetInt("TotalKills", 0);
         PlayerPrefs.SetInt("Slot1_HasSaveData", 0); 
 
-        // 죽었을 때 1번부터 5번까지의 미션 클리어 데이터도 함께 지워 체크마크를 일반 버튼으로 초기화합니다.
         for (int i = 1; i <= 5; i++)
         {
             PlayerPrefs.SetInt($"Stage{i}_Cleared", 0);
@@ -404,20 +551,11 @@ public class InGameUIManager : MonoBehaviour
 
     private void HandleDebugInputs()
     {
-        if (isGameOver || isGameCleared) return; 
+        if (isGameOver || isGameCleared || (augmentPanel != null && augmentPanel.activeSelf)) return; 
 
         if (Input.GetKeyDown(KeyCode.H))
         {
-            currentHP -= 20f; 
-            hitCount++; 
-            if (currentHP <= 0)
-            {
-                currentHP = 0;
-                UpdateHPUI();
-                TriggerGameOver(); 
-                return;
-            }
-            UpdateHPUI();
+            TakeDamage(20f); 
         }
 
         if (Input.GetKeyDown(KeyCode.K))
@@ -425,6 +563,9 @@ public class InGameUIManager : MonoBehaviour
             currentKills++;
             if (currentKills > targetKills) currentKills = targetKills;
             UpdateKillUI();
+
+            // ⚡ 치트키 K를 4번 연속 연타하면 경험치 100이 채워져서 랜덤 증강 5종 팝업 연출을 무한대로 테스트할 수 있습니다!
+            AddExperience(25f); 
         }
 
         if (Input.GetKeyDown(KeyCode.C))
