@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
     public AudioSource batSwingAudioSource;
     public AudioSource shotgunFireAudioSource;
     public AudioSource chainsawAudioSource;
+    public AudioSource hitAudioSource;
+    public AudioSource deathAudioSource;
 
     private Rigidbody2D rb;
     private Animator anim;
@@ -58,6 +60,7 @@ public class PlayerController : MonoBehaviour
     private bool isAttacking;
     private bool isChainsawDashing;
     private bool isFiringShotgun;
+    private bool isDead;
     private Vector2 chainsawDirection;
     private Vector2 shotgunRecoilDirection;
     private float lastShotgunTime = -999f;
@@ -97,6 +100,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (isDead) return;
         UpdateLookDirection();
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -130,6 +134,11 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (isDead)
+        {
+            StopPhysicsMotion();
+            return;
+        }
         if (isFiringShotgun)
         {
             return;
@@ -519,6 +528,10 @@ public class PlayerController : MonoBehaviour
            Invoke(nameof(ResetDamageColor), 0.3f);
        }
        Instantiate(damageEffectPrefab, transform.position, Quaternion.identity);
+       if (hitAudioSource != null)
+       {
+           hitAudioSource.Play();
+       }
        Debug.Log("Player took damage.");
     }
 
@@ -532,8 +545,23 @@ public class PlayerController : MonoBehaviour
 
     public void Die()
     {
-        // You can add death effects here, such as playing a death animation, sound, or triggering a game over screen.
+        isDead = true;
         Debug.Log("Player has died.");
+        spriteRenderer.enabled = false;
+        deathAudioSource.Play();
+        SizeAndSpeedInstantiate(damageEffectPrefab, transform.position, 3f, 0.7f);
+    }
+
+    void SizeAndSpeedInstantiate(GameObject prefab, Vector3 position, float scaleFactor, float speedFactor)
+    {
+       GameObject effect = Instantiate(
+            prefab,
+            transform.position,
+            Quaternion.identity
+        );
+
+        effect.transform.localScale *= scaleFactor;
+        effect.GetComponent<Animator>().speed = speedFactor;
     }
 
     void StopPhysicsMotion()
