@@ -15,12 +15,12 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        currentHealth -= damage;
         if (currentHealth <= 0)
         {
             Die();
             return;
         }
-        currentHealth -= damage;
         playerController.TakeDamage();
     }
 
