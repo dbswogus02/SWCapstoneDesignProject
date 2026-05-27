@@ -23,6 +23,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/InGameUI.unity
     guid: 2e495d66ec3290b46a0bd80794a7d219
+  - enabled: 1
+    path: Assets/Scenes/Map/Map1_Office.unity
+    guid: e66d63fb789291345a119a8f8a805095
+  - enabled: 1
+    path: Assets/Scenes/Map/Map2_Hospital.unity
+    guid: 0b00706c9bf70e343a80e6a69b9ea9d2
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

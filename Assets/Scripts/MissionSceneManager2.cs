@@ -15,12 +15,12 @@ public class MissionSceneManager2 : MonoBehaviour
     [SerializeField] private string storeSceneName = "StoreUI";      
 
     [Header("🏢 1. 회사 (1번 스테이지) 부품들")]
-    [SerializeField] private GameObject companyNormalButton;    // 원래 회사 버튼
-    [SerializeField] private GameObject companyClearedIcon;     // 회사 클리어 체크마크 아이콘
+    [SerializeField] private GameObject companyNormalButton;    
+    [SerializeField] private GameObject companyClearedIcon;     
 
     [Header("🏥 2. 병원 (2번 스테이지) 부품들")]
-    [SerializeField] private GameObject hospitalNormalButton;   // 원래 병원 버튼
-    [SerializeField] private GameObject hospitalClearedIcon;    // 병원 클리어 체크마크 아이콘
+    [SerializeField] private GameObject hospitalNormalButton;   
+    [SerializeField] private GameObject hospitalClearedIcon;    
 
     private int selectedMissionIndex = -1; 
 
@@ -29,7 +29,6 @@ public class MissionSceneManager2 : MonoBehaviour
         if (missionPanel != null) missionPanel.SetActive(false);
         if (confirmPanel != null) confirmPanel.SetActive(false);
 
-        // 씬 시작할 때 저장된 데이터를 보고 버튼들을 똑똑하게 스위칭합니다.
         CheckAllStages();
     }
 
@@ -42,7 +41,6 @@ public class MissionSceneManager2 : MonoBehaviour
         }
     }
 
-    // 각 스테이지가 깨졌는지 독립적으로 정밀 검사 (버그 발생 확률 0%)
     private void CheckAllStages()
     {
         // === 1. 회사 검사 ===
@@ -86,7 +84,6 @@ public class MissionSceneManager2 : MonoBehaviour
         SceneManager.LoadScene(storeSceneName);
     }
 
-    // 🎯 숫자가 절대 꼬이지 않게 우진님이 인스펙터 버튼에서 수동으로 먹인 번호를 그대로 읽습니다.
     public void OnClickSelectPlace(int placeIndex)
     {
         selectedMissionIndex = placeIndex;
@@ -110,12 +107,25 @@ public class MissionSceneManager2 : MonoBehaviour
         if (confirmPanel != null) confirmPanel.SetActive(true);
     }
 
+    // 🎯 [핵심 변경 구역] 팀원분이 만든 진짜 맵 씬 이름으로 다이렉트 매칭!
     public void OnClickConfirmYes()
     {
         if (selectedMissionIndex != -1)
         {
+            // 플레이어가 고른 스테이지 번호 저장
             PlayerPrefs.SetInt("CurrentPlayingStageIndex", selectedMissionIndex);
-            LoadingSceneManager.nextSceneName = "InGameUI"; 
+            
+            // 🗺️ 기본 목적지는 1번 회사 씬 이름으로 세팅
+            string targetSceneName = "Map1_Office"; 
+            
+            // 🗺️ 만약 고른 번호가 2번 병원이라면 목적지를 병원 씬 이름으로 변경!
+            if (selectedMissionIndex == 2) 
+            {
+                targetSceneName = "Map2_Hospital"; 
+            }
+
+            // 🚀 로딩 매니저에게 조립된 진짜 목적지 씬 이름을 던져주고 로딩창을 켭니다!
+            LoadingSceneManager.nextSceneName = targetSceneName; 
             SceneManager.LoadScene("LoadingUI"); 
         }
     }
