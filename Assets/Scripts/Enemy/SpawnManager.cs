@@ -44,14 +44,14 @@ public class SpawnManager : MonoBehaviour
             GameObject enemy = Instantiate(setting.enemyPrefab, spawnPos, Quaternion.identity);
 
             // 일반 적 컴포넌트 설정 (EnemyMove)
-            if (enemy.TryGetComponent<EnemyMove>(out EnemyMove move))
+            if (enemy.TryGetComponent<Enemy>(out Enemy move))
             {
                 move.target = player;
                 move.obstacleLayer = obstacleLayer;
             }
 
             // 보스 컴포넌트 설정 (BossMove)
-            if (enemy.TryGetComponent<BossMove>(out BossMove bossMove))
+            if (enemy.TryGetComponent<Boss>(out Boss bossMove))
             {
                 bossMove.target = player;
                 bossMove.obstacleLayer = obstacleLayer;
