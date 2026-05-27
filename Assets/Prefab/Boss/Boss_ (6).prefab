@@ -1,5 +1,101 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1815882568376744900
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7471910456987642605}
+  - component: {fileID: 363369220250377311}
+  - component: {fileID: 322026110979936874}
+  m_Layer: 0
+  m_Name: AttackArea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &7471910456987642605
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1815882568376744900}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.518, y: -0.781, z: 0}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 306531289748215664}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!60 &363369220250377311
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1815882568376744900}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.4, y: 0.3}
+      - {x: 0, y: 0}
+      - {x: 0.4, y: -0.3}
+  m_UseDelaunayMesh: 0
+--- !u!114 &322026110979936874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1815882568376744900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ded61d4ea4d41b49bd9a710ddb31af9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 40
 --- !u!1 &2695104084776364623
 GameObject:
   m_ObjectHideFlags: 0
@@ -12,8 +108,10 @@ GameObject:
   - component: {fileID: 8070441546366957233}
   - component: {fileID: 4875259229435506402}
   - component: {fileID: 5666526206956525771}
-  - component: {fileID: 8191771826871438316}
   - component: {fileID: 1580185543635678103}
+  - component: {fileID: 2356633003957623239}
+  - component: {fileID: 5301226968718084301}
+  - component: {fileID: -1738811101836492812}
   - component: {fileID: -7332712138782418230}
   - component: {fileID: -1669717251683635530}
   - component: {fileID: -2921931015080411114}
@@ -22,7 +120,7 @@ GameObject:
   - component: {fileID: -6549311588330755267}
   m_Layer: 0
   m_Name: Boss_ (6)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39,7 +137,8 @@ Transform:
   m_LocalPosition: {x: 5.18, y: 7.81, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 0.5}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 7471910456987642605}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8070441546366957233
@@ -160,39 +259,6 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.2
---- !u!114 &8191771826871438316
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2695104084776364623}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 923428abf5a47f74c93077871efe5e72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  moveSpeed: 6
-  detectionRange: 20
-  attackRange: 6
-  attackCooldown: 3
-  obstacleLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  damageEffectPrefab: {fileID: 7832956911143034944, guid: c051dadcfc9b4544a98f31f2bcb4d123, type: 3}
-  dashSpeed: 12
-  dashDuration: 0.3
-  minDashInterval: 2
-  maxDashInterval: 5
-  idleAudioSource: {fileID: -7332712138782418230}
-  walkAudioSource: {fileID: -1669717251683635530}
-  attackAudioSource: {fileID: -1124152247487315576}
-  dashAudioSource: {fileID: -2921931015080411114}
-  hurtAudioSource: {fileID: 4520331423986134966}
-  dieAudioSource: {fileID: -6549311588330755267}
-  attackEffectPrefab: {fileID: 4129593935423626693, guid: bf5d0af735552bf4b9edf0b087f326e5, type: 3}
-  attackEffectOffset: {x: 0, y: 0.5, z: 0}
 --- !u!95 &1580185543635678103
 Animator:
   serializedVersion: 7
@@ -215,6 +281,70 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2356633003957623239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2695104084776364623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fb25eede3be37349a29c108d173d4d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageEffectPrefab: {fileID: 7832956911143034944, guid: c051dadcfc9b4544a98f31f2bcb4d123, type: 3}
+  attackRange: 5
+  attackCooldown: 2.5
+  target: {fileID: 0}
+  moveSpeed: 3
+  detectionRange: 20
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  idleAudioSource: {fileID: -7332712138782418230}
+  walkAudioSource: {fileID: -1669717251683635530}
+  attackAudioSource: {fileID: -1124152247487315576}
+  hurtAudioSource: {fileID: 4520331423986134966}
+  dieAudioSource: {fileID: -6549311588330755267}
+  attackArea: {fileID: 1815882568376744900}
+  aim: {fileID: 7471910456987642605}
+  isDead: 0
+  isActionLocked: 0
+  directionChangeThreshold: 28
+--- !u!114 &5301226968718084301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2695104084776364623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 851e05695b8b50b4e9be91d511d734c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 0
+  maxHealth: 100
+  enemy: {fileID: 0}
+--- !u!114 &-1738811101836492812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2695104084776364623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82ef4368cbb877546b06eaec898117e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dashAudioSource: {fileID: -2921931015080411114}
+  AttackEffectPrefab: {fileID: 4129593935423626693, guid: bf5d0af735552bf4b9edf0b087f326e5, type: 3}
+  dashSpeed: 12
+  dashDuration: 0.2
+  minDashInterval: 2
+  maxDashInterval: 5
 --- !u!82 &-7332712138782418230
 AudioSource:
   m_ObjectHideFlags: 0
