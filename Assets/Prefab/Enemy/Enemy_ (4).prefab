@@ -175,7 +175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageEffectPrefab: {fileID: 6343985419048066051, guid: 127bb08943a784b4c8f86a0ea861517e, type: 3}
   attackRange: 3
-  attackCooldown: 1.5
+  attackCooldown: 1
   target: {fileID: 0}
   moveSpeed: 5
   detectionRange: 20
@@ -189,6 +189,8 @@ MonoBehaviour:
   dieAudioSource: {fileID: 7683241046486482923}
   attackArea: {fileID: 6799610633112864794}
   aim: {fileID: 4104983558674828711}
+  isDead: 0
+  isActionLocked: 0
   directionChangeThreshold: 28
 --- !u!114 &1941026588695042097
 MonoBehaviour:

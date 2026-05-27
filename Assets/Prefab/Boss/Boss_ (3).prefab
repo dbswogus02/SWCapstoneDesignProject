@@ -295,7 +295,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageEffectPrefab: {fileID: 9188630017558119653, guid: 9d4c6729d0b04784b91e23f506b3504c, type: 3}
   attackRange: 5
-  attackCooldown: 2.5
+  attackCooldown: 1.5
   target: {fileID: 0}
   moveSpeed: 3
   detectionRange: 20
