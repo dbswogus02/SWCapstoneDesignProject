@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class Enemy : MonoBehaviour
 {
@@ -130,11 +131,7 @@ public class Enemy : MonoBehaviour
         // ���� ���¸� �ǰ� ���� ����
         if (isDead) return;
 
-        // �߰�: �ǰ� ����Ʈ ����
-        if (damageEffectPrefab != null)
-        {
-            Instantiate(damageEffectPrefab, transform.position, Quaternion.identity);
-        }
+        Instantiate(damageEffectPrefab, transform.position, Quaternion.identity);
 
         isActionLocked = true;
         anim.speed = 2.5f;
@@ -171,48 +168,71 @@ public class Enemy : MonoBehaviour
         if (sr != null)
             sr.sortingLayerName = "Effects";
 
-        // 3. ���� �ִϸ��̼� ���
         anim.Play(DIE + GetFacingDirectionName());
 
-        // 4. [����] ���� ����� ��� (���� ���� ����)
         if (dieAudioSource != null)
         {
             dieAudioSource.Play();
         }
-
-        // 5. [�߿�] ��ũ��Ʈ�� �ٷ� ���� �ʰ�, 
-        // ������� ����� �ð��� Ȯ���ϰų� ��Ȱ��ȭ ���� ������ �ʿ��� �� �ֽ��ϴ�.
-        // �ٷ� ���� �Ѵٸ� �Ʒ�ó�� ������ ó���ϵ�, 
-        // ���� �Ҹ��� ����ٸ� Invoke�� ����Ͽ� ���� �ణ�� ������ �� ��Ȱ��ȭ�ϼ���.
         this.enabled = false;
     }
 
     void UnlockAction()
     {
         isActionLocked = false;
-        anim.speed = 1.0f; // �⺻ �ӵ��� ����
+        anim.speed = 1.0f;
     }
 
     string GetAnimationStateName()
     {
-        // ���� ���¿����� �ִϸ��̼��� �ƿ� �������� �ʽ��ϴ�
-        if (isDead) return currentState;
-
         if (isActionLocked) return currentState;
 
         string action = (rb.linearVelocity.magnitude > 0.1f) ? MOVE : IDLE;
         return action + GetFacingDirectionName();
     }
 
-    // ... (���� ��� �� �̵� ������ ����)
-    void UpdateFacingDirection(Vector2 direction) { if (direction.sqrMagnitude < 0.001f) return; float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg; if (angle < 0f) angle += 360f; facingDirection = (Direction8)(Mathf.RoundToInt(angle / 45f) % 8); }
-    string GetFacingDirectionName() { return facingDirection switch { Direction8.Right => EAST, Direction8.UpRight => NORTH_EAST, Direction8.Up => NORTH, Direction8.UpLeft => NORTH_WEST, Direction8.Left => WEST, Direction8.DownLeft => SOUTH_WEST, Direction8.Down => SOUTH, Direction8.DownRight => SOUTH_EAST, _ => SOUTH }; }
+    void UpdateFacingDirection(Vector2 direction)
+    {
+        if (direction.sqrMagnitude < 0.001f) return;
+
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        if (angle < 0f)
+            angle += 360f;
+
+        int directionIndex = Mathf.RoundToInt(angle / 45f) % 8;
+        facingDirection = (Direction8)directionIndex;
+    }
+
+    string GetFacingDirectionName()
+    {
+        switch (facingDirection)
+        {
+            case Direction8.Right:
+                return EAST;
+            case Direction8.UpRight:
+                return NORTH_EAST;
+            case Direction8.Up:
+                return NORTH;
+            case Direction8.UpLeft:
+                return NORTH_WEST;
+            case Direction8.Left:
+                return WEST;
+            case Direction8.DownLeft:
+                return SOUTH_WEST;
+            case Direction8.Down:
+                return SOUTH;
+            case Direction8.DownRight:
+                return SOUTH_EAST;
+            default:
+                return SOUTH;
+        }
+    }
     void MoveTowardsPlayer() {
         if (isDead) return;
         Vector2 rawDirection = target.position - transform.position; UpdateFacingDirection(rawDirection); rb.linearVelocity = (facingDirection switch { Direction8.Right => Vector2.right, Direction8.UpRight => new Vector2(1, 1).normalized, Direction8.Up => Vector2.up, Direction8.UpLeft => new Vector2(-1, 1).normalized, Direction8.Left => Vector2.left, Direction8.DownLeft => new Vector2(-1, -1).normalized, Direction8.Down => Vector2.down, Direction8.DownRight => new Vector2(1, -1).normalized, _ => Vector2.zero }) * moveSpeed; PlayMoveSound(); }
     void StopMoving()
     {
-        // [�߿�] �׾����� ���� ���� ��ü�� �������� ����
         if (isDead) return;
 
         rb.linearVelocity = Vector2.zero;
@@ -220,7 +240,6 @@ public class Enemy : MonoBehaviour
     }
     void PlayMoveSound()
     {
-        // �׾����� �ƹ� �Ҹ��� �� ��
         if (isDead) return;
 
         if (walkAudioSource != null && !walkAudioSource.isPlaying) walkAudioSource.Play();
@@ -229,7 +248,6 @@ public class Enemy : MonoBehaviour
 
     void PlayIdleSound()
     {
-        // �׾��ٸ� ������� �ʰ�, ��� ���̶�� ��� ����
         if (isDead)
         {
             if (idleAudioSource != null) idleAudioSource.Stop();
@@ -242,12 +260,12 @@ public class Enemy : MonoBehaviour
 
     bool IsPlayerInDetectionRange()
     {
-        if (isDead) return false; // �׾����� ���� �Ұ�
+        if (isDead) return false;
         return target != null && Vector2.Distance(transform.position, target.position) <= detectionRange;
     }
 
     bool IsPlayerVisible() {
-        if (isDead) return false; // �׾����� ������ �� ����
+        if (isDead) return false;
         if (target == null) return false; 
         RaycastHit2D hit = Physics2D.Raycast(transform.position, (target.position - transform.position).normalized, Vector2.Distance(transform.position, target.position), obstacleLayer); 
         return hit.collider == null; 
