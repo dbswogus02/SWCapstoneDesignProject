@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI; 
+using UnityEngine.UI; // 👈 일반 Text 컴포넌트를 쓰기 위해 반드시 필요한 필수 장부입니다!
 using UnityEngine.SceneManagement;
 using TMPro; 
 
@@ -21,6 +21,10 @@ public class InGameUIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI warningText; 
     [SerializeField] private TextMeshProUGUI stageTimeText; 
     [SerializeField] private TextMeshProUGUI stageKillText; 
+    
+    // 💰 [우진님 피드백 반영] TextMeshProUGUI를 일반 Text 컴포넌트로 완벽 교체!
+    [SerializeField] private Text stageMoneyText; // 👈여기에 하이어라키의 StageMoneyText를 드래그해 넣으세요!
+    
     [SerializeField] private RectTransform thumbsUp1;          
     [SerializeField] private RectTransform thumbsUp2;          
     [SerializeField] private RectTransform thumbsUp3;          
@@ -96,6 +100,9 @@ public class InGameUIManager : MonoBehaviour
         if (clearPanel != null) clearPanel.SetActive(false);
         if (warningText != null) warningText.gameObject.SetActive(false);
         if (augmentPanel != null) augmentPanel.SetActive(false);
+        
+        // 🧼 게임 시작할 때는 보상 문구를 안전하게 숨겨둡니다.
+        if (stageMoneyText != null) stageMoneyText.gameObject.SetActive(false);
 
         int currentStageIndex = PlayerPrefs.GetInt("CurrentPlayingStageIndex", 1); 
         if (currentStageIndex == 1)
@@ -140,7 +147,6 @@ public class InGameUIManager : MonoBehaviour
 
         UpdateSpyRadar();
 
-        // 펑 터지는 사망 연출이 진행 중일 때는 게임 시간과 타이머만 안전하게 정지시킵니다.
         if (!isGamePaused && !isSpyDeathTriggered)
         {
             elapsedTime += Time.deltaTime;
@@ -157,7 +163,6 @@ public class InGameUIManager : MonoBehaviour
     // ==========================================
     private void UpdateSpyRadar()
     {
-        // 1) 플레이어 체력 원격 추적
         if (targetPlayerHealth != null)
         {
             maxHP = targetPlayerHealth.maxHealth;
@@ -186,8 +191,6 @@ public class InGameUIManager : MonoBehaviour
             UpdateHPUI();
         }
 
-        // 🎯 [우진님 기획 수정 접합선] 
-        // 팀원 코드의 Die() 함수가 실행되어 'isDead'가 true가 되는 순간을 가로챕니다!
         if (targetPlayerController != null && !isSpyDeathTriggered)
         {
             System.Reflection.FieldInfo deadField = typeof(PlayerController).GetField("isDead", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
@@ -195,17 +198,14 @@ public class InGameUIManager : MonoBehaviour
             {
                 bool isPlayerControllerDead = (bool)deadField.GetValue(targetPlayerController);
 
-                // 💥 팀원 장부에 죽었다고 체크되면, 즉시 화면을 가리지 않고 연출 대기 코루틴 가동!
                 if (isPlayerControllerDead)
                 {
                     isSpyDeathTriggered = true; 
-                    // 3배 크기 폭발 애니메이션(0.7배속)이 완전히 끝날 때까지 정확히 1.8초 대기 지연시킵니다!
                     StartCoroutine(WaitForDeathAnimationSequence(1.8f));
                 }
             }
         }
 
-        // 2) 맵에 소환된 모든 좀비(EnemyHealth) 실시간 갱신
         EnemyHealth[] monsters = FindObjectsOfType<EnemyHealth>();
         foreach (EnemyHealth monster in monsters)
         {
@@ -223,7 +223,6 @@ public class InGameUIManager : MonoBehaviour
             }
         }
 
-        // 3) 실제 체력이 0이 된 좀비만 골라내서 킬수 올리기
         for (int i = activeEnemiesList.Count - 1; i >= 0; i--)
         {
             EnemyHealth currentEnemy = activeEnemiesList[i];
@@ -246,16 +245,9 @@ public class InGameUIManager : MonoBehaviour
         }
     }
 
-    // ⏳ 팀원의 대형 폭발 애니메이션 연출을 끝까지 감상한 뒤 창을 여는 지연 장치 코루틴
     private IEnumerator WaitForDeathAnimationSequence(float waitTime)
     {
-        Debug.Log($"💥 [연출 동기화] 팀원의 폭발 애니메이션 재생 시작! {waitTime}초간 화면을 유지합니다.");
-        
-        // 인게임 흐름을 끊지 않고 1.8초 동안 실시간으로 기다려 이펙트가 끝까지 나오게 합니다.
         yield return new WaitForSeconds(waitTime);
-
-        Debug.Log("🏆 [연출 완료] 폭발 애니메이션 완전 종료 포착. GameOverUI를 오픈합니다.");
-        // 연출이 완벽하게 끝났으니 정식으로 게임오버를 트리거해 화면을 멈추고 UI 창을 엽니다!
         TriggerGameOver();
     }
 
@@ -501,6 +493,9 @@ public class InGameUIManager : MonoBehaviour
         SceneManager.LoadScene("LoadingUI"); 
     }
 
+    // ==========================================
+    // 🏆 스테이지 클리어 처리 구역
+    // ==========================================
     public void TriggerStageClear()
     {
         if (isGameCleared || isGameOver) return;
@@ -510,6 +505,26 @@ public class InGameUIManager : MonoBehaviour
         if (clearPanel != null)
         {
             clearPanel.SetActive(true); 
+
+            // 🧮 따봉 성적에 맞춘 전용 변수 연산
+            int rewardMoney = 100; 
+            if (elapsedTime <= 300f && hitCount <= 8) rewardMoney = 300;      // 따봉 3개
+            else if (elapsedTime <= 420f && hitCount <= 15) rewardMoney = 200; // 따봉 2개
+            else rewardMoney = 100;                                           // 따봉 1개
+
+            // 💰 백그라운드 장부에 누적 합산 및 영구 저장
+            int currentMoney = PlayerPrefs.GetInt("PlayerMoney", 0);
+            PlayerPrefs.SetInt("PlayerMoney", currentMoney + rewardMoney);
+            PlayerPrefs.Save();
+            Debug.Log($"🏆 [차등 보상 완료] 따봉 성적 연산으로 ${rewardMoney} 저축! 전재산: ${currentMoney + rewardMoney}");
+
+            // ✍️ [우진님 기획 변경 피드백 100% 반영] 일반 UI.Text 문구 갈아끼우기!
+            if (stageMoneyText != null)
+            {
+                stageMoneyText.text = $"의뢰 보상금 ${rewardMoney}가 입금되었습니다.";
+                stageMoneyText.gameObject.SetActive(true);
+            }
+
             int minutes = Mathf.FloorToInt(elapsedTime / 60F);
             int seconds = Mathf.FloorToInt(elapsedTime % 60F);
             
@@ -547,8 +562,8 @@ public class InGameUIManager : MonoBehaviour
     private IEnumerator StampThumbsUpProcess()
     {
         int totalThumbs = 0;
-        if (elapsedTime <= 300f && hitCount <= 1) totalThumbs = 3; 
-        else if (elapsedTime <= 420f && hitCount <= 3) totalThumbs = 2; 
+        if (elapsedTime <= 300f && hitCount <= 8) totalThumbs = 3; 
+        else if (elapsedTime <= 420f && hitCount <= 15) totalThumbs = 2; 
         else totalThumbs = 1; 
 
         List<RectTransform> thumbsList = new List<RectTransform> { thumbsUp1, thumbsUp2, thumbsUp3 };
@@ -629,8 +644,14 @@ public class InGameUIManager : MonoBehaviour
         PlayerPrefs.Save();
     }
 
+    // 🚨 [우진님 기획 복구] 죽어서 상점 자금 리셋하고 완전히 로비로 탈출하는 진짜 정답 마법 버튼!
     public void OnClickBackToLobby()
     {
+        // 🧹 로그라이크 최고 핵심: 죽은 후 나갈 때 가진 전재산을 $0원으로 완벽 초기화시킵니다!
+        PlayerPrefs.SetInt("PlayerMoney", 0);
+        PlayerPrefs.Save();
+        Debug.Log("💀 [로그라이크 초기화 완료] 플레이어가 사망하여 전재산이 무자비하게 $0원으로 리셋되었습니다.");
+
         Time.timeScale = 1f; 
         LoadingSceneManager.nextSceneName = "MyLobby"; 
         SceneManager.LoadScene("LoadingUI"); 
